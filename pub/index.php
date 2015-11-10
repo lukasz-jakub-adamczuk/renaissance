@@ -9,7 +9,7 @@ if ($_SERVER['HTTP_HOST'] == 'squarezone.pl') {
 	error_reporting(0);
 	require_once 'config/production.php';
 } else {
-	if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == '192.168.1.108') {
+	if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == IP) {
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 		require_once 'config/local.php';
