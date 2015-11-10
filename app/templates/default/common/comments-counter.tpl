@@ -1,0 +1,1 @@
+<a href="{$base}{$self}#comments" class="comments-count">{if $aNavigator.loaded gt 0}{$aNavigator.loaded|pluralize:'komentarz':'komentarze':'komentarzy'}{else}Brak komentarzy{/if}</a>
