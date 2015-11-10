@@ -1,0 +1,5 @@
+.DS_Store
+build/
+public/config
+public/assets
+public/tmp

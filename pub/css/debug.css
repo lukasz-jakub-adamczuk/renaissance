@@ -1,0 +1,50 @@
+.debug {
+	border-bottom: 1px solid #aaa;
+	margin-bottom: 0;
+}
+.stack > div {
+	/*font-size: .875em;*/
+	border-top: 1px solid #ccc;
+}
+.stack span {
+	display: inline-block;
+	padding-left: .25rem;
+	
+}
+.stack .line {
+	width: 3em;
+	text-align: right;
+}
+.stack .file {
+	color: #444;
+}
+.stack .name {
+	color: #888;
+}
+
+.stack .info {
+	background: #7a1;
+}
+.stack .warning {
+	background: #fa0;
+}
+.stack .alert {
+	background: #f11;
+}
+
+.stack p {
+	font-size: .75rem;
+	padding: .25rem;
+	margin: 0;
+	max-width: none;
+}
+.stack p:first-child {
+	background: rgba(255, 255, 255, .75);
+}
+.stack p:last-child {
+	padding: .25em .25em .25em 4em;
+}
+
+
+
+
