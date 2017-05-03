@@ -16,7 +16,7 @@
 
         {include file='footer.tpl'}
         
-        {include file='modal.tpl'}
+        {*include file='modal.tpl'*}
     </main>
     {include file='scripts.tpl'}
     {*include file='footer.tpl'*}

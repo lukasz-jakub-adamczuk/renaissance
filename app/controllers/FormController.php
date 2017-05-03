@@ -76,18 +76,20 @@ class FormController extends CrudController {
                     // authorized
                     $this->raiseInfo('Komentarz '.(isset($sName) ? '<strong>'.$sName.'</strong>' : '').' został utworzony.');
                 } else {
-                    $this->raiseInfo('Komentarz '.(isset($sName) ? '<strong>'.$sName.'</strong>' : '').' czeka na moderację.');
+                    $this->raiseInfo('Komentarz '.(isset($sName) ? '<strong>'.$sName.'</strong>' : '').' czeka na moderację. Nie dodawaj kolejnego takiego samego, tylko zaczekaj aż ten zostanie zaakceptowany.');
+                }
+                
+                
+                // clear right stream
+                $sStreamFile = CACHE_DIR . '/stream-' . $aPost['request']['ctrl'];
+                if (file_exists($sStreamFile)) {
+                    unlink($sStreamFile);
                 }
 
-                // clear stream, but not for all
+                // clear main stream
                 $sStreamFile = CACHE_DIR . '/stream';
-
-                // verify by file_exists()
-                unlink($sStreamFile);
-
-                // clear stream
-                if (file_exists($sStreamFile.'-'.$aPost['request']['ctrl'])) {
-                    unlink($sStreamFile.'-'.$aPost['request']['ctrl']);
+                if (file_exists($sStreamFile)) {
+                    unlink($sStreamFile);
                 }
 
                 // clear comments
@@ -121,7 +123,6 @@ class FormController extends CrudController {
     }
 
     public function voteAction() {
-        // echo 'voteAction';
         // cup handling
         if (isset($_POST['match']['player1']) && isset($_POST['match']['player2']) && isset($_POST['match']['vote'])) {
             if (isset($_SESSION['user']) && isset($_SESSION['user']['id'])) {
@@ -133,104 +134,25 @@ class FormController extends CrudController {
                 // print_r($aPost);
 
                 $sUserId = $_SESSION['user']['id'];
-                $sVote = $aPost['match']['vote'];
-                $sMatchDate = date('Y-m-d');
+                $vote = $aPost['match']['vote'];
+                $currentMatchDate = date('Y-m-d');
                 // $sMatchDate = '2015-05-05';
 
-                $sPlayer1 = $aPost['match']['player1'];
-                $sPlayer2 = $aPost['match']['player2'];
-
-                $oDb = Db::getInstance();
+                $player1 = $aPost['match']['player1'];
+                $player2 = $aPost['match']['player2'];
                 
-                $mYourVote = $oDb->getOne('SELECT * FROM cup_vote WHERE id_user='.$sUserId.' AND voting_date="'.$sMatchDate.'"');
-
-                // var_dump($mYourVote);
-
-                if (!empty($mYourVote)) {
+                require_once APP_DIR.'/helpers/CupManager.php';
+                
+                $cupManager = new CupManager();
+                
+                if (!$cupManager->canUserVote()) {
                     // echo 'Tylko jeden głos';
                     $this->raiseError('Głosowanie możliwe tylko raz dziennie.');
                 } else {
-                    $aSql = array();
-
                     // echo 'glosujesz';
+                    $cupManager->manageVotingProcess($sUserId, $player1, $player2, $vote);
                     
-                    // register user 
-                    $aSql[] = 'INSERT INTO cup_vote(id_cup_vote, id_user, voting_date) VALUES (NULL, '.$sUserId.', "'.$sMatchDate.'")';
-
-                    // what tournament
-                    if (date('Y') % 2 == 0) {
-                        $sTournamentSlug = '/heroine-cup-' . date('Y');
-                    } else {
-                        $sTournamentSlug = '/hero-cup-' . date('Y');
-                    }
-
-                    $sCupCachePath = CACHE_DIR . '/cup' . $sTournamentSlug;
-                    if (!file_exists($sCupDirectory)) {
-                        mkdir($sCupDirectory, 0777, true);
-                    }
-
-                    // all battles
-                    $sAllBattlesKeysFile = $sCupCachePath . '/all-battles-keys';
-                    if (file_exists($sAllBattlesKeysFile)) {
-                        $aBattlesKeys = unserialize(file_get_contents($sAllBattlesKeysFile));
-                    } else {
-                        $sql = 'SELECT id_cup_battle, player1, player2 FROM cup_battle WHERE id_cup = (SELECT MAX(id_cup) FROM cup) ORDER BY id_cup_battle';
-        
-                        $oCollection = Dao::collection('cup-battle');
-                        $oCollection->query($sql);
-                        $aBattles = $oCollection->getRows();
-
-                        $aBattlesKeys = array_keys($aBattles);
-
-                        file_put_contents($sAllBattlesFileKeys, serialize($aBattlesKeys));
-                    }
-                    
-                    $aBattlesKeysFlipped = array_flip($aBattlesKeys);
-
-                    // only group phase
-                    if ($aBattlesKeysFlipped[$sMatchDate] < 48) {
-                        // add winning vote to player
-                        $aSql[] = 'UPDATE cup_player SET `won` = `won` + 1 WHERE id_cup_player='.$sVote.'';
-
-                        // add lossing points to opponent
-                        if ($sPlayer1 == $sVote) {
-                            $aSql[] = 'UPDATE cup_player SET `lost` = `lost` + 1 WHERE id_cup_player='.$sPlayer2.'';
-                        }
-                        if ($sPlayer2 == $sVote) {
-                            $aSql[] = 'UPDATE cup_player SET `lost` = `lost` + 1 WHERE id_cup_player='.$sPlayer1.'';
-                        }
-                    }
-
-                    if ($sPlayer1 == $sVote) {
-                        $aSql[] = 'UPDATE cup_battle SET `score1` = `score1` + 1 WHERE id_cup_battle="'.$sMatchDate.'"';
-                    }
-                    if ($sPlayer2 == $sVote) {
-                        $aSql[] = 'UPDATE cup_battle SET `score2` = `score2` + 1 WHERE id_cup_battle="'.$sMatchDate.'"';
-                    }
-
-                    // echo 'Twój głos zaliczony';
-
-                    // print_r($aSql);
-                    foreach ($aSql as $sql) {
-                        $oDb->execute($sql);
-                    }
-                    
-                    // run all queries
-                    // $oDb->execute(implode(';', $aSql));
                     $this->raiseInfo('Dziękujemy za Twój głos!');
-
-                    // clear cache
-                    $sMatchDate = date('Y-m-d');
-                    $sMatchFile = $sCupCachePath . '/matches/' . $sMatchDate;
-                    if (file_exists($sMatchFile)) {
-                        unlink($sMatchFile);
-                    }
-
-                    // clear cup battles cache
-                    $sAllBattlesFile = $sCupCachePath . '/all-battles';
-                    if (file_exists($sAllBattlesFile)) {
-                        unlink($sAllBattlesFile);
-                    }
                 }
             }
 

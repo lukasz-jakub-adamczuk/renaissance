@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="inner border-top v-padding clearfix">
-                <p class="small left">Squarezone &copy; 2003-{$smarty.now|date_format:'%Y'} &middot; renaissance{if $smarty.const.DEBUG_MODE} &middot; <span class="gray">server time: {$sServerTime|default:''}ms{/if}</span> &middot; <a href="{$base}/rss.xml" class="icon-feed dark-gray" title="Aktualności"></a> <a href="https://www.facebook.com/pages/SquareZone/171123689581372" class="icon-facebook dark-gray" title="Facebook"></a> {$smarty.const.ENV}
+                <p class="small left">Squarezone &copy; 2003-{$smarty.now|date_format:'%Y'} &middot; renaissance {$smarty.const.VERSION} {if $smarty.const.DEBUG_MODE} &middot; <span class="gray">server time: {$sServerTime|default:''}ms{/if}</span> &middot; <a href="{$base}/rss.xml" class="icon-feed dark-gray" title="Kanał RSS"></a> <a href="https://www.facebook.com/pages/SquareZone/171123689581372" class="icon-facebook dark-gray" title="Facebook"></a> {$smarty.const.ENV}
                 </p>
                 {*<p class="small left">
                     <a href="{$base}/rss.xml" class="icon-feed dark-gray"><span>Aktualności</span></a>

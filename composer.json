@@ -1,0 +1,17 @@
+{
+    "require": {
+    },
+    "autoload": {
+        "psr-0": {"": ""}
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^2.3",
+        "squizlabs/php_codesniffer": "^2.5",
+        "phpmd/phpmd": "^2.3",
+        "sebastian/phpcpd": "^2.0",
+        "phing/phing": "^2.13"
+    }
+}

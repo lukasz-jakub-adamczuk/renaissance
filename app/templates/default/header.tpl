@@ -31,6 +31,11 @@
             </div>
             <div class="ch-widgets">
                 <div class="ch-subscribe-btn-container"></div>
+                {if isset($user)}
+                <div class="ch-login">
+                    <a class="ch-user-name" href="{#user#}/{$user.slug}">{$user.name}</a>
+                </div>
+                {/if}
                 <div class="ch-menu-trigger" role="button" aria-controls="navigation" tabindex="0" aria-label="Meny">
                     <span class="ch-menu-label ch-menu-label-open">Menu</span>
                     <span class="ch-menu-label ch-menu-label-close">Zamknij</span>
@@ -128,8 +133,9 @@
                                         <i class="ch-icon ch-icon-chevron-down"></i>
                                     </div>
                                     <ul class="ch-menu-subsections">
+                                        <li><a href="{$base}/mistrzostwa/hero-cup-2017" class="new">Hero Cup 2017</a></li>
                                         <li><a href="{$base}/mistrzostwa/heroine-cup-2016" class="">Heroine Cup 2016</a></li>
-                                        <li><a href="{$base}/mistrzostwa/hero-2015" class="">Hero Cup 2015</a></li>
+                                        <li><a href="{$base}/mistrzostwa/hero-cup-2015" class="">Hero Cup 2015</a></li>
                                     </ul>
                                 </li>
                             {*{{#sectionsMenu}}
@@ -152,7 +158,7 @@
                             <div class="ch-sitemap-divider">
                                 <div class="ch-sitemap-title"><i class="ch-icon ch-icon-chevron-down"></i>???</div>
                             </div>
-                            <ul class="ch-sitemap-list">
+                            {*<ul class="ch-sitemap-list">
                                 <li class="ch-sitemap-list-group">
                                     <ul>
                                         <li><a href="...">a</a></li>
@@ -160,7 +166,7 @@
                                         <li><a href="...">c</a></li>
                                     </ul>
                                 </li>
-                            </ul>
+                            </ul>*}
                             {*{{#sectionsMenu}}
                                 {{#if @last}}
                                     <div class="ch-sitemap-divider">
@@ -190,6 +196,28 @@
                               {*<li><a href="{{url}}">{{name}}</a></li>*}
                           {*{{/skin.publicationMenu}}*}
                         </ul>
+                        {if not isset($user)}
+                        <div class="message">
+                            {include file='login.tpl'}
+                        </div>
+                        {/if}
+                        <div id="user-nav">
+                        {if isset($user)}
+                            
+                            <a id="auth-tgr" href="{#user#}/{$user.slug}" data-user-sign-in="true">
+                                {if !empty($user.avatar)}
+                                <img src="image.php?img={$user.avatar}&size=64x64" alt="{$user.slug}" width="32" height="32">
+                                {else}
+                                <img src="assets/users/no-avatar.jpg" alt="{$user.slug}" width="32" height="32">
+                                {/if}
+                            </a>
+                            <a href="{$base}/auth/logout" class="log-out-tgr">Wyloguj</a>
+                        {else}
+                            {*<a id="auth-tgr" href="{$smarty.server.REQUEST_URI}#modal" data-user-sign-in="_false">
+                                <span class="icon-user"></span>
+                            </a>*}
+                        {/if}
+                        </div>
                     </div>
                 </div>
             </div>

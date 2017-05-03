@@ -22,24 +22,18 @@ class CupShowGroupsView extends View {
             $sCategorySlug = $oEntity->getField('slug');
             $sCategoryName = $oEntity->getField('name');
         }
-
-        // players
-        $sql = 'SELECT cp.*
-                FROM cup_player cp
-                LEFT JOIN cup c ON (c.id_cup=cp.id_cup)
-                WHERE c.slug="'.$sCategorySlug.'"
-                ORDER BY cp.group, points DESC, won DESC, lost ASC';
+        
+        $cupSlug = $sCategorySlug;
 
         // headers
         if ($sId) {
-            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('cup').'/'.$sCategorySlug.'/klasyfikacja', TRUE, 301);
+            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('cup').'/'.$cupSlug.'/klasyfikacja', TRUE, 301);
         }
 
         // players
         $oCollection = Dao::collection('cup-player');
-        $oCollection->query($sql);
 
-        $aPlayers = $oCollection->getRows();
+        $aPlayers = $oCollection->getPlayerForRanking($cupSlug);
 
         if ($aPlayers) {
             // category name
