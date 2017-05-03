@@ -1,7 +1,7 @@
 <?php
 // require_once APP_DIR.'/controllers/FrontController.php';
 require_once ROOT_DIR.'/image-manipulator/ImageManipulator.php';
-}
+
 
 class ImageController extends FrontController {
 
@@ -9,10 +9,10 @@ class ImageController extends FrontController {
         echo 'image-index...';
     }
 
-	public function showAction() {
-	    //require_once APP_DIR.'/ImageManipulator.php';
-	    
-	    $sFile = isset($_GET['name']) ? APP_DIR.'/pub/img/'.str_replace(',', '/', $_GET['name']) : APP_DIR.'/wall-1.jpg';
+    public function showAction() {
+        //require_once APP_DIR.'/ImageManipulator.php';
+        
+        $sFile = isset($_GET['name']) ? APP_DIR.'/pub/img/'.str_replace(',', '/', $_GET['name']) : APP_DIR.'/wall-1.jpg';
 
         $iWidth = isset($_GET['width']) ? (int)$_GET['width'] : 160;
         $iHeight = isset($_GET['height']) ? (int)$_GET['height'] : 120;
@@ -93,8 +93,8 @@ if (isset($_GET['serve'])) {
 //    $oImageManipulator->save(APP_DIR.'pub/tmp/obraz.jpg');
     
     
-    	
-	}
+        
+    }
 }
 
 ?>

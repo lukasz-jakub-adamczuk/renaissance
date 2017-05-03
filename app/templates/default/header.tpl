@@ -1,46 +1,200 @@
-<head>
-    <title>{$sTitle|default:'Squarezone'}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Content-Language" content="pl">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="Description" content="{$sDescription|default:'Serwis dla fanów Square Enix, Final Fantasy i ciekawych opinii o grach.'}">
-    <meta name="Keywords" content="{$sKeywords|default:'final fantasy, vagrant story, final, fantasy, chrono cross, kingdom hearts, suikoden'}">
-    <meta name="robots" content="all">
-    <meta name="Revisit-After" content="1 days">
-    <meta name="author" content="Ash">
+<header class="ch-core-header">
+    <input type="checkbox" class="ch-menu-state" id="ch-menu-state">
+    <script>document.querySelector('#ch-menu-state').checked = false;</script>
 
-    {if $ctrl eq 'news' and $act eq 'info'}
-    <meta property="og:url" content="{$base}{$self}" />
-        {if isset($aFirstImage)}
-        <meta property="og:image" content="{$base}/image.php?img={$aFirstImage.name}&size=640x360&margin=0" />
-        {/if}
-    <meta property="og:title" content="{$aNews.title|stripslashes}" />
-    <meta property="og:description" content="{$aNews.markup|stripslashes|strip_tags|replace:'"':''|truncate:256}" />
-    {/if}
-    {if ($ctrl eq 'article' or $ctrl eq 'story') and $act eq 'info'}
-    <meta property="og:url" content="{$base}{$self}" />
-        {if isset($aCoverImage)}
-        <meta property="og:image" content="{$base}/image.php?img={$aCoverImage.0.fragment}&size=640x360&margin=0" />
-        {/if}
-    <meta property="og:title" content="{$aArticle.title|stripslashes}" />
-    <meta property="og:description" content="{$aArticle.markup|stripslashes|strip_tags|replace:'"':''|truncate:256}" />
-    {/if}
-    {if $ctrl eq 'home'}
-    <meta property="og:title" content="Squarezone" />
-    <meta property="og:description" content="Serwis dla fanów Square Enix, Final Fantasy i ciekawych opinii o grach." />
-    {/if}
+    {*MAIN HEADER*}
+    <div class="ch-header-main">
+        <div class="ch-inner-container">
+            <a class="ch-logo" href="/">
+                <i class="ch-icon ch-icon-logo"></i>
+                <h1 class="ch-icon-label">Squarezone</h1>
+            </a>
+            <div class="ch-nav-search-container">
+                <nav class="ch-main-links" role="navigation" aria-label="quick navigation">
+                    <ul class="ch-nav-list">
+                      {*{{#skin.importantSections}}*}
+                          {*<li class="ch-list-item item-{{@index}}"><a href="{{url}}">{{name}}</a></li>*}
+                      {*{{/skin.importantSections}}*}
+                      <li class="ch-list-item item-1"><a href="{$base}/gry/final-fantasy-xv/recenzja">Final Fantasy XV</a></li>
+                      <li class="ch-list-item item-1"><a href="{$base}/gry/rise-of-the-tomb-raider/recenzja">Rise of the Tomb Raider</a></li>
+                    </ul>
+                </nav>
+                <form class="ch-search" action="{$base}/szukaj" role="search" method="get" target="_top">
+                    <i class="ch-icon ch-icon-search"></i>
+                    <input type="search" name="search" id="ch-qs-query" autocomplete="off" placeholder="Szukaj w Squarezone"  aria-label="Szukaj w Squarezone">
+                    <div id="ch-qs-loader" class="ch-qs-loader">
+                        <div class="loader"></div>
+                    </div>
+                    <i id="ch-qs-cleaner" class="ch-qs-cleaner"></i>
+                    <button class="ch-search-submit" type="submit" aria-label="Submit"></button>
+                </form>
+            </div>
+            <div class="ch-widgets">
+                <div class="ch-subscribe-btn-container"></div>
+                <div class="ch-menu-trigger" role="button" aria-controls="navigation" tabindex="0" aria-label="Meny">
+                    <span class="ch-menu-label ch-menu-label-open">Menu</span>
+                    <span class="ch-menu-label ch-menu-label-close">Zamknij</span>
 
-    <link rel="shortcut icon" type="image/x-icon" href="{$base}/favicon.png" />
+                    <div class="ch-menu-icon ch-menu-icon-squeeze">
+                       <span class="ch-menu-icon-box">
+                           <span class="ch-menu-icon-inner"></span>
+                       </span>
+                    </div>
+                    <label aria-hidden="true" for="ch-menu-state"></label>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {if $smarty.const.APP_ENV eq 'prod'}
-        <link rel="stylesheet" href="{$base}/css/all.min.css?v={$smarty.const.VERSION}">
-    {else}
-        {if isset($aResources.css)}
-            {foreach from=$aResources.css item=style}
-                <link rel="stylesheet" href="{$base}/{$style}">
-            {/foreach}
-        {/if}
-    {/if}
+    {*SUB-HEADER*}
+    <div class="ch-header-sub" role="navigation" aria-label="submenu">
+        <div class="ch-inner-container">
+            
+          {*{{#if section.name}}
+              <div class="ch-section-links ch-sub-links">
+                  <div class="ch-section-label-container">
+                      <h2 class="ch-section-label">{{section.name}}</h2>
+                  </div>
+                {{#if section.subSections}}
+                    <span class="ch-dropdown-trigger" aria-haspopup="true">Emne
+                    <i class="ch-icon ch-icon-chevron-down"></i>
+                  </span>
+                    <div class="ch-subsections-container">
+                        <ul class="ch-subsections">
+                          {{#section.subSections}}
+                              <li><a href="{{url}}">{{name}}</a></li>
+                          {{/section.subSections}}
+                        </ul>
+                    </div>
+                {{/if}}
+              </div>
+          {{else}}
+              <div class="ch-main-links ch-sub-links">
+                  <ul class="ch-subsections" role="navigation" aria-label="submenu">
+                    {{#skin.importantSections}}
+                        <li><a href="{{url}}">{{name}}</a></li>
+                    {{/skin.importantSections}}
+                  </ul>
+              </div>
+          {{/if}}*}
+        </div>
+    </div>
 
-    <base href="{$base}/">
-</head>
+    {*MAIN MENU*}
+    <div id="ch-menu" role="navigation" aria-label="global navigation">
+        <div class="ch-outer-container">
+            <div class="ch-inner-container">
+                <div class="ch-inner-container-wrapper">
+                    <div id="ch-qs-result" class="ch-qs-result"></div>
+                    <div class="ch-menu-group ch-menu-group-nav">
+                        <ul class="ch-menu-area ch-menu-area-nav" aria-label="sections menu">
+                            <li>
+                                <div class="ch-section-name-container">
+                                    <a class="ch-menu-section " href="{$base}/gry">Gry</a>
+                                    <i class="ch-icon ch-icon-chevron-down"></i>
+                                </div>
+                                <ul class="ch-menu-subsections">
+                                    <li><a href="{$base}/gry/final-fantasy-vii/wstep">Final Fantasy VII</a></li>
+                                    <li><a href="{$base}/gry/chrono-trigger/wstep">Chrono Trigger</a></li>
+                                    <li><a href="{$base}/gry/vagrant-story/wstep">Vagrant Story</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="ch-section-name-container">
+                                    <a class="ch-menu-section " href="{$base}/publicystyka">Publicystyka</a>
+                                    <i class="ch-icon ch-icon-chevron-down"></i>
+                                </div>
+                                <ul class="ch-menu-subsections">
+                                    <li><a href="{$base}/publicystyka/fanfiki">Fanfiki</a></li>
+                                    <li><a href="{$base}/publicystyka/artykuly">Artykuły</a></li>
+                                    <li><a href="{$base}/publicystyka/wywiady">Wywiady</a></li>
+                                    <li><a href="{$base}/publicystyka/relacje">Relacje</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="ch-section-name-container">
+                                    <a class="ch-menu-section " href="{$base}/galerie">Galerie</a>
+                                    <i class="ch-icon ch-icon-chevron-down"></i>
+                                </div>
+                                <ul class="ch-menu-subsections">
+                                    <li><a href="{$base}/galerie/cosplay" class="">Cosplay</a></li>
+                                    <li><a href="{$base}/galerie/tapety" class="">Tapety</a></li>
+                                    <li><a href="{$base}/galerie/fanart" class="">FanArt</a></li>
+                                </ul>
+                            </li>
+                                <li>
+                                    <div class="ch-section-name-container">
+                                        <a class="ch-menu-section " href="{$base}/mistrzostwa">Mistrzostwa</a>
+                                        <i class="ch-icon ch-icon-chevron-down"></i>
+                                    </div>
+                                    <ul class="ch-menu-subsections">
+                                        <li><a href="{$base}/mistrzostwa/heroine-cup-2016" class="">Heroine Cup 2016</a></li>
+                                        <li><a href="{$base}/mistrzostwa/hero-2015" class="">Hero Cup 2015</a></li>
+                                    </ul>
+                                </li>
+                            {*{{#sectionsMenu}}
+                                <li>
+                                    <div class="ch-section-name-container">
+                                        <a class="ch-menu-section {{#if @last}}ch-sitemap-trigger{{/if}}" href="{{url}}">{{name}}</a>
+                                        {{#if subSections}}
+                                            <i class="ch-icon ch-icon-chevron-down"></i>
+                                        {{/if}}
+                                    </div>
+                                    <ul class="ch-menu-subsections">
+                                        {{#subSections}}
+                                            <li><a href="{{url}}" class="{{#isNew}}new{{/isNew}}">{{name}}</a></li>
+                                        {{/subSections}}
+                                    </ul>
+                                </li>
+                            {{/sectionsMenu}}*}
+                        </ul>
+                        <div class="ch-menu-area ch-menu-area-sitemap" aria-label="sitemap">
+                            <div class="ch-sitemap-divider">
+                                <div class="ch-sitemap-title"><i class="ch-icon ch-icon-chevron-down"></i>???</div>
+                            </div>
+                            <ul class="ch-sitemap-list">
+                                <li class="ch-sitemap-list-group">
+                                    <ul>
+                                        <li><a href="...">a</a></li>
+                                        <li><a href="...">c</a></li>
+                                        <li><a href="...">c</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            {*{{#sectionsMenu}}
+                                {{#if @last}}
+                                    <div class="ch-sitemap-divider">
+                                        <div class="ch-sitemap-title"><i class="ch-icon ch-icon-chevron-down"></i>{{this.name}}</div>
+                                    </div>
+                                    <ul class="ch-sitemap-list">
+                                        {{#each this.siteMap}}
+                                            <li class="ch-sitemap-list-group">
+                                                <ul>
+                                                    {{#each this}}
+                                                        <li><a href="{{this.url}}">{{this.name}}</a></li>
+                                                    {{/each}}
+                                                </ul>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                {{/if}}
+                            {{/sectionsMenu}}*}
+                        </div>
+                    </div>
+                    <div class="ch-menu-group ch-menu-group-info">
+                        <ul class="ch-menu-area-pub" aria-label="publication menu">
+                            <!-- <li><i class="ch-icon ch-icon-logo-short"></i></li> -->
+                            <li><a href="{$base}/uzytkownicy">Użytkownicy</a></li>
+                            <li><a href="http://forum.squarezone.pl">Forum</a></li>
+                          {*{{#skin.publicationMenu}}*}
+                              {*<li><a href="{{url}}">{{name}}</a></li>*}
+                          {*{{/skin.publicationMenu}}*}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {*<script>window.__CORE_HEADER_CONFIG__ = {{{stringedBrowserConfig}}};</script>*}
+</header>

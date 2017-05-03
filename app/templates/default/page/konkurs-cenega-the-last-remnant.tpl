@@ -1,9 +1,9 @@
-		<header class="inner center">
-			<h2>Konkurs Cenega - The Last Remnant</h2>
-		</header>
-		<article class="inside">
-			<section class="center">
-				
+        <header class="inner center">
+            <h2>Konkurs Cenega - The Last Remnant</h2>
+        </header>
+        <article class="inside">
+            <section class="center">
+                
 <div class="ent">
 
 <h3> 1. Ogólne informacje</h3>
@@ -52,5 +52,5 @@
 <li>Prace publikowane w konkursie muszą być pracami oryginalnymi. Prace, które zostały wcześniej opublikowane w Internecie, nie będą dopuszczane do konkursu. Naturalnie, plagiaty również nie będą dopuszczane do konkursu.</li></ul> 
 
 
-			</section>
-		</article>
+            </section>
+        </article>

@@ -3,110 +3,117 @@ require_once AYA_DIR.'/Core/View.php';
 
 class HomeIndexView extends View {
 
-	public function fill() {
-		$sStreamFile = CACHE_DIR . '/stream';
-		if (file_exists($sStreamFile)) {
-			$aActivities = unserialize(file_get_contents($sStreamFile));
-		} else {
-			// news
-			$oNewsCollection = Dao::collection('news');
-			$aActivities['news'] = $oNewsCollection->getNewsForStream(6);
+    public function fill() {
+        $sStreamFile = CACHE_DIR . '/stream';
+        if (CACHE_OUTPUT && file_exists($sStreamFile)) {
+            // echo 'from cache';
+            $aActivities = unserialize(file_get_contents($sStreamFile));
+        } else {
+            // echo 'from db';
+            // news
+            $oNewsCollection = Dao::collection('news');
+            $aActivities['news'] = $oNewsCollection->getNewsForStream(6);
 
-			// articles
-			$oArticleCollection = Dao::collection('article');
-			$aActivities['article'] = $oArticleCollection->getArticlesForStream(6);
+            // print_r($aActivities['news']);
 
-			// stories
-			$oStoryCollection = Dao::collection('story');
-			$aActivities['story'] = $oStoryCollection->getStoriesForStream(6);
+            // articles
+            $oArticleCollection = Dao::collection('article');
+            $aActivities['article'] = $oArticleCollection->getArticlesForStream(6);
 
-			$oNewsImageEntity = Dao::entity('news-image');
+            // stories
+            $oStoryCollection = Dao::collection('story');
+            $aActivities['story'] = $oStoryCollection->getStoriesForStream(6);
 
-			// ksort($aActivities)
-			foreach ($aActivities['news'] as &$item) {
-				$item['key'] = 'id_news';
-				$item['type'] = 'news';
-				$item['url'] = ValueMapper::getUrl('news').'/'.str_replace('-', '/', substr($item['creation_date'], 0, 10)).'/'.$item['slug'];
+            $oNewsImageEntity = Dao::entity('news-image');
 
-				$aImageItem = $oNewsImageEntity->getFirstImage($item['id_news']);
+            // ksort($aActivities)
+            foreach ($aActivities['news'] as &$item) {
+                $item['key'] = 'id_news';
+                $item['type'] = 'news';
+                $item['url'] = ValueMapper::getUrl('news').'/'.str_replace('-', '/', substr($item['creation_date'], 0, 10)).'/'.$item['slug'];
 
-				$item['fragment'] = $aImageItem['name'];
-				// fix
-				if ($aImageItem['name'] == '') {
-					$sAsset = '/assets/news/'.strftime('%Y/%m/%d', strtotime($item['creation_date'])).'/'.$item['id_news'].'/bg-01.jpg';
-					$item['fragment'] = $sAsset;
-				}
-			}
+                $aImageItem = $oNewsImageEntity->getFirstImage($item['id_news']);
 
-			foreach ($aActivities['article'] as &$item) {
-				$item['key'] = 'id_article';
-				$item['type'] = 'article';
-				$item['url'] = ValueMapper::getUrl('article').'/'.$item['category_slug'].'/'.$item['slug'];
-				$item['title'] = $item['category'].' - '.$item['title'];
-			}
+                // print_r($aImageItem);
 
-			foreach ($aActivities['story'] as &$item) {
-				$item['key'] = 'id_story';
-				$item['type'] = 'story';
-				$item['url'] = ValueMapper::getUrl('story').'/'.$item['category_slug'].'/'.$item['slug'];
-				// $item['title'] = $item['category'].' - '.$item['title'];
-				$item['title'] = $item['title'];
-			}
+                $item['fragment'] = $aImageItem['name'];
+                // $item['fragment'] = 'aaa';
+                // fix
+                // if ($aImageItem['name'] == '') {
+                //     $sAsset = '/assets/news/'.strftime('%Y/%m/%d', strtotime($item['creation_date'])).'/'.$item['id_news'].'/bg-01.jpg';
+                //     $item['fragment'] = $sAsset;
+                // }
+            }
 
-			file_put_contents($sStreamFile, serialize($aActivities));
+            foreach ($aActivities['article'] as &$item) {
+                $item['key'] = 'id_article';
+                $item['type'] = 'article';
+                $item['url'] = ValueMapper::getUrl('article').'/'.$item['category_slug'].'/'.$item['slug'];
+                $item['title'] = $item['category'].' - '.$item['title'];
+            }
 
-			// ...
-			file_put_contents($sStreamFile.'-news', serialize($aActivities['news']));
-			file_put_contents($sStreamFile.'-article', serialize($aActivities['article']));
-			file_put_contents($sStreamFile.'-story', serialize($aActivities['story']));
-		}
+            foreach ($aActivities['story'] as &$item) {
+                $item['key'] = 'id_story';
+                $item['type'] = 'story';
+                $item['url'] = ValueMapper::getUrl('story').'/'.$item['category_slug'].'/'.$item['slug'];
+                // $item['title'] = $item['category'].' - '.$item['title'];
+                $item['title'] = $item['title'];
+            }
 
-		// echo count($aActivities);
-		// print_r($aActivities);
+            file_put_contents($sStreamFile, serialize($aActivities));
 
-		$i = 0;
-		foreach ($aActivities as $key => $val) {
-			// echo $i.'.'.$sItemKey = $val['ctrl'].'-'.$val['id'].'<br>';
-			$i++;
-		}
+            // ...
+            file_put_contents($sStreamFile.'-news', serialize($aActivities['news']));
+            file_put_contents($sStreamFile.'-article', serialize($aActivities['article']));
+            file_put_contents($sStreamFile.'-story', serialize($aActivities['story']));
+        }
 
-		$aReducedItems = array();
-		$aUniqueActivities = array();
-		foreach ($aActivities as $key => $val) {
-			// $sItemKey = $val['ctrl'].'-'.$val['id'];
-			// if (!isset($aReducedItems[$sItemKey])) {
-			// 	$aReducedItems[$sItemKey] = true;
-			// 	$aUniqueActivities[] = $val;
-			// }
-		}
+        // echo count($aActivities);
+        // print_r($aActivities);
 
-		// $aActivities = $aUniqueActivities;
+        $i = 0;
+        foreach ($aActivities as $key => $val) {
+            // echo $i.'.'.$sItemKey = $val['ctrl'].'-'.$val['id'].'<br>';
+            $i++;
+        }
 
-		// echo count($aUniqueActivities);
+        $aReducedItems = array();
+        $aUniqueActivities = array();
+        foreach ($aActivities as $key => $val) {
+            // $sItemKey = $val['ctrl'].'-'.$val['id'];
+            // if (!isset($aReducedItems[$sItemKey])) {
+            //     $aReducedItems[$sItemKey] = true;
+            //     $aUniqueActivities[] = $val;
+            // }
+        }
 
-		$this->_oRenderer->assign('aActivities', $aActivities);
+        // $aActivities = $aUniqueActivities;
 
-		// $aImages = array();
-		// $aBackgrounds = array();
-		// foreach ($aActivities['news'] as $ak => $a) {
-		// 	if (!isset($a['ctrl'])) {
-		// 		$sql = 'SELECT ni.*
-		// 				FROM news_image ni
-		// 				WHERE id_news = '.$a['id_news'].'';
+        // echo count($aUniqueActivities);
 
-		// 		$oImageCollection = Dao::collection('news-image');
-		// 		$oImageCollection->query($sql);
+        $this->_renderer->assign('aActivities', $aActivities);
 
-		// 		$aImages[$a['id_news']] = $oImageCollection->getRows();
+        // $aImages = array();
+        // $aBackgrounds = array();
+        // foreach ($aActivities['news'] as $ak => $a) {
+        //     if (!isset($a['ctrl'])) {
+        //         $sql = 'SELECT ni.*
+        //                 FROM news_image ni
+        //                 WHERE id_news = '.$a['id_news'].'';
 
-		// 		$aBackgrounds[$a['id_news']] = current($oImageCollection->getRows());
-		// 	}
-		// }
-		// $this->_oRenderer->assign('aImages', $aImages);
-		// $this->_oRenderer->assign('aBackgrounds', $aBackgrounds);
-	}
+        //         $oImageCollection = Dao::collection('news-image');
+        //         $oImageCollection->query($sql);
 
-	protected function _runBeforeFill() {
+        //         $aImages[$a['id_news']] = $oImageCollection->getRows();
 
-	}
+        //         $aBackgrounds[$a['id_news']] = current($oImageCollection->getRows());
+        //     }
+        // }
+        // $this->_renderer->assign('aImages', $aImages);
+        // $this->_renderer->assign('aBackgrounds', $aBackgrounds);
+    }
+
+    protected function _runBeforeFill() {
+
+    }
 }

@@ -2,7 +2,7 @@
 
 class CategoryController extends FrontController {
 
-	public function indexAction() {
-		// $this->setTemplateName('article-info');
-	}
+    public function indexAction() {
+        // $this->setTemplateName('article-info');
+    }
 }

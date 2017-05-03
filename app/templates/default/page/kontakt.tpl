@@ -1,8 +1,8 @@
-		<header class="inner center">
-			<h2>O serwisie</h2>
-		</header>
-		<article class="inside">
-			<section class="center">
+        <header class="inner center">
+            <h2>O serwisie</h2>
+        </header>
+        <article class="inside">
+            <section class="center">
 
 
 <div class="ent">
@@ -48,5 +48,5 @@ Jeżeli zaś uzna twój tekst za słaby - przykro nam, nie dostałeś się.</p>
 </div>
 
 
-			</section>
-		</article>
+            </section>
+        </article>

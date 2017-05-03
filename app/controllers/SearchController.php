@@ -2,6 +2,6 @@
 
 class SearchController extends FrontController {
 
-	public function indexAction() {}
+    public function indexAction() {}
 
 }

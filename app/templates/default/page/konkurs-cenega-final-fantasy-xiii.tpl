@@ -1,8 +1,8 @@
-		<header class="inner center">
-			<h2>Konkurs Cenega - Final Fantasy XIII</h2>
-		</header>
-		<article class="inside">
-			<section class="center">
+        <header class="inner center">
+            <h2>Konkurs Cenega - Final Fantasy XIII</h2>
+        </header>
+        <article class="inside">
+            <section class="center">
 <div class="ent">
 
 <h3>1. Ogólne informacje</h3>
@@ -28,5 +28,5 @@
 
 <p>Wszelkie ewentualne wątpliwości proszę kierować do Ashleya Riota lub Tantalusa, drogą mailową lub poprzez Gadu-Gadu.</p> 
 
-			</section>
-		</article>
+            </section>
+        </article>

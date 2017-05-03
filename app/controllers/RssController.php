@@ -2,6 +2,6 @@
 
 class RssController extends FrontController {
 
-	public function indexAction() {}
+    public function indexAction() {}
 
 }
