@@ -22,7 +22,7 @@ var conf = {ldelim}
         ga('create', 'UA-16220396-1', 'auto');
         ga('send', 'pageview');
     </script>{/literal}
-    <script type="text/javascript" src="{$base}/js/all.min.js?v=3" async ></script>
+    <script type="text/javascript" src="{$base}/js/all.min.js?v={$smarty.const.VERSION}" async ></script>
 {else}
     {if isset($aResources.js)}
         {foreach from=$aResources.js item=script}

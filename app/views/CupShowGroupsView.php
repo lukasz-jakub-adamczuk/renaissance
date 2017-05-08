@@ -33,7 +33,7 @@ class CupShowGroupsView extends View {
         // players
         $oCollection = Dao::collection('cup-player');
 
-        $aPlayers = $oCollection->getPlayerForRanking($cupSlug);
+        $aPlayers = $oCollection->getPlayersForRanking($cupSlug);
 
         if ($aPlayers) {
             // category name

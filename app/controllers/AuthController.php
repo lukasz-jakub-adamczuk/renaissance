@@ -6,7 +6,7 @@ class AuthController extends FrontController {
         if (!isset($_SESSION['user'])) {
             Debug::show('unauthorized', 'user', 'warning');
             $this->setTemplateName('auth');
-            Debug::show($this->_sTemplateName, 'indexAction() in ' . $this->getCtrlName() . ' ctrl');
+            Debug::show($this->_templateName, 'indexAction() in ' . $this->getCtrlName() . ' ctrl');
         } else {
             Debug::show('authorized', 'user', 'info');
             $this->actionForward('index', 'home', true);
@@ -75,7 +75,7 @@ class AuthController extends FrontController {
         }
             // die();
             // $this->setTemplateName('auth');
-            Debug::show($this->_sTemplateName, 'logoutAction() in ' . $this->getCtrlName() . ' ctrl');
+            Debug::show($this->_templateName, 'logoutAction() in ' . $this->getCtrlName() . ' ctrl');
             // teoretically should be possible to fetch ctrl and act from url for redirection
             $this->actionForward('index', 'home', true);
         // }

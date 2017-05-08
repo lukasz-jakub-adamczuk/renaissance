@@ -5,17 +5,7 @@ class SearchIndexView extends View {
 
     public function fill() {
         $sSearch = isset($_GET['search']) ? $_GET['search'] : null;
-        // print_r($_REQUEST);
-
-        // breadcrumbs
-        // $aItem = array(
-        //     'url' => ValueMapper::getUrl('news').'/'.$_GET['year'],
-        //     'text' => $_GET['year']
-        // );
-        // Breadcrumbs::add($aItem);
-
-        // $sYear = $_GET['year'];
-        // $sMonth = $_GET['month'];
+        
         if ($sSearch) {
             $sql = 'SELECT n.*, COUNT(n.id_news) items, u.name user, COUNT(nc.id_news_comment) comments 
                     FROM news n 
@@ -28,9 +18,7 @@ class SearchIndexView extends View {
             
             $oNewsCollection = Dao::collection('news');
             $oNewsCollection->query($sql);
-// echo 'aaa';
-            // print_r(count($oNewsCollection->getRows()));
-
+            
             $this->_renderer->assign('iTotal', count($oNewsCollection->getRows()));
 
             $this->_renderer->assign('aActivities', $oNewsCollection->getRows());

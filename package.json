@@ -5,7 +5,15 @@
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
+    "clean-directory": "^0.9.91",
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-minify": "0.0.15",
+    "gulp-rename": "^1.2.2",
+    "gulp-rm": "^1.0.2",
     "gulp-sass": "^2.3.2"
   },
   "scripts": {

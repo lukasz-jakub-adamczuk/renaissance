@@ -28,6 +28,7 @@ class UserInfoView extends View {
         $oEntity = Dao::entity('user');
         $oEntity->query($sql);
         $aUser = $oEntity->getFields();
+        
 
         // headers
         if ($sId) {
@@ -52,7 +53,7 @@ class UserInfoView extends View {
             // fetch other stats
 
             $db = Db::getInstance();
-
+            
             // $aStats = array();
             $aStatsCounters = array();
             $aStatsCounters['news'] = $db->getOne('SELECT COUNT(id_news) FROM news WHERE id_author="'.$iId.'"');
@@ -89,7 +90,7 @@ class UserInfoView extends View {
             $oCommentsCollection->query($sql);
 
             $this->_renderer->assign('aComments', $oCommentsCollection->getRows());
-            // $this->_renderer->assign('aNavigator', $oCommentsCollection->getNavigator());
+            $this->_renderer->assign('aNavigator', $oCommentsCollection->getNavigator());
         } else {
             // log 404
             $sLogFile = LOG_DIR.'/404/'.date('Y-m-d').'.log';
