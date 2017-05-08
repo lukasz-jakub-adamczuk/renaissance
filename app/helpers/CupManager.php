@@ -70,6 +70,8 @@ class CupManager {
                 $player2 = $aPlayers['player2'];
             }
             
+            print_r($battleDetails);
+            
             $player1Stats = $this->getPlayerStats($player1, $this->currentBattleDate);
             $this->updatePlayerStats($player1, $player1Stats);
             
@@ -83,8 +85,8 @@ class CupManager {
             // nothing
             // $aStats = unserialize(file_get_contents($sStatsFile));
         } else {
-            $oCollection = Dao::collection('cup-player');
-            $players = $oCollection->getPlayersFromLatestCup();
+            $collection = Dao::collection('cup-player');
+            $players = $collection->getPlayersFromLatestCup();
             
             $groups = array();
 
@@ -108,9 +110,9 @@ class CupManager {
                 }
             }
             
-            $oCollection = Dao::collection('cup-battle');
+            $collection = Dao::collection('cup-battle');
 
-            $battles = $oCollection->getCupPhaseBattles();
+            $battles = $collection->getCupPhaseBattles();
             
             // process battles
             foreach ($battles as $bk =>$battle) {
@@ -210,8 +212,8 @@ class CupManager {
         if (file_exists($allBattlesKeysFile)) {
             $allBattlesKeys = unserialize(file_get_contents($allBattlesKeysFile));
         } else {
-            $oCollection = Dao::collection('cup-battle');
-            $allBattles = $oCollection->getBattles();
+            $collection = Dao::collection('cup-battle');
+            $allBattles = $collection->getBattles();
             
             $allBattlesKeys = array_keys($allBattles);
 
@@ -227,8 +229,8 @@ class CupManager {
         if (file_exists($currentBattleFile)) {
             $currentBattle = unserialize(file_get_contents($currentBattleFile));
         } else {
-            $oCollection = Dao::collection('cup-battle');
-            $currentBattle = $oCollection->getCurrentBattle($this->currentBattleDate);
+            $collection = Dao::collection('cup-battle');
+            $currentBattle = $collection->getCurrentBattle($this->currentBattleDate);
 
             file_put_contents($currentBattleFile, serialize($currentBattle));
         }
@@ -265,9 +267,9 @@ class CupManager {
         } else {
             $sql = 'SELECT id_cup_battle, player1, player2 FROM cup_battle WHERE id_cup_battle = "'.$battleDate.'"';
         
-            $oCollection = Dao::collection('cup-battle');
-            $oCollection->query($sql);
-            $battleDetails = $oCollection->getRows();
+            $collection = Dao::collection('cup-battle');
+            $collection->query($sql);
+            $battleDetails = $collection->getRows();
         }
         
         return $battleDetails;
@@ -278,15 +280,10 @@ class CupManager {
     }
     
     private function getPlayerStats($player, $battleDate) {
-        $sql = '';
+        $collection = Dao::collection('cup-battle');
+        $stats = $collection->getPlayerRecentStats($player, $battleDate);
         
-        $oCollection = Dao::collection('cup-battle');
-        $oCollection->query($sql);
-        $aResult = $oCollection->getRows();
-
-        $playerStats = current($aResult);
-        
-        return $playerStats;
+        return current($stats);
     }
     
     private function updatePlayerStats($player, $stats) {
@@ -298,8 +295,8 @@ class CupManager {
                     ';
 
             if ($this->db->execute($sql)) {
-                $sStatsInfo = 'Stats for player#'.$player.' were updated'."\n";
-                file_put_contents($playerStatsFile, $sStatsInfo);
+                $statsInfo = 'Stats for player#'.$player.' were updated'."\n";
+                file_put_contents($playerStatsFile, $statsInfo);
             }
         }
     }
