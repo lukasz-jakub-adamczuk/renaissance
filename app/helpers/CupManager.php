@@ -70,8 +70,6 @@ class CupManager {
                 $player2 = $aPlayers['player2'];
             }
             
-            print_r($battleDetails);
-            
             $player1Stats = $this->getPlayerStats($player1, $this->currentBattleDate);
             $this->updatePlayerStats($player1, $player1Stats);
             
