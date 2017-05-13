@@ -1,0 +1,30 @@
+.ch-perks-products {
+  margin-top: baseline-margin($ch-menu-font-size);
+  .ch-perks-products-label {
+    font-size: rem(18px);
+  }
+  .ch-product {
+    display: block;
+    margin-top: 1rem;
+
+    &::after {
+      clear: both;
+      content: "";
+      display: table;
+    }
+  }
+  .ch-product-title,
+  .ch-product-price {
+    float: left;
+    font-size: rem(13px);
+    font-weight: 400;
+  }
+  .ch-product-title {
+    text-align: left;
+    width: 70%;
+  }
+  .ch-product-price {
+    text-align: right;
+    width: 30%;
+  }
+}

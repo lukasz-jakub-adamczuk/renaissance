@@ -1,0 +1,79 @@
+
+/* shoutbox */
+.shoutbox {
+  margin: 0 auto;
+  padding: 0 72px;
+  max-width: 640px;
+  box-sizing: border-box;
+}
+
+.shouts > li {
+  position: relative;
+}
+.shouts .author-on-left,
+.shouts .author-on-right {
+  position: absolute;
+  top: 24px;
+}
+.shouts .author-on-left {
+  left: -72px;
+}
+.shouts .author-on-right {
+  right: -72px;
+}
+.shout {
+  padding: 15px;
+  background: #aaa;
+  position: relative;
+  margin: 0;
+  border-bottom: 1px solid #fff;
+  word-wrap: break-word;
+}
+.shout:last-child {
+  margin: 0 0 1em;
+}
+.shout > time {
+  display: block;
+  color: #eee;
+  text-align: right;
+  font-size: .75em;
+  margin-top: .25em;
+}
+
+.shout.from-left:before,
+.shout.from-right:after {
+  float: none;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 16px;
+  border: 8px solid #aaa;
+  border-bottom-color: transparent;
+}
+.shout.from-left:before {
+  left: -16px;
+  border-left-color: transparent;
+}
+.shout.from-right:after {
+  right: -16px;
+  border-right-color: transparent;
+}
+
+.shout-input {
+  width: 100%;
+  /*margin: 0 72px;*/
+  box-sizing: border-box;
+  padding: .5em;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  transition: height .3s linear;
+  /*height: 18px*/
+}
+.shout-input:focus {
+  /*height: 72px;*/
+  /*border: 1px solid #aaa;*/
+}
+.buttons {
+  text-align: right;
+}
+

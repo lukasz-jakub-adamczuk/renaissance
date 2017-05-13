@@ -1,0 +1,29 @@
+
+/* breadcrubs */
+.breadcrumbs {
+  /*padding: 0 1em;*/
+  padding: 0 .5em;
+  /*box-sizing: border-box;*/
+  vertical-align: middle;
+}
+.breadcrumbs > span {
+  padding: .5em 0;
+  display: inline-block;
+  /*color: #aaa;*/
+}
+.breadcrumbs > span:after {
+  /*content: '\2192';*/
+  content: '▶';
+  /*content: '/';*/
+  font-size: .75em;
+  color: #ccc;
+}
+.breadcrumbs > span:last-child:after {
+  content: '';
+}
+.breadcrumbs a {
+  color: #666;
+}
+.breadcrumbs a:hover {
+  color: #000;
+}

@@ -1,0 +1,78 @@
+#ch-menu {
+  .ch-perks-card {
+    margin: $ch-menu-padding 0;
+
+    .ch-perks-card-container {
+      background: $ch-perks-card-bg;
+      border: 1px solid $ch-perks-card-border-color;
+      border-radius: 4px;
+      color: $ch-perks-card-text-color;
+      max-width: 20em;
+      margin: 0 auto;
+      padding: $ch-menu-padding;
+      @include clearfix;
+
+      > * {
+        float: left;
+        line-height: 1.2;
+      }
+    }
+
+    .ch-perks-header {
+      float: none;
+      margin-bottom: 1em;
+      @include clearfix;
+      > * {
+        float: left;
+        line-height: 1.5;
+        vertical-align: middle;
+      }
+    }
+
+    .ch-perks-pub-logo {
+      display: inline-block;
+      .ch-icon {
+        display: block;
+        font-size: 2em;
+      }
+    }
+
+    .ch-perks-title {
+      font-size: em(20px);
+      //render vertical divider
+      @include vertical-divider(before, $ch-perks-card-text-color, 0.5em, 1.25em);
+      margin-left: 1em;
+    }
+
+    .ch-perks-year {
+      font-size: em(20px);
+      float: right;
+
+    }
+
+    .ch-perks-message,
+    .ch-perks-link {
+      clear: both;
+      font-size: rem(13px);
+      margin-left: 3.25em;
+      a {
+        font-size: inherit;
+      }
+    }
+
+    .ch-perks-link {
+      margin-bottom: 1em;
+      @include ellipsis(80%);
+    }
+
+    .ch-perks-message::before {
+      content: '#{$ch-perks-card-message}';
+
+    }
+
+    .ch-perks-customer-info {
+      clear: left;
+      font-size: rem(10px);
+    }
+  }
+}

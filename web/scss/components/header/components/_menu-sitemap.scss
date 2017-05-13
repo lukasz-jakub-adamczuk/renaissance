@@ -1,0 +1,99 @@
+#ch-menu {
+  .ch-menu-area-sitemap {
+    height: 100%;
+    left: 0;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    transform: translate3d(100%, 0, 0);
+    transition: all 0.3s ease-in 0s;
+    top: 0;
+    width: 100%;
+
+    &.show-sitemap {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      transition: all $ch-menu-animation-time ease-out 0s;
+      @include mq($ch-until: lg) {
+        height: 100%;
+        overflow-y: visible;
+      }
+    }
+
+    @include mq($ch-until: lg) {
+      height: 0;
+      overflow-y: hidden;
+      padding: $ch-menu-padding $ch-menu-padding*2;
+      top: 0;
+      transition: all $ch-menu-animation-time ease-out 0s;
+      width: 100%;
+      //turn on momentum (inertia) scroll for iOS
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .ch-sitemap-divider {
+      border-bottom: 1px solid $ch-menu-info-bg;
+      margin-bottom: 10px;
+      padding-bottom: 15px;
+      padding-top: 30px;
+
+      @include mq($ch-until: lg) {
+        padding-top: 10px;
+      }
+
+      .ch-sitemap-title {
+        color: $ch-color-text-menu;
+        cursor: pointer;
+        display: inline-flex;
+        font-size: $ch-subheader-section-font-size;
+        font-weight: 600;
+        line-height: $ch-menu-chevron-size;
+      }
+
+      .ch-icon {
+        display: inline-block;
+        font-size: $ch-menu-chevron-size;
+        margin-right: 10px;
+        transform: rotateZ(90deg);
+      }
+    }
+
+    .ch-sitemap-list {
+      column-fill: balance;
+      column-count: $ch-menu-sitemap-columns;
+
+      @include mq($ch-until: lg) {
+        column-count: initial;
+        height: auto;
+        padding-bottom: $ch-menu-padding*4;
+      }
+
+      $baseline: 22px;
+
+      .ch-sitemap-list-group {
+        border-bottom: 1px solid $ch-menu-info-bg;
+        margin-bottom: $baseline/2 - 1px;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+
+        ul {
+          padding-bottom: $baseline/2;
+
+          li {
+            line-height: $baseline;
+            padding: 0 5px 0 0;
+            @include mq($ch-until: lg) {
+              line-height: 2em;
+            }
+          }
+        }
+
+        a {
+          font-size: $ch-menu-font-size * 0.9;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+.ch-alerts {
+  @if $ch-alert-icon-visibility == 'hidden' {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 300ms ease-out;
+  }
+
+  .ch-alerts-link {
+    cursor: pointer;
+    height: inherit;
+    padding: 0 0.5rem;
+    position: relative;
+    text-align: center;
+    transition: padding 500ms ease-out;
+    width: auto;
+    &:hover {
+      text-decoration: none;
+      color: #ffffff;
+    }
+  }
+
+  .ch-alerts-icon {
+    color: $ch-alert-icon-color;
+    font-size: 22px;
+    line-height: $ch-header-height-desktop;
+    opacity: 0;
+    animation: 500ms ease-out forwards 200ms fade-in-alerts-off;
+    @include mq($ch-until: lg) {
+      font-size: 18px;
+      line-height: $ch-header-height-mobile;
+    }
+  }
+
+  .ch-alerts-count {
+    background-color: $ch-alert-bubble-bg;
+    border: 2px solid $ch-header-bg;
+    border-radius: 4px;
+    box-sizing: content-box;
+    color: $ch-alert-bubble-color;
+    display: none;
+    font-size: 11px;
+    font-weight: 700;
+    height: 14px;
+    left: 19px;
+    line-height: 14px;
+    margin-top: -15px;
+    max-width: 32px;
+    min-width: 9px;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 3px;
+    position: absolute;
+    top: 50%;
+    @include mq($ch-until: lg) {
+      left: 17px;
+    }
+    
+    &:empty {
+      animation: none;
+      visibility: hidden;
+    }
+  }
+
+  //state when alerts are present
+  &.ch-alerts-on {
+    @if $ch-alert-icon-visibility == 'hidden' {
+      visibility: visible;
+      opacity: 1;
+      transition: all 500ms ease-out;
+    }
+
+    .ch-alerts-icon {
+      animation: 500ms ease-out forwards 200ms fade-in-alerts-on;
+    }
+
+    .ch-alerts-count {
+      display: block;
+      animation: 700ms ease-out forwards 500ms bounce-in;
+    }
+  }
+
+  &.ch-alerts-off {
+    .ch-alerts-link {
+      padding-right: 0;
+      transition: padding 300ms ease-out;
+    }
+  }
+}

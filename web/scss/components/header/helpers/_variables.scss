@@ -1,0 +1,155 @@
+/* ========================================================
+   GLOBAL VARIABLES
+   all variables should have a !default flag so they can
+   be overwritten, but still have a fallback.
+   ======================================================== */
+
+//base colors
+//color-base is the color of the main header
+//menu colors are derived from that
+$ch-color-base:                                #333333 !default;
+$ch-color-base-light:                          adjust-color($ch-color-base, $lightness: 11) !default;
+$ch-color-base-lighter:                        adjust-color($ch-color-base, $lightness: 21) !default;
+$ch-color-primary:                             #ffffff !default;
+$ch-color-secondary:                           #222222 !default;
+
+$ch-color-border:                              #cccccc !default;
+$ch-color-highlight:                           #12c56c !default;
+$ch-color-special:                             #A2C7E6 !default;
+$ch-color-alert:                               #D0021B !default;
+
+$ch-color-text-default:                        $ch-color-primary !default;
+$ch-color-text-header:                         $ch-color-primary !default;
+$ch-color-text-subheader:                      $ch-color-secondary !default;
+$ch-color-text-menu:                           $ch-color-primary !default;
+
+$ch-header-bg:                                 $ch-color-base !default;
+$ch-subheader-bg:                              $ch-color-primary !default;
+$ch-menu-bg:                                   $ch-color-base-light !default;
+$ch-menu-info-bg:                              $ch-color-base-lighter !default;
+
+
+//all colors for components should be based on base colors for consistency
+//header (top bar) settings
+$ch-header-font:                               16px #{$helvetica} !default;
+$ch-header-height-desktop:                     56px !default;
+$ch-header-height-mobile:                      48px !default;
+$ch-header-nav-font-size:                      15px !default;
+$ch-header-mobile-nav-font-size:               12px !default;
+$ch-header-nav-color:                          rgba($ch-color-text-header, 0.85) !default;
+$ch-header-nav-hover-color:                    $ch-color-text-header !default;
+$ch-header-nav-special-color:                  $ch-color-special !default;
+$ch-header-nav-special-hover-color:            adjust-color($ch-header-nav-special-color, $saturation: 70, $lightness: -10) !default;
+$ch-header-nav-animation-time:                 225ms !default;
+
+//subheader (bottom bar) settings
+$ch-subheader-border-color:                    #eeeeee !default;
+$ch-subheader-text-color:                      $ch-color-text-subheader !default;
+$ch-subheader-nav-color:                       rgba($ch-subheader-text-color, 0.7) !default;
+$ch-subheader-nav-hover-color:                 rgba($ch-subheader-text-color, 1) !default;
+$ch-subheader-nav-mobile-color:                rgba($ch-subheader-text-color, 0.7) !default;
+$ch-subheader-nav-mobile-hover-color:          rgba($ch-subheader-text-color, 1) !default;
+$ch-subheader-nav-dropdown-color:              $ch-color-primary !default;
+$ch-subheader-height-desktop:                  50px !default;
+$ch-subheader-height-mobile:                   38px !default;
+$ch-subheader-section-font-size:               20px !default;
+$ch-subheader-section-mobile-font-size:        14px !default;
+$ch-subheader-subsection-font-size:            15px !default;
+$ch-subheader-subsection-mobile-font-size:     14px !default;
+$ch-subheader-nav-mobile-special-color:        darken($ch-color-special,20) !default;
+$ch-subheader-divider-color:                   $ch-color-border !default;
+
+//logo settings
+$ch-logo-color:                                $ch-color-text-header !default;
+$ch-logo-size:                                 $ch-header-height-desktop/2 !default;
+$ch-logo-ratio:                                187/51 !default;
+
+//inner container (content wrapper) settings
+$ch-container-max-width:                       1320px !default;
+$ch-container-padding:                         10px !default;
+
+//main menu (mega drop down) settings
+//$ch-menu-max-width:                            $ch-container-max-width + 280px !default;
+$ch-menu-max-width:                            none !default;
+$ch-menu-user-max-width:                       300px !default;
+$ch-menu-padding:                              15px !default;
+$ch-menu-link-color:                           $ch-color-text-menu !default;
+$ch-menu-info-divider-color:                   mix(transparentize($ch-menu-link-color,0.6), $ch-menu-info-bg) !default;
+$ch-menu-bg-mobile-section:                    $ch-color-base-lighter !default;
+$ch-menu-bg-mobile-subsection:                 adjust-color($ch-color-base, $lightness: 16) !default;
+$ch-menu-button-color:                         $ch-color-secondary!default;
+$ch-menu-button-bg:                            $ch-color-primary !default;
+$ch-menu-link-faded-color:                     transparentize($ch-menu-link-color,0.4) !default;
+$ch-menu-divider-color:                        $ch-menu-info-bg !default;
+$ch-menu-spid-logo-color:                      $ch-color-border !default;
+$ch-menu-login-border-color:                   $ch-color-border !default;
+$ch-menu-new-badge-color:                      $ch-color-highlight !default;
+$ch-menu-font-size:                            16px !default;
+$ch-menu-section-font-size:                    20px !default;
+$ch-menu-section-mobile-font-size:             18px !default;
+$ch-menu-subsection-mobile-font-size:          15px !default;
+$ch-menu-chevron-size:                         24px !default;
+$ch-menu-animation-time:                       300ms !default;
+$ch-menu-sitemap-columns:                      4 !default;
+
+
+//this value is the cap-size (capital letter size)
+//used for propertly setting vertical rhythm and alignment
+//it may vary for each font, set arbitrally
+//unitless value relative to 1em
+$ch-cap-height: 		                        0.85 !default;
+
+//search bar settings
+$ch-search-bg:                                 $ch-color-base-light !default;
+$ch-search-bg-mobile:                          $ch-color-base-lighter !default;
+$ch-search-input-color:                        $ch-header-nav-color !default;
+$ch-search-height-mobile:                      $ch-header-height-mobile !default;
+
+//Quick Search settings
+$ch-qs-bg-color:                               $ch-menu-info-bg !default;
+$ch-qs-bg-color-mobile:                        $ch-qs-bg-color !default;
+$ch-qs-item-bg-color:                          rgba(255, 255, 255, 0.05) !default;
+$ch-qs-item-bg-color-hover:                    rgba(255, 255, 255, 0.1) !default;
+$ch-qs-item-section-bg-color:                  $ch-color-base-light !default;
+$ch-qs-item-section-bg-color-mobile:           rgba(255, 255, 255, 0.15) !default;
+$ch-qs-item-section-color-mobile:              $ch-color-base !default;
+$ch-qs-max-width:                              650px !default;
+$ch-qs-item-height:                            58px !default;
+$ch-qs-item-img-width:                         103px !default;
+$ch-qs-item-img-width-mobile:                  90px !default;
+$ch-qs-abonnent:                               'Abonnent' !default;
+$ch-qs-abonnent-color:                         $ch-color-text-menu !default;
+$ch-qs-cleaner-color:                          $ch-search-input-color !default;
+$ch-qs-loader-track-color:                     rgba(246,255,255, 0.2) !default;
+$ch-qs-loader-color:                           #f6ffff !default;
+
+//menu button & right widgets settings
+$ch-label-font-size:                           15px !default;
+$ch-menu-trigger-color:                        $ch-color-text-header !default;
+$ch-menu-trigger-width:                        100px !default;
+$ch-hamburger-slice-height:                    3px !default;
+$ch-hamburger-slice-width:                     round($ch-hamburger-slice-height*5*1.4) !default;
+$ch-label-animation-time:                      130ms !default;
+
+// alerts/notifications
+// icon-hidden values: visible (visible at all times) or hidden (visible only when notification is present)
+$ch-alert-icon-visibility:                     hidden !default;
+$ch-alert-icon-color:                          $ch-color-text-header !default;
+$ch-alert-bubble-bg:                           $ch-color-alert !default;
+$ch-alert-bubble-color:                        $ch-color-text-header !default;
+
+
+//perks card settings
+$ch-perks-card-bg:                             $ch-color-base !default;
+$ch-perks-card-border-color: $ch-menu-info-bg !default;
+$ch-perks-card-text-color:                     transparentize($ch-color-text-menu, 0.1) !default;
+$ch-perks-card-message:                        'Se alle dine fordeler på' !default;
+
+//breakpoint definitions
+$ch-mq-breakpoints: (
+                                              "xs": 0px, //targeting <568px devices (e.g. all iPhones <6)
+                                              "sm": 568px, //targeting >=568px devices (e.g. iPhones >=6)
+                                              "md": 768px, //targeting >=768px tablets (e.g. portrait iPad)
+                                              "lg": 979px, //targeting >=992px large screen
+                                              "xl": 1024px //targeting >=1024px tablets (e.g. landscape iPad) and desktops but leaving room for the scroll bar
+);

@@ -1,0 +1,22 @@
+
+@import 'components/header';
+
+@import 'components/breadcrumbs';
+@import 'components/buttons';
+@import 'components/comments';
+@import 'components/cups';
+@import 'components/dialog';
+@import 'components/modal';
+// @import 'components/header';
+@import 'components/shoutbox';
+@import 'components/notifications';
+@import 'components/ratings';
+@import 'components/shoutbox';
+@import 'components/statistics';
+@import 'components/tables';
+
+@import 'partials/shame';
+
+a {
+    _color: red !important;
+}

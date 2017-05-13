@@ -1,0 +1,147 @@
+//main-menu
+#ch-menu {
+  max-height: 0;
+  overflow-y: hidden;
+  position: fixed;
+  top: $ch-header-height-desktop;
+  transition: all ($ch-menu-animation-time - 100ms) ease-out 0s;
+  width: 100%;
+  z-index: 99990;
+  //turn on momentum (inertia) scroll for iOS
+  -webkit-overflow-scrolling: touch;
+  //cover full screen on mobile devices
+  @include mq($ch-until: lg) {
+    max-height: none;
+    height: 0;
+    padding-top: $ch-header-height-mobile + 44px;
+    top: 0;
+    transform: translate3d(0, -100%, 0);
+    transition: all $ch-menu-animation-time ease-out 100ms;
+    visibility: hidden;
+  }
+
+  a,
+  a:link {
+    color: $ch-menu-link-color;
+    font-size: $ch-menu-font-size;
+  }
+
+  .ch-outer-container {
+    background-color: $ch-menu-bg;
+    height: 100%;
+    margin: 0 auto;
+    max-width: $ch-menu-max-width;
+    overflow-y: auto;
+  }
+
+  .ch-inner-container {
+    display: flex;
+    flex-direction: row;
+    height: inherit;
+    padding: 0;
+    @include mq($ch-until: lg) {
+      flex-direction: column;
+      height: 100%;
+      justify-content: flex-start;
+      opacity: 0;
+      transition: opacity $ch-menu-animation-time/2 ease-in 0s;
+    }
+  }
+
+  .ch-inner-container-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: inherit;
+    margin: 0 $ch-container-padding;
+    overflow-x: hidden;
+    padding: 0;
+    position: relative;
+    width: 100%;
+
+    @include mq($ch-until: lg) {
+      flex-direction: column;
+      margin: 0;
+    }
+  }
+
+  .ch-menu-group {
+    float: left;
+    display: inline-block;
+    margin: 0 $ch-menu-padding;
+    padding: $ch-menu-padding*2 0;
+    position: relative;
+    vertical-align: top;
+    @include mq($ch-until: lg) {
+      flex: 0 0 auto;
+      padding: 0;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  //menu for main navigation area and sitemap area
+  .ch-menu-group-nav {
+    flex: 1 1.5 100%;
+    @include mq($ch-until: lg) {
+      flex: 0 0 auto;
+      margin: 0;
+      padding: $ch-menu-padding 0;
+    }
+  }
+
+  //menu for user area & publication area
+  .ch-menu-group-info {
+    background-color: $ch-menu-info-bg;
+    color: $ch-color-text-menu;
+    font-weight: 600;
+    flex: 1 1 25em;
+    max-width: $ch-menu-user-max-width;
+    padding-left: $ch-menu-padding*2;
+    padding-right: $ch-menu-padding*2;
+    @include mq($ch-until: lg) {
+      background-color: inherit;
+      border-top: 1px solid $ch-menu-info-bg;
+      flex: 0 0 auto;
+      margin: 0;
+      max-width: 100%;
+      padding: $ch-menu-padding 0;
+      text-align: center;
+      transform: translate3d(0, 0, 0);
+      transition: all $ch-menu-animation-time ease-out 0s;
+
+      &.show-sitemap {
+        transform: translate3d(-100%, 0, 0);
+        transition: all $ch-menu-animation-time ease-out 0s;
+      }
+    }
+  }
+
+  .ch-menu-area {
+    margin-bottom: baseline-margin();
+  }
+}
+
+//open menu with checkbox hack
+@include menu-triggered {
+  #ch-menu {
+    max-height: 50em;
+    visibility: visible;
+    transition: all $ch-menu-animation-time ease-out 0s;
+    @include mq($ch-until: lg) {
+      max-height: none;
+      height: 100vh;
+      transform: translate3d(0, 0, 0);
+      transition: all $ch-menu-animation-time ease-out 0s;
+    }
+    .ch-inner-container {
+      opacity: 1;
+      transition: opacity $ch-menu-animation-time ease-out 150ms;
+    }
+  }
+}

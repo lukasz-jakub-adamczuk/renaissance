@@ -1,0 +1,58 @@
+//helper - invisible label / for accessibility concerns
+.ch-icon-label {
+  border: 0 none;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  left: auto;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+
+//helper - vertical alignment of text
+$ch-base-font-size: 	$ch-menu-font-size;
+$ch-base-line-height: 	1.5;
+
+@mixin baseline($ch-font-size, $ch-scale: 2) {
+
+  // rhythm unit i.e. 1.5 * 16px / 2 = 24px/2 = 12px
+  $ch-rhythm: $ch-base-line-height * $ch-base-font-size / $ch-scale;
+
+  // number of rhythm units that can fit the font-size
+  $ch-lines: ceil(($ch-font-size + 0.001px) / $ch-rhythm);
+
+  // calculate the new line-height i.e. 12px * 2 / 16px = 1.5
+  $ch-line-height: $ch-rhythm * $ch-lines / $ch-font-size;
+
+  // use the results
+  font-size: $ch-font-size;
+  line-height: $ch-line-height;
+
+  $ch-baseline-distance: ($ch-line-height - $ch-cap-height) / 2;
+
+  // if you use this mixin only on elements that have one direction margins
+  // http://csswizardry.com/2012/06/single-direction-margin-declarations/
+  // you can use this method with no worries.
+  // this method assumes the direction is down and the margin is $ch-base-line-height
+  display: inline-block;
+  vertical-align: baseline;
+  padding-top: $ch-baseline-distance + em;
+}
+
+@function baseline-margin($ch-scale: 2) {
+  // rhythm unit i.e. 1.5 * 16px / 2 = 24px/2 = 12px
+  $ch-rhythm: $ch-base-line-height * $ch-base-font-size / $ch-scale;
+
+  // number of rhythm units that can fit the font-size
+  $ch-lines: ceil(($ch-base-font-size + 0.001px) / $ch-rhythm);
+
+  // calculate the new line-height i.e. 12px * 2 / 16px = 1.5
+  $ch-line-height: $ch-rhythm * $ch-lines / $ch-base-font-size;
+
+  $ch-baseline-distance: ($ch-line-height - $ch-cap-height) / 2;
+
+  @return round($ch-rhythm * $ch-lines + $ch-baseline-distance * $ch-base-font-size);
+}

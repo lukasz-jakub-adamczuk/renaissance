@@ -1,0 +1,62 @@
+
+/* tables */
+table { 
+  width: 100%;
+  border-collapse: collapse;
+}
+tr:nth-of-type(odd) { 
+  background: #eee;
+}
+th { 
+  background: #ccc;
+  text-align: left;
+}
+th,
+td { 
+  padding: .5em;
+  border: 1px solid #ccc;
+}
+
+/*
+@media 
+only screen and (max-width: 760px),
+ (min-device-width: 768px) and (max-device-width: 1024px) {*/
+@media only screen and (max-width: 640px) {
+
+  table, thead, tbody, th, td, tr { 
+    display: block; 
+  }
+  
+  thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  tr {
+    border: 1px solid #ccc;
+    border-width: 0 1px;
+  }
+  tr:first-child {
+    border-top: 1px solid #ccc;
+  }
+  
+  td {
+    position: relative;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding-left: 50%; 
+    color: #000;
+  }
+  
+  td:before {
+    position: absolute;
+    top: .5em;
+    left: .5em;
+    width: 45%;
+    color: #444;
+    white-space: nowrap;
+  }
+}
+
+

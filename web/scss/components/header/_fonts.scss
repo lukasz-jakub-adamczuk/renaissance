@@ -1,0 +1,13 @@
+$ch-font-path: "assets/fonts" !default;
+
+// font-face support (woff2, woff, ttf)
+// Chrome 	Safari 	Firefox 	Opera 	IE 	Android 	iOS
+// 3.5+ 	3+ 	    3.5+ 	    10.1+ 	9+ 	2.2+ 	    4.3+
+@font-face {
+  font-family: 'icon-font';
+  src:         url('#{$ch-font-path}/icons.woff2?q525ru') format('woff2'),
+               url('#{$ch-font-path}/icons.woff?q525ru') format('woff'),
+               url('#{$ch-font-path}/icons.ttf?q525ru') format('truetype');
+  font-weight: normal;
+  font-style:  normal;
+}

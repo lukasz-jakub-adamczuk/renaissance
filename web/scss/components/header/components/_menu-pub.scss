@@ -1,0 +1,40 @@
+//publication section of menu
+#ch-menu {
+  .ch-menu-area-pub {
+    font-weight: normal;
+    margin-left: 0;
+    transform: translate3d(0,0,0);
+    transition: all $ch-menu-animation-time ease-out 0s;
+    @include mq($ch-until: lg) {
+      margin: 0;
+      padding: 0 $ch-menu-padding $ch-menu-padding*6;
+      text-align: center;
+    }
+
+    li {
+      @include mq($ch-until: lg) {
+        display: inline-block;
+        padding: 0 8px;
+      }
+    }
+
+    .ch-icon-logo-short {
+      display: none;
+      @include mq($ch-until: lg) {
+        background: $ch-menu-link-color;
+        border-radius: 100%;
+        color: $ch-menu-bg;
+        display: inline-block;
+        font-size: 1.5em;
+        height: 1.5em;
+        line-height: 1.5;
+        vertical-align: middle;
+        width: 1.5em;
+      }
+    }
+
+    a {
+      @include baseline($ch-menu-font-size);
+    }
+  }
+}

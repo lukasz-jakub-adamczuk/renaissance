@@ -1,0 +1,233 @@
+//wrap everything to prevent specificity issues
+.ch-core-header {
+  .ch-header-main {
+    background-color: $ch-header-bg;
+    height: $ch-header-height-desktop;
+    line-height: $ch-header-height-desktop;
+    overflow-y: hidden;
+    position: fixed;
+    width: 100%;
+    z-index: 99999;
+    @include mq($ch-until: lg) {
+      height: $ch-header-height-mobile;
+      line-height: $ch-header-height-mobile;
+      overflow-y: visible;
+    }
+
+    .ch-inner-container {
+      padding: 0 $ch-container-padding;
+    }
+  }
+
+  //publication logo
+  .ch-logo {
+    display: block;
+    position: absolute;
+    left: $ch-container-padding;
+    width: $ch-logo-ratio * $ch-logo-size;
+
+    &:link,
+    &:hover,
+    &:active,
+    &:visited {
+      color: $ch-logo-color;
+      text-decoration: none !important;
+    }
+
+    //slightly adjust position due to logos' baselines
+    .ch-icon-logo {
+      position: relative;
+      top: -1px;
+      font-size: $ch-logo-size;
+      vertical-align: middle;
+      @include mq($ch-until: lg) {
+        font-size: ($ch-logo-size*$ch-header-height-mobile)/$ch-header-height-desktop;
+      }
+    }
+  }
+
+  //container for main links and search form
+  .ch-nav-search-container {
+    float: left;
+    left: $ch-logo-ratio * $ch-logo-size + strip-units($ch-container-padding*3);
+    max-width: 700px - ($ch-logo-ratio * $ch-logo-size);
+    padding-right: 5em;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    transition: all 300ms ease-out 75ms;
+    width: 100%;
+    @include mq($ch-until: lg) {
+      height: $ch-search-height-mobile + 10px;
+      left: 0;
+      max-width: none;
+      overflow: hidden;
+      position: absolute;
+      padding-left: 0;
+      padding-right: 0;
+      right: 0;
+      top: -200%;
+      transition: top 0s ease-out $ch-header-nav-animation-time;
+      width: auto;
+    }
+  }
+
+  //wrapper for rightmost elements in header
+  .ch-widgets {
+    display: block;
+    min-width: $ch-menu-trigger-width;
+    position: absolute;
+    right: 0;
+
+    & * {
+      float: left;
+      font-size: $ch-label-font-size;
+    }
+
+    & > * {
+      margin-left: $ch-menu-padding;
+      margin-right: $ch-menu-padding;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  //displays user name (login)
+  .ch-login {
+    @include mq($ch-until: lg) {
+      display: none;
+    }
+
+    //render vertical divider
+    @include vertical-divider(after, rgba(invert($ch-header-bg),0.25), $ch-menu-padding, $ch-label-font-size * 1.25) {
+      animation: $ch-header-nav-animation-time ease-out backwards 100ms grow-in;
+    }
+    //and hide on mobile
+    &::after {
+      @include mq($ch-until: lg) {
+        display: none;
+      }
+    }
+
+    .ch-user-name {
+      animation: $ch-header-nav-animation-time*2 ease-out backwards 200ms user-name-in;
+      color: $ch-header-nav-color;
+      @include ellipsis(8rem);
+    }
+  }
+
+  //displays subscribe button
+  .ch-subscribe-btn-container {
+    @include mq($ch-until: lg) {
+      display: none;
+    }
+    //render vertical divider
+    @include vertical-divider(after, rgba(invert($ch-header-bg),0.25), $ch-menu-padding, $ch-label-font-size * 1.25) {
+      animation: $ch-header-nav-animation-time ease-out backwards 500ms grow-in;
+    }
+    //and hide on mobile
+    &::after {
+      @include mq($ch-until: lg) {
+        display: none;
+      }
+    }
+    &:empty::after {
+      display: none;
+    }
+
+    .ch-list-item-special {
+      animation: $ch-header-nav-animation-time*2 ease-out backwards 200ms user-name-in;
+    }
+  }
+
+  .ch-alerts {
+    //render vertical divider
+    @include vertical-divider(after, rgba(invert($ch-header-bg),0.25), $ch-menu-padding, $ch-label-font-size * 1.25) {
+      animation: $ch-header-nav-animation-time ease-out backwards 0s grow-in;
+    }
+  }
+
+  //wrapper for hamburger menu button
+  .ch-menu-trigger {
+    color: $ch-menu-trigger-color;
+    float: right;
+    width: $ch-menu-trigger-width;
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    label {
+      cursor: pointer;
+      display: block;
+      position: absolute;
+      width: inherit;
+      top: 0;
+      z-index: 10;
+    }
+
+    .ch-menu-icon {
+      float: right;
+    }
+  }
+
+  .ch-menu-label {
+    font-weight: 700;
+    position: absolute;
+    right: $ch-hamburger-slice-width + 24px;
+    user-select: none;
+  }
+
+  .ch-menu-label-close {
+    @include label-animation-open;
+  }
+
+  .ch-menu-label-open {
+    @include label-animation-close;
+  }
+
+  //change menu-trigger sizing and visibility when user loggin in
+  &.logged-in {
+    .ch-menu-trigger {
+      width: $ch-menu-trigger-width + 5px;
+      @include mq($ch-until: 360px) {
+        width: $ch-hamburger-slice-width*2;
+      }
+    }
+
+    .ch-menu-icon {
+      padding-right: 15px !important;
+    }
+
+    .ch-menu-label {
+      right: 50px;
+      @include mq($ch-until: 360px) {
+        display: none;
+      }
+    }
+  }
+}
+
+//changes applied when menu opened
+@include menu-triggered {
+  .ch-header-main {
+    .ch-menu-label-close {
+      @include label-animation-close;
+    }
+
+    .ch-menu-label-open {
+      @include label-animation-open;
+    }
+
+    .ch-nav-search-container {
+      transform: translate3d(0, (-$ch-header-height-desktop), 0);
+      transition: all $ch-header-nav-animation-time ease-out 50ms;
+      @include mq($ch-until: lg) {
+        top: $ch-header-height-mobile;
+        transform: translate3d(0, 0, 0);
+        transition: none;
+      }
+    }
+  }
+}

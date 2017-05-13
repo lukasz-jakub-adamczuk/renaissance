@@ -1,0 +1,66 @@
+// define theme vars
+$ch-color-base: #000;
+$ch-container-max-width: 960px;
+$ch-logo-ratio: 400/50;
+$ch-qs-max-width:                              460px !default;
+@import 'header/fonts';
+
+// core header css
+@import 'header/main';
+
+
+@font-face {
+  font-family: 'icon-font';
+  src: url(assets/fonts/icons.woff2?q525ru) format("woff2"),
+       url(assets/fonts/icons.woff?q525ru) format("woff"),
+       url(assets/fonts/icons.ttf?q525ru) format("truetype");
+  font-weight:400;
+  font-style:normal
+}
+.ch-icon {
+  font-family:icon-font!important;
+  speak:none;
+  font-style:normal;
+  font-weight:400;
+  font-variant:normal;
+  line-height:1;
+  font-smooth:always;
+  -webkit-font-smoothing:antialiased;
+}
+.ch-icon-logo:before {
+  // content:""
+}
+.ch-icon-logo-short:before {
+  content:""
+}
+.ch-icon-spid-logo:before {
+  content:""
+}
+.ch-icon-search:before {
+  content:""
+}
+.ch-icon-chevron-down:before {
+  content:""
+}
+.ch-icon-user-hollow:before {
+  content:""
+}
+.ch-icon-bell:before {
+  content:"🔔"
+}
+
+
+.ch-icon-logo {
+  display: inline-block;
+
+  background: url(../../assets/site/bg/logo.png) 50% 50% no-repeat;
+  width: 225px;
+  // height: 56px;
+}
+
+
+.ch-core-header {
+  .ch-nav-search-container {
+    // max-width: 460px;
+  }
+}

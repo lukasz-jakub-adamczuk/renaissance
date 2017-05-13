@@ -1,0 +1,45 @@
+
+/* statistics */
+.features {
+  /*padding-left: 4em;*/
+  max-width: 40em;
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+}
+.features ul {
+  margin: 0 0 1em;
+  padding-left: 0;
+}
+.features li {
+  position: relative;
+  list-style: none;
+  padding: .25em 1.5em;
+  /*margin: .25em 0;*/
+  vertical-align: middle;
+  /*background: #eee;*/
+  
+}
+.features span {
+  /*vertical-align: middle;*/
+  /*display: inline-block;*/
+}
+.features .icon-plus-circle:before,
+.features .icon-minus-circle:before {
+  /*display: inline-block;*/
+  /*color: #888;*/
+  font-size: 1.25em;
+  /*vertical-align: middle;*/
+  /*margin-left: -1.25em;*/
+  position: absolute;
+  left: 0;
+  /*font-size: 2em;*/
+}
+.icon-plus-circle {
+  color: #0c0;
+}
+.icon-minus-circle {
+  color: #c00;
+}
+
+

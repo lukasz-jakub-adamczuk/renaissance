@@ -1,0 +1,95 @@
+.ch-search {
+  border: 0;
+  float: left;
+  opacity: 0;
+  overflow: hidden;
+  position: relative;
+  transition: opacity $ch-header-nav-animation-time linear 0s;
+  width: 100%;
+  @include mq($ch-until: lg) {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    height: $ch-search-height-mobile;
+    opacity: 1;
+    position: absolute;
+    top: -100%;
+    transition: all ($ch-header-nav-animation-time / 2) linear 100ms;
+    width: 100%;
+    visibility: hidden;
+    width: 100%;
+  }
+
+  .ch-search-submit {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    padding: 0;
+    position: absolute;
+    top: 32px;
+    @include mq($ch-until: lg) {
+      top: 0;
+
+    }
+  }
+
+  .ch-icon-search {
+    color: $ch-header-nav-color;
+    line-height: inherit;
+    position: absolute;
+    text-align: center;
+    top: 1px;
+    width: 2.75em;
+  }
+
+  input {
+    border: 0;
+    background-color: $ch-search-bg;
+    color: $ch-search-input-color;
+    height: $ch-header-height-desktop - 10px;
+    max-height: 44px;
+    padding: 0 0.66em 0 2.75em;
+    width: 100%;
+    //safari alignment fix
+    vertical-align: baseline;
+    line-height: 2.75em;
+
+    &::-moz-placeholder,
+    &::-webkit-input-placeholder
+    &:-ms-input-placeholder {
+      color: rgba($ch-search-input-color, 0.7);
+    }
+
+    @include mq($ch-until: lg) {
+      background-color: $ch-search-bg-mobile;
+      height: inherit;
+      max-height: none;
+      vertical-align: top;
+    }
+
+    &:focus,
+    &:active {
+       outline: none;
+    }
+  }
+}
+
+//control visibility of search bar
+@include menu-triggered {
+  .ch-header-main {
+    .ch-search {
+      opacity: 1;
+      transition: all $ch-header-nav-animation-time*0.75 linear 0s;
+      @include mq($ch-until: lg) {
+        visibility: visible;
+        top: -$ch-search-height-mobile;
+        transform: translate3d(0,100%,0);
+        transition-duration: $ch-header-nav-animation-time + 50ms;
+        transition-timing-function: ease-out;
+      }
+    }
+    .ch-main-links {
+      opacity: 0;
+      transition: opacity $ch-header-nav-animation-time linear 0s;
+    }
+  }
+}

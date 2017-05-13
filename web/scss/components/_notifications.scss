@@ -1,0 +1,81 @@
+
+/* notifications */
+.notice {
+  position: relative;
+  margin-bottom: 1em;
+  padding: .5rem 1rem;
+  /*margin: 1rem 12rem;*/
+  font-size: .875em;
+}
+.notice:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  color: #fff;
+  font-family: 'LucidaGrande', 'HelveticaNeue', Tahoma, Verdana, Arial, sans-serif;
+  font-size: .875em;
+  content: attr(data-title);
+}
+
+.info {
+  background: #dee;
+  border-bottom: 4px solid #28a;
+}
+.info:after {
+  background: #28a;
+}
+
+.warning {
+  background: #fec;
+  border-bottom: 4px solid #f90;
+}
+.warning:after {
+  background: #f90;
+}
+
+.alert {
+  background: #fcb;
+  border-bottom: 4px solid #f13;
+}
+.alert:after {
+  background: #f13;
+}
+
+.green {
+  background: #cfb;
+  border-bottom: 4px solid #7a1;
+}
+.green:after {
+  background: #7a1;
+}
+
+.blue {
+  background: #def;
+  border-bottom: 4px solid #27f;
+}
+.blue:after {
+  background: #27f;
+}
+
+/* temporary boss notification */
+.bss {
+  position: relative;
+  margin-bottom: 1em;
+  padding: .5rem 1rem;
+  /*max-width: 610px;*/
+  font-size: .875em;
+  background: #fcb;
+  border-bottom: 4px solid #800;
+}
+.bss:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  color: #fff;
+  font-family: 'LucidaGrande', 'HelveticaNeue', Tahoma, Verdana, Arial, sans-serif;
+  font-size: .875em;
+  content: attr(data-title);
+}
+

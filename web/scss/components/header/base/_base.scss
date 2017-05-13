@@ -1,0 +1,164 @@
+html,body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+//set default parameters
+.ch-core-header {
+  color: $ch-color-text-default;
+  font: $ch-header-font;
+  width: 100%;
+  padding-bottom: $ch-header-height-desktop !important;
+  position: relative;
+  top: 0;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  @include mq($ch-until: lg) {
+    padding-bottom: $ch-header-height-mobile !important;
+  }
+
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    @include mq($ch-from: lg) {
+      &:hover {
+        text-decoration: underline !important;
+      }
+    }
+
+    &:active,
+    &:focus {
+      text-decoration: underline !important;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  input {
+    appearance: none;
+    border-radius: 0;
+  }
+
+  button {
+    appearance: none;
+    padding: 1em;
+  }
+
+  .ch-list-item-special {
+    a,
+    a:link,
+    a:visited {
+      color: $ch-header-nav-special-color;
+      font-weight: 600;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+      color: $ch-header-nav-special-hover-color;
+    }
+  }
+
+  //wrapper for 'important' links
+  .ch-main-links {
+    display: block;
+    opacity: 1;
+    overflow: hidden;
+    @include mq($ch-until: lg) {
+      display: none;
+    }
+
+    .ch-list-item {
+      margin: 0 5px;
+    }
+
+    a,
+    a:link,
+    a:visited {
+      color: $ch-header-nav-color;
+      display: inline-block;
+      font-size: $ch-header-nav-font-size;
+      font-weight: 600;
+      padding: 0 5px;
+      @include mq($ch-until: lg) {
+        color: $ch-header-nav-color;
+        font-size: $ch-header-mobile-nav-font-size;
+
+      }
+    }
+    
+    a:hover,
+    a:active,
+    a:focus {
+      color: $ch-header-nav-hover-color;
+    }
+  }
+
+}
+
+//resets and unifies some values for all elements inside header
+.ch-core-header,
+.ch-core-header::before,
+.ch-core-header::after,
+.ch-core-header *,
+.ch-core-header *::before,
+.ch-core-header *::after {
+  box-sizing: border-box;
+  letter-spacing: normal;
+  margin: 0;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.ch-core-header *,
+.ch-core-header *::before,
+.ch-core-header *::after {
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: inherit;
+}
+
+//unify the height of all elements inside the headers
+.ch-header-main,
+.ch-header-sub {
+  * {
+    height: inherit;
+  }
+}
+
+//generic wrapper, width-limiter
+.ch-inner-container {
+  max-width: $ch-container-max-width;
+  margin: 0 auto;
+  position: relative;
+}
+
+//used for controlling menu checkbox hack
+//has to stay hidden
+#ch-menu-state {
+  display: none;
+}
+
+
+//generic inline list
+.ch-nav-list {
+  list-style: none;
+
+  .ch-list-item {
+    display: inline-block;
+    margin: 0 10px;
+  }
+}
+
+//other
+
+

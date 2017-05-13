@@ -1,0 +1,118 @@
+.ch-menu-icon {
+  background-color: transparent;
+  border: 0 none;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  margin: 0;
+  overflow: visible;
+  padding: 0 10px !important;
+  text-transform: none;
+  transition-duration: 150ms;
+  transition-property: opacity, filter;
+  transition-timing-function: linear;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+//control macHuman icon
+.ch-menu-icon-user {
+  position: absolute;
+  right: 4px;
+  z-index: 10;
+  overflow-x: hidden;
+
+  svg {
+    animation: $ch-header-nav-animation-time ease-out forwards user-appear-in;
+    fill: $ch-menu-trigger-color;
+    opacity: 1;
+    stroke: $ch-header-bg;
+    stroke-width: 2px;
+    width: 28px;
+  }
+}
+
+@include menu-triggered {
+  .ch-header-main .ch-menu-icon-user svg {
+    animation: $ch-header-nav-animation-time ease-in normal forwards user-appear-out;
+  }
+}
+
+.ch-menu-icon-box {
+  width: $ch-hamburger-slice-width;
+}
+
+.ch-menu-icon-inner {
+  display: block;
+  background-color: $ch-menu-trigger-color;
+  height: $ch-hamburger-slice-height;
+  position: absolute;
+  top: round($ch-header-height-desktop/2 - $ch-hamburger-slice-height/2);
+  transition-duration: 0.15s;
+  transition-property: transform;
+  transition-timing-function: ease;
+  width: $ch-hamburger-slice-width;
+  @include mq($ch-until: lg) {
+    top: round($ch-header-height-mobile/2 - $ch-hamburger-slice-height/2);
+  }
+
+  &::after, &::before {
+    background-color: $ch-menu-trigger-color;
+    height: inherit;
+    position: absolute;
+    transition-duration: 0.15s;
+    transition-property: transform;
+    transition-timing-function: ease;
+    width: inherit;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    bottom: -($ch-hamburger-slice-height*2);;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    top: -($ch-hamburger-slice-height*2);
+  }
+}
+
+//animate to X icon
+.ch-menu-icon-squeeze {
+  .ch-menu-icon-inner {
+    height: $ch-hamburger-slice-height;
+    transition-duration: 0.1s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+    &::before {
+      transition: top 0.1s ease 0.15s, opacity 0.1s ease 0s;
+    }
+
+    &::after {
+      transition: bottom 0.1s ease 0.15s, transform 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19) 0s;
+    }
+  }
+  #ch-menu-state:checked ~ .ch-header-main & .ch-menu-icon-inner,
+  #ch-menu-state:target ~ .ch-header-main & .ch-menu-icon-inner {
+    transform: rotate(45deg);
+    transition-delay: 0.15s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    &::before {
+      opacity: 0;
+      top: 0;
+      transition: top 0.1s ease 0s, opacity 0.1s ease 0.15s;
+    }
+
+    &::after {
+      bottom: 0;
+      transform: rotate(-90deg);
+      transition: bottom 0.1s ease 0s, transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s;
+    }
+  }
+}

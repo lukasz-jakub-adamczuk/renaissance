@@ -1,0 +1,75 @@
+
+/* site footer */
+#footer {
+  clear: both;
+  background-color: #eee;
+  /*background: #444 url(../assets/site/bg/footer-tile.png) 0 0 repeat;*/
+  /*background: #400 url(../assets/site/bg/tweed/tweed.png) 0 0 repeat;*/
+  background: #eee url(../assets/site/bg/norwegian_rose/norwegian_rose.png) 0 0 repeat;
+
+  /*background-image: linear-gradient(to bottom, #ccc, #eee);*/
+  color: #888;
+  padding: 1px 0;
+  border-top: 1px solid #888;
+}
+#footer > .inner {
+  /*max-width: 992px;*/
+  /*background: #400 url(../assets/site/bg/grey_wash_wall/grey_wash_wall.png) 0 0 repeat;*/
+  /*background: #400 url(../assets/site/bg/navy_blue/navy_blue.png) 0 0 repeat;*/
+  /*background: #400 url(../assets/site/bg/norwegian_rose/norwegian_rose.png) 0 0 repeat;*/
+}
+#footer h3 {
+  color: #222;
+  /*max-width: 100%;*/
+  margin: .5em 0;
+  padding-left: .5em;
+
+}
+#footer .column ul {
+  padding-left: 2em;
+}
+#footer a {
+  color: #444;
+}
+#footer p {
+  margin: 0;
+}
+#footer p > a {
+  /*padding-right: 15px;*/
+  text-decoration: none;
+}
+#footer p > a:hover {
+  /*text-decoration: underline;*/
+}
+
+#footer a span {
+  text-indent: -9999px;
+  display: none;
+}
+/* make new class for icons */
+#footer .dark-gray {
+  vertical-align: middle;
+  font-size: 1.25em;
+}
+
+
+
+.footer-thumbnail {
+  display: inline-block;
+  width: 4em;
+  height: 4em;
+  border: none !important;
+  margin: .375em;
+
+  width: 6em;
+  height: 6em;
+
+  margin: .125em;
+
+  /* new version */
+  width: 4em;
+  height: 4em;
+  margin: .5em;
+}
+
+

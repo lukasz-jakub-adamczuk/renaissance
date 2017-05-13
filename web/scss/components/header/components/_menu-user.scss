@@ -1,0 +1,146 @@
+#ch-menu {
+  .ch-menu-area-user {
+    @include mq($ch-until: lg) {
+      border-bottom: 1px solid $ch-menu-info-bg;
+      padding: 0 $ch-menu-padding $ch-menu-padding;
+    }
+
+    a.ch-menu-section {
+      opacity: 1;
+    }
+
+    li {
+      @include mq($ch-until: lg) {
+        padding: 0 10px;
+      }
+
+      &.ch-li-logged-in {
+        @include mq($ch-until: lg) {
+          display: inline-block;
+          padding: 0 7px;
+        }
+        .ch-core-header.logged-in & {
+          @include mq($ch-until: lg) {
+            display: inline;
+          }
+        }
+      }
+
+      &.ch-li-login,
+      &.ch-li-abonnent {
+        background-color: $ch-menu-button-bg;
+        margin: 15px 0;
+        text-align: center;
+        @include mq($ch-from: md) {
+          max-width: em(320px);
+        }
+        @include mq($ch-until: lg) {
+          display: inline-block !important;
+          width: 50%;
+        }
+        @include mq($ch-until: md) {
+          display: block;
+          float: left;
+          max-width: none;
+        }
+
+        a {
+          color: $ch-menu-button-color;
+          display: block;
+          font-weight: 400;
+          padding: 15px;
+          @include mq($ch-until: lg) {
+            padding: 25px 5px;
+          }
+        }
+      }
+
+      &.ch-li-login {
+        @include mq($ch-until: lg) {
+          background-color: $ch-menu-button-bg;
+          display: block;
+          text-align: center;
+        }
+
+        a {
+          @include mq($ch-until: lg) {
+            color: $ch-menu-button-color;
+            display: block;
+          }
+        }
+      }
+
+      &.ch-li-abonnent {
+        display: none;
+        @include mq($ch-until: lg) {
+          border-left: 1px solid $ch-menu-login-border-color;
+        }
+        @include mq($ch-until: md) {
+          float: right;
+        }
+      }
+
+      &.ch-li-minside {
+        @include mq($ch-until: lg) {
+          clear: right;
+        }
+      }
+    }
+
+    .ch-li-group {
+      padding: 0;
+    }
+
+    .ch-user-details {
+      margin-bottom: baseline-margin();
+      position: relative;
+      img, a {
+        vertical-align: middle;
+      }
+      @include mq($ch-until: lg) {
+        margin-bottom: $ch-menu-padding;
+      }
+      &::after {
+        border-bottom: 1px solid $ch-menu-info-divider-color;
+        content: "";
+        bottom: -(baseline-margin()/2);
+        position: absolute;
+        left: 0;
+        width: 100%;
+        @include mq($ch-until: lg) {
+          display: none;
+        }
+      }
+    }
+
+    .ch-login-info,
+    .ch-btn-logout {
+      font-size: rem(14px);
+      margin-left: 5px;
+      //@include baseline(14px);
+    }
+
+    .ch-login-info {
+      vertical-align: bottom;
+      margin-right: 20px;
+      @include ellipsis($ch-menu-user-max-width - 180px);
+    }
+
+    .ch-btn-login {
+      position: relative;
+      .ch-icon-spid-logo {
+        bottom: 8px;
+        color: $ch-menu-spid-logo-color;
+        font-size: 10px;
+        position: absolute;
+        right: 8px;
+      }
+    }
+
+    .ch-btn-logout {
+      //render vertical divider
+      color: $ch-menu-link-faded-color;
+      @include vertical-divider(before, $ch-menu-info-divider-color, $ch-menu-padding, $ch-label-font-size);
+    }
+  }
+}

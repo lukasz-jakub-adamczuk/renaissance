@@ -1,0 +1,260 @@
+
+/* cup */
+
+/* timeline */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 4em 0;
+  overflow: hidden;
+}
+.timeline li {
+  /*width: 29.75em;*/
+  width: 50%;
+  position: relative;
+  /*box-sizing: border-box;*/
+  /*padding: 1em;*/
+}
+.cup {
+
+}
+.cup-item {
+  display: block;
+  margin: 1em auto;
+  background: #eee;
+  max-width: 19em;
+  /*padding: .5em;*/
+  /*padding: 2em .5em;*/
+  color: #444;
+  
+  /*opacity: .5;*/
+}
+.cup-item:hover {
+  background: #ddd;
+}
+.cup-item img {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  padding: 10em 0 0;
+  background-color: #eee;
+  background-position: 50% 60%;
+  background-repeat: no-repeat;
+  opacity: .75;
+  /*transition: .25s all linear;*/
+}
+.cup-item:hover img {
+  /*background-position: 50% 10%;*/
+  opacity: 1;
+  color: #000;
+}
+.cup-item:after {
+  display: inline-block;
+  content: attr(data-cup);
+  color: #222;
+  padding: 2em 1em;
+  line-height: 1;
+}
+.cup-item span {
+  /*padding: .25em .5em;*/
+  font-size: 1.25em;
+  /*color: #444;*/
+}
+.cup-item p {
+  /*padding: .25em .5em;*/
+  font-size: .75em;
+  margin-bottom: 0;
+}
+
+.heroine-cup {
+  border-right: .5em solid #888;
+  margin-left: -.25em;
+  
+  float: left;
+  /*background: #fcc;*/
+}
+.hero-cup {
+  border-left: .5em solid #888;
+  margin-right: -.25em;
+  /*width: 55%;*/
+  float: right;
+  /*background: #ccf;*/
+}
+.heroine-item:before,
+.hero-item:before {
+  content: '';
+  display: block;
+  margin-top: -1em;
+  width: 1em;
+  height: 1em;
+  border: .5em solid #888;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  z-index: 1
+}
+.heroine-item:before {
+  right: -1.25em;
+}
+.hero-item:before {
+  left: -1.25em;
+}
+
+.cup-item:hover:before {
+  
+  border: .5em solid maroon;
+}
+
+.group {
+  padding: 0 2em;
+  margin-bottom: 3em;
+}
+.group li {
+  color: #222;
+  list-style: none;
+  vertical-align: middle;
+  border-bottom: 1px solid #eee;
+}
+.group span {
+  display: inline-block;
+  vertical-align: middle;
+  width: 15%;
+  /*color: #000;*/
+  text-align: center;
+  /*background-color: #aaa;*/
+}
+.group img {
+  /*display: inline-block;*/
+  vertical-align: middle;
+}
+.group .name {
+  width: 20%;
+  font-size: 1em;
+  /*color: maroon;*/
+  /*text-transform: uppercase;*/
+}
+.points {
+  font-size: 2em;
+  color: maroon;
+  font-weight: bold;
+}
+
+.group-header {
+  margin: 1em auto;
+  border-bottom: 1px solid #ccc;
+  color: #666;
+  padding: 0 0 .5em;
+}
+.group-legend {
+  color: #888;
+  border-bottom: 2px solid #eee;
+  /*text-align: center;*/
+  padding: 0 2rem;
+}
+.group-legend span {
+  display: inline-block;
+  width: 15%;
+  font-size: .75em;
+  text-align: center;
+  /*text-transform: */
+  /*background-color: #eee;*/
+}
+.group-legend span:first-child {
+  width: 20%;
+  margin-left: 2rem;
+}
+
+#cup-form {
+  padding: 1em 0;
+}
+.battle {
+  padding: 1em 0;
+  text-align: center;
+}
+.battle-player {
+  display: inline-block;
+  vertical-align: middle;
+}
+.battle-player-1,
+.battle-player-2 {
+  display: inline-block;
+  /*width: 32%;*/
+  vertical-align: middle;
+}
+.battle-player-1 {
+  /*padding-left: 10%;*/
+  /*width: 22%;*/
+  text-align: left;
+  /*background-color: #aaa;*/
+}
+.battle-player-2 {
+  /*padding-right: 10%;*/
+  /*width: 22%;*/
+  text-align: right;
+  /*background-color: #8af;*/
+}
+.battle-person {
+  display: block;
+  margin: 0 auto;
+  padding: .5em;
+  /*max-width: 240px;*/
+  width: 10em;
+  /*width: */
+  box-sizing: border-box;
+  background: #eee;
+  background: #f8f8f8;
+}
+.battle-player-1 .battle-person:after,
+.battle-player-2 .battle-person:before {
+  content: attr(data-person);
+  vertical-align: middle;
+}
+._battle-person img,
+.battle-person span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.battle-person img {
+  border: .25em solid #eee;
+  vertical-align: middle;
+}
+.battle a:hover {
+  background: #eee;
+}
+
+.battle .points {
+  display: inline-block;
+  width: 5em;
+  vertical-align: middle;
+  color: #444;
+}
+
+.match {
+
+}
+.match-item {
+  width: auto;
+  background: #eee;
+}
+.match-item:before {
+  content: attr(data-person);
+  display: block;
+  /*margin: 1em 0;*/
+}
+.match-item:after {
+  display: none;
+}
+.match-item .large-visible {
+  width: 160px;
+  height: 120px;
+}
+.match-item .small-visible {
+  width: 50px;
+  height: 50px;
+}
+.match-item .button {
+  margin: 1em 0;
+}
+
+

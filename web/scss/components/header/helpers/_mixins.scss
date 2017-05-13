@@ -1,0 +1,87 @@
+/*
+    this mixin should be used wherever we use
+    checkbox hack to control menu state
+    USAGE example:
+    @include menu-triggered {
+      .ch-header-main .ch-menu-label-close {
+        (...)
+    }
+*/
+@mixin menu-triggered {
+  #ch-menu-state:checked ~,
+  #ch-menu-state:target ~,
+  .ch-core-header.is-open {
+    @content;
+  }
+}
+
+//label animation
+@mixin label-animation-close {
+  opacity: 1;
+  visibility: visible;
+  transform: rotate3d(1,0,0,0deg);
+  transition: all $ch-label-animation-time linear $ch-label-animation-time;
+}
+
+@mixin label-animation-open {
+  opacity: 0.6;
+  visibility: hidden;
+  transform: rotate3d(1,0,0,90deg);
+  transition: all $ch-label-animation-time linear;
+}
+
+//vertical divider aka '|'
+@mixin vertical-divider($ch-position, $ch-color, $ch-distance, $ch-height) {
+  @if $ch-position == 'before' {
+    &::before {
+      border-right: 1px solid $ch-color;
+      content: "";
+      display: inline-block;
+      height: $ch-height;
+      position: relative;
+      //alignment fine tuning
+      left: -$ch-distance;
+      top: -1px;
+      vertical-align: middle;
+      @content;
+    }
+  }
+  @else if $ch-position == 'after' {
+    &::after {
+      border-right: 1px solid $ch-color;
+      content: "";
+      display: inline-block;
+      height: $ch-height;
+      position: relative;
+      //alignment fine tuning
+      right: -$ch-distance;
+      top: -1px;
+      vertical-align: middle;
+      @content;
+    }
+  }
+}
+
+//css triangles
+@mixin arrow($direction, $color, $size) {
+  display: block;
+  height: 0;
+  width: 0;
+  @if $direction == 'top' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+  } @else if $direction == 'right' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  } @else if $direction == 'bottom' {
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+  } @else if $direction == 'left' {
+    border-top: $size solid transparent;
+    border-right: $size solid $color;
+    border-bottom: $size solid transparent;
+  }
+}

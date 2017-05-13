@@ -1,0 +1,34 @@
+/* ============================
+   CORE HEADER STYLES
+   authors:
+   Bartosz Chucherko
+   Jakub Garczyński
+   Schibsted Tech Polska, 2016
+   ============================ */
+
+//vendor libraries
+@import "vendor/normalize";
+@import "vendor/mq";
+@import "vendor/stylesheets/bourbon";
+
+//settings, mixins, helpers
+@import "helpers/variables";
+@import "helpers/mixins";
+@import "helpers/helpers";
+@import "helpers/animations";
+
+//partials
+@import "base/base";
+@import "components/header-main";
+@import "components/header-sub";
+@import "components/menu";
+@import "components/menu-nav";
+@import "components/menu-user";
+@import "components/menu-pub";
+@import "components/menu-sitemap";
+@import "components/menu-icon";
+@import "components/alerts";
+@import "components/search";
+@import "components/quick-search";
+@import "components/perks-card";
+@import "components/perks-products";
