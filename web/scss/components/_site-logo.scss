@@ -1,0 +1,32 @@
+
+/* logo */
+.site-logo {
+  display: inline-block;
+  /*background: url(../assets/site/bg/logo.png) 0 0 no-repeat;*/
+  width: 225px;
+  height: 35px;
+  margin: 20px 5px;
+}
+.site-logo > span {
+  color: #fff;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+.site-logo:after {
+  content: '';
+  display: block;
+  display: none;
+  position: absolute;
+  top: .25em;
+  left: .25em;
+  background: #444;
+  width: 360px;
+  height: 50px;
+};
+
+.nav-top a {
+  overflow: hidden;
+  height: 40px;
+}

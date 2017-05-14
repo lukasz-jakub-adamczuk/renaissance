@@ -1,0 +1,27 @@
+
+
+/* auth form */
+#auth-form {
+  /*width: 240px;*/
+//  width: 18em;
+  margin: 1em auto;
+}
+#auth-form > input {
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #444;
+  font: inherit;
+  margin: .5em 0;
+  min-height: 2em;
+  padding: 3px;
+  padding-bottom: 4px;
+}
+#auth-form > .button {
+  width: 100%;
+  /*background: #17c;
+  background: linear-gradient(to bottom, #4387FD, #4683EA);
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+  border: 1px solid #12d;*/
+}
