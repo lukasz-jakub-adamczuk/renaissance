@@ -2,7 +2,7 @@ app/logs
 app/cache
 app/templates_c
 
-web/assets
+web/assets/*
 !/web/assets/site
 web/config
 web/css
