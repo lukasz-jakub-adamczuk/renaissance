@@ -1,10 +1,10 @@
         <header class="inner">
             <h2>Artykuły</h2>
         </header>
-        <section class="inner items">
+        <section class="inner">
             {if $aCategories}
-            {foreach from=$aCategories item=cat}<article class="item with-image">
-                <a href="{$base}/{#article#}/{$cat.slug}" class="_item block m-item">
+            {foreach from=$aCategories item=cat}<article class="front-item with-image">
+                <a href="{$base}/{#article#}/{$cat.slug}" class="front-item-content m-item">
                     {*<figure>
                         {if $cat.fragment}
                         <img src="image.php?img={$cat.fragment}&size=480x270&margin=0">

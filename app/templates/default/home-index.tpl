@@ -2,7 +2,7 @@
             <header class="inner">
                 <h2>Aktualności</h2>
             </header>
-            {include file='common/stream-items.tpl' type=news items=$aActivities.news}
+            {include file='common/front-items.tpl' type=news items=$aActivities.news}
 
             <!-- cup battle -->
             {if isset($aMatch)}
@@ -12,11 +12,11 @@
             <header class="inner">
                 <h2>Gry</h2>
             </header>
-            {include file='common/stream-items.tpl' type=article items=$aActivities.article}
+            {include file='common/front-items.tpl' type=article items=$aActivities.article}
 
             <header class="inner">
                 <h2>Publicystyka</h2>
             </header>
-            {include file='common/stream-items.tpl' type=story items=$aActivities.story}
+            {include file='common/front-items.tpl' type=story items=$aActivities.story}
         </section>
         
