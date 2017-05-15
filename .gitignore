@@ -12,5 +12,7 @@ bin
 build
 node_modules
 
+.vscode
+**/.sass-cache
 *.htaccess
 composer.lock

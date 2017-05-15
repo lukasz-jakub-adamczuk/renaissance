@@ -91,6 +91,17 @@
 
 
 
+.l-item {
+  // min-height: 320px;
+  // min-height: 272px;
+}
+.m-item {
+  min-height: 96px;
+}
+.s-item {
+  min-height: 64px;
+}
+
 /*
 
 
@@ -103,16 +114,6 @@
   padding: 0;
 }
 
-.l-item {
-  // min-height: 320px;
-  // min-height: 272px;
-}
-.m-item {
-  min-height: 96px;
-}
-.s-item {
-  min-height: 64px;
-}
 .w25p {
   display: inline-block;
   width: 25%;

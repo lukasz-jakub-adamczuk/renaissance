@@ -21,7 +21,8 @@ gulp.task('clean-css', function () {
 });
 
 gulp.task('compile-scss', function() {
-    gulp.src('web/scss/**/*.scss')
+    // gulp.src('web/scss/**/*.scss')
+    gulp.src('web/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./web/css/'));
 });
