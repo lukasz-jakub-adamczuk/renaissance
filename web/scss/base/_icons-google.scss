@@ -1,42 +1,20 @@
-.icon-checkmark {
-    background-image: url(../assets/site/icons/google/SVG/check.svg);
+[class^="icon"] {
     background-size: 100%;
     display: inline-block;
     width: 16px;
     height: 16px;
+}
+.icon-checkmark {
+  background-image: url(../icons/google/SVG/check.svg);
 }
 .searchbox .icon-search {
-  // background: #eee url(SVG/search.svg) 50% 50% no-repeat;
-}
-
-.icon-user {
-  // background: #800 url(SVG/user.svg) 50% 50% no-repeat;
-  // background-size: 75%;
-
+  background: #eee url(SVG/search.svg) 50% 50% no-repeat;
 }
 
 .icon-feed {
-    background-image: url(../assets/site/icons/rss2.svg);
-    background-size: 100%;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    
+  background-image: url(../icons/google/SVG/rss-feed.svg);
 }
 
-// icons svg in the future...
-.icon-feed {
-    background-image: url(../assets/site/icons/rss2.svg);
-    background-size: 100%;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    
-}
 .icon-facebook {
-    background-image: url(../assets/site/icons/facebook2.svg);
-    background-size: 100%;
-    display: inline-block;
-    width: 16px;
-    height: 16px;    
+  background-image: url(../icons/google/SVG/facebook.svg);
 }
