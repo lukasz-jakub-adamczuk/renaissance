@@ -51,6 +51,7 @@
             </div>
             <div class="inner border-top v-padding clearfix">
                 <p class="small left">Squarezone &copy; 2003-{$smarty.now|date_format:'%Y'} &middot; renaissance {$smarty.const.VERSION} {if $smarty.const.DEBUG_MODE} &middot; <span class="gray">server time: {$sServerTime|default:''}ms{/if}</span> &middot; <a href="{$base}/rss.xml" class="icon-feed dark-gray" title="Kanał RSS"></a> <a href="https://www.facebook.com/pages/SquareZone/171123689581372" class="icon-facebook dark-gray" title="Facebook"></a> {$smarty.const.ENV}
+                &middot; <a href="https://validator.w3.org/nu/?doc=http%3A%2F%2Fsquarezone.pl%2F" class="icon-html" title="Nu Html Checker"></a> &middot; <a href="https://validator.w3.org/unicorn/check?ucn_uri=squarezone.pl&warning=1&usermedium=all&ucn_lang=pl&ucn_task=full-css#" class="icon-css" title="Unicorn"></a>
                 </p>
                 {*<p class="small left">
                     <a href="{$base}/rss.xml" class="icon-feed dark-gray"><span>Aktualności</span></a>
