@@ -1,0 +1,24 @@
+
+$grid-columns:                12;
+$grid-total-width:            960px;
+$grid-column-gap:             16px;
+$grid-column-width:           ($grid-total-width / $grid-columns);
+// $grid-column-width:           ($grid-total-width / $grid-columns) - $grid-column-gap;
+
+
+.row {
+  
+}
+[class^="col-"] {
+  // padding: 0 ($grid-column-gap/2);
+  margin: 0 ($grid-column-gap/2);
+  box-sizing: border-box;
+}
+
+
+
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    width: ($grid-column-width * $i) - $grid-column-gap;
+  }
+}
