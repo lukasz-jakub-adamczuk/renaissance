@@ -12,17 +12,17 @@ class HomeIndexView extends View {
             // echo 'from db';
             // news
             $oNewsCollection = Dao::collection('news');
-            $aActivities['news'] = $oNewsCollection->getNewsForStream(6);
+            $aActivities['news'] = $oNewsCollection->getNewsForStream(5);
 
             // print_r($aActivities['news']);
 
             // articles
             $oArticleCollection = Dao::collection('article');
-            $aActivities['article'] = $oArticleCollection->getArticlesForStream(6);
+            $aActivities['article'] = $oArticleCollection->getArticlesForStream(5);
 
             // stories
             $oStoryCollection = Dao::collection('story');
-            $aActivities['story'] = $oStoryCollection->getStoriesForStream(6);
+            $aActivities['story'] = $oStoryCollection->getStoriesForStream(5);
 
             $oNewsImageEntity = Dao::entity('news-image');
 
@@ -30,6 +30,7 @@ class HomeIndexView extends View {
             foreach ($aActivities['news'] as &$item) {
                 $item['key'] = 'id_news';
                 $item['type'] = 'news';
+                $item['category'] = '';
                 $item['url'] = ValueMapper::getUrl('news').'/'.str_replace('-', '/', substr($item['creation_date'], 0, 10)).'/'.$item['slug'];
 
                 $aImageItem = $oNewsImageEntity->getFirstImage($item['id_news']);
@@ -49,15 +50,12 @@ class HomeIndexView extends View {
                 $item['key'] = 'id_article';
                 $item['type'] = 'article';
                 $item['url'] = ValueMapper::getUrl('article').'/'.$item['category_slug'].'/'.$item['slug'];
-                $item['title'] = $item['category'].' - '.$item['title'];
             }
 
             foreach ($aActivities['story'] as &$item) {
                 $item['key'] = 'id_story';
                 $item['type'] = 'story';
                 $item['url'] = ValueMapper::getUrl('story').'/'.$item['category_slug'].'/'.$item['slug'];
-                // $item['title'] = $item['category'].' - '.$item['title'];
-                $item['title'] = $item['title'];
             }
 
             file_put_contents($sStreamFile, serialize($aActivities));
