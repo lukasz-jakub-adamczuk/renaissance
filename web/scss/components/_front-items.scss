@@ -6,11 +6,14 @@
   display: inline-block;
   vertical-align: top;
   box-sizing: border-box;
-  background: #eee;
+  // background: #eee;
   margin-bottom: 1rem;
   overflow: hidden;
-  &:hover {
-    background: #ddd;
+  .main-items > & {
+    background: #eee;
+    &:hover {
+      background: #ddd;
+    }
   }
   .front-item-title {
     position: relative;
