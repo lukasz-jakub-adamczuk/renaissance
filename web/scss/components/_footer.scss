@@ -6,10 +6,21 @@
   padding: 1px 0;
   border-top: 1px solid #888;
   h3 {
-    margin: .5em 0;
+    // margin: .5em 0;
   }
   ul {
     padding: 0;
+  }
+}
+
+.art-item {
+  h3 {
+    margin: 1rem .5rem;
+  }
+}
+.list-item {
+  h3 {
+    margin: 1rem 0;
   }
 }
 
@@ -67,17 +78,7 @@
 
 .footer-thumbnail {
   display: inline-block;
-  width: 4em;
-  height: 4em;
   border: none !important;
-  margin: .375em;
-
-  width: 6em;
-  height: 6em;
-
-  margin: .125em;
-
-  /* new version */
   width: 4em;
   height: 4em;
   margin: .5em;

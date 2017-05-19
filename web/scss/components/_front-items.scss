@@ -113,7 +113,14 @@
 
 
 .m-item {
-  min-height: 96px;
+  height: 8rem;
+  display: block;
+  img {
+    filter: grayscale(100%);
+    &:hover {
+      filter: none;
+    }
+  }
 }
 .s-item {
   min-height: 64px;
