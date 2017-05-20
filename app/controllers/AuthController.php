@@ -48,7 +48,7 @@ class AuthController extends FrontController {
                     // print_r($aUser);
 
                     // avatar for editor
-                    $sAvatarFile = '/assets/site/redaction/'.$aUser['slug'].'.png';
+                    $sAvatarFile = '/assets/users/avatars/'.$aUser['slug'].'.png';
                     if (file_exists(PUB_DIR . $sAvatarFile)) {
                         $_SESSION['user']['avatar'] = $sAvatarFile;
                     }

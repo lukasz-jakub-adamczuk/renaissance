@@ -160,7 +160,7 @@ class FrontController extends Controller {
         parent::runAfterMethod();
 
         if (isset($_SESSION['user'])) {
-            $this->_renderer->assign('user', $_SESSION['user']);
+            $this->_renderer->assign('user', User::get());
         }
 
         $this->_renderer->assign('aBreadcrumbs', Breadcrumbs::get());

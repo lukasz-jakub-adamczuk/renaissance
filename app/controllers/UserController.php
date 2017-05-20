@@ -61,11 +61,11 @@ class UserController extends FrontController {
                 // if exists a record then account can not be created
                 $aUser = $db->getRow($sql);
 
-                var_dump($aUser);
+                // var_dump($aUser);
                 // MessageList::raiseError(sha1(addslashes(strtolower($sName)).addslashes($sPass)));
 
                 // here we should send a verification email
-                if ($aUser == false) {
+                if ($aUser === false) {
                     // MessageList::raiseError('can create account...');
 
                     $oEntity = Dao::entity('user');
@@ -76,13 +76,11 @@ class UserController extends FrontController {
                     $oEntity->setField('email', $sEmail);
                     $oEntity->setField('register_date', date('Y-m-d H:i:s'));
 
-                    $oEntity->setField('activation', sha1(strtolower($strtolowerName)));
+                    // $oEntity->setField('activation', sha1(strtolower($sName)));
 
                     // print_r($oEntity);
 
-                    // if ($oEntity->insert(true)) {
-                    if (true) {
-                        echo 'ok';
+                    if ($oEntity->insert(true)) {
                         MessageList::raiseInfo('Konto '.(isset($sName) ? '<strong>'.$sName.'</strong>' : '').' zostało utworzone.');
                     } else {
                         MessageList::raiseError('Utworzenie konta zakończone niepowodzeniem.');
@@ -92,13 +90,11 @@ class UserController extends FrontController {
                 }
             } else {
                 MessageList::raiseError('Wystąpiły następujące błędy: ' + implode(', ', $aErrors) + '.');
-                print_r($aErrors);
             }
 
 
         } else {
-            // MessageList::raiseError('register new form...');
-            // 
+            MessageList::raiseError('Błędy... Coś kombinujesz...');
         }
     }
 }

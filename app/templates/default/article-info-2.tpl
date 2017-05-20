@@ -21,11 +21,11 @@
                     {include file='common/screens.tpl'}
                 </section>
                 {if $aArticle.template eq 'intro'}
-                <section class="inner items">
+                <section class="inner main-items">
                     {if $aArticles}
                     <h2>Artykuły</h2>
-                    {foreach from=$aArticles item=art}<article class="item">
-                        <a href="{$base}/{#article#}/{$art.category_slug}/{$art.slug}" class="block s-item">
+                    {foreach from=$aArticles item=art}<article class="front-item col-3">
+                        <a href="{$base}/{#article#}/{$art.category_slug}/{$art.slug}" class="front-item-content s-item">
                             <span>{$art.title|stripslashes|humanize}</span>
                         </a>
                         <footer>
