@@ -14,7 +14,7 @@
                         </header>
                     </a>
                     <footer>
-                        <time class="meta-time">{$object.creation_date|humanize_date}</time>
+                        <time datetime="{$object.creation_date|date_format:$datetimeFormat}" class="meta-time">{$object.creation_date|humanize_date}</time>
                         <a href="{$base}/{$object.url}#comments" class="meta-comments">{$object.comments|pluralize:'komentarz':'komentarze':'komentarzy'}</a>
                     </footer>
                 </article>{/foreach}

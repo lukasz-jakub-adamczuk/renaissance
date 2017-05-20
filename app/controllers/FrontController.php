@@ -16,9 +16,7 @@ class FrontController extends Controller {
             Breadcrumbs::add($aItem);
         }
 
-        // $sUser = 'junior';
-        // $sPass = 'so11long';
-        // echo sha1(addslashes(strtolower($sUser)).addslashes($sPass));
+        $this->_renderer->assign('datetimeFormat', '%Y-%m-%dT%H:%M');
 
         // title
         $this->_renderer->assign('sTitle', 'Squarezone - '.ValueMapper::getName($this->getCtrlName()));

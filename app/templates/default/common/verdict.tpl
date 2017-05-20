@@ -1,6 +1,6 @@
 {if isset($aVerdict)}<h2 class="padding">Werdykt</h2>
                         <div class="verdict" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-                            <img src="assets/site/redaction/{$aVerdict.author_slug}.png" alt="{$aVerdict.author_name}"><span itemprop="ratingValue" class="score">{$aVerdict.rating}</span>
+                            <img src="assets/users/avatars/{$aVerdict.author_slug}.png" alt="{$aVerdict.author_name}"><span itemprop="ratingValue" class="score">{$aVerdict.rating}</span>
                             <meta itemprop="worstRating" content="0">
                             <meta itemprop="bestRating" content="10">
                             <p>{$aVerdict.verdict|stripslashes|humanize}</p>

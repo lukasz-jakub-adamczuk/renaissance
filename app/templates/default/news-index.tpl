@@ -2,10 +2,10 @@
             <header class="inner">
                 <h2>Archiwum</h2>
             </header>
-            <div class="items">
+            <div class="items main-items">
             {if $aActivities}
-            {foreach from=$aActivities item=a}<article class="item">
-                <a href="{$base}/{#news#}/{$a.year}" class="block m-item">
+            {foreach from=$aActivities item=a}<article class="front-item col-3">
+                <a href="{$base}/{#news#}/{$a.year}" class="front-item-content m-item">
                     <span>{$a.year}</span>
                     <!-- <span class="total">{$a.items}</span> -->
                 </a>

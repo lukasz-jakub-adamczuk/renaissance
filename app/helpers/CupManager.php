@@ -68,13 +68,13 @@ class CupManager {
 
                 $player1 = $aPlayers['player1'];
                 $player2 = $aPlayers['player2'];
+            
+                $player1Stats = $this->getPlayerStats($player1, $this->currentBattleDate);
+                $this->updatePlayerStats($player1, $player1Stats);
+                
+                $player2Stats = $this->getPlayerStats($player2, $this->currentBattleDate);
+                $this->updatePlayerStats($player2, $player2Stats);
             }
-            
-            $player1Stats = $this->getPlayerStats($player1, $this->currentBattleDate);
-            $this->updatePlayerStats($player1, $player1Stats);
-            
-            $player2Stats = $this->getPlayerStats($player2, $this->currentBattleDate);
-            $this->updatePlayerStats($player2, $player2Stats);
         }
         
         // cup phase

@@ -4,7 +4,7 @@
                 {foreach from=$aRatings item=r}
                 <div class="verdict">
                     <h3>{$r.author_name|default:'Gość'}</h3>
-                    <img src="assets/site/redaction/{$r.author_slug}.png" alt="{$r.author_name|default:'Gość'}"><span class="score">{$r.rating}</span>
+                    <img src="assets/users/avatars/{$r.author_slug}.png" alt="{$r.author_name|default:'Gość'}"><span class="score">{$r.rating}</span>
                     <p>{$r.verdict|stripslashes}</p>
                 </div>
                 {/foreach}
