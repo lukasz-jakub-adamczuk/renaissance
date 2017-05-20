@@ -56,10 +56,12 @@ class FrontController extends Controller {
 
         $this->_renderer->assign('aNavTop', $aNavTop);
 
-        // print_r($_SERVER);
-        // echo [REDIRECT_URL] => uzytkownicy/ashley-riot
-        //$sSelfUrl = str_replace('/~ash/renaissance/pub/', '', $_SERVER['REDIRECT_URL']);
-        //$this->_renderer->assign('self', $sSelfUrl);
+        // self url used in few places
+        $selfUrl = BASE_URL;
+        if (isset($_SERVER['REDIRECT_URI'])) {
+            $selfUrl = $_SERVER['REDIRECT_URI'];
+        }
+        $this->_renderer->assign('self', $selfUrl);
 
         // resources
         $aResources = array();
