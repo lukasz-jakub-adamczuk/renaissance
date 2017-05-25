@@ -248,6 +248,4 @@
             </div>
         </div>
     </div>
-
-    {*<script>window.__CORE_HEADER_CONFIG__ = {{{stringedBrowserConfig}}};</script>*}
 </header>

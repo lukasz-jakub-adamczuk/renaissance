@@ -7,7 +7,7 @@
             </article>
         {else}
             <header class="inner inside">
-                <h1>{$aNews.title|stripslashes|humanize}...</h1>
+                <h1>{$aNews.title|stripslashes|humanize}</h1>
             </header>
             <article class="inside">
                 <div class="content-meta">

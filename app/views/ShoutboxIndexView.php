@@ -5,7 +5,7 @@ class ShoutboxIndexView extends View {
 
     public function fill() {
         // last 30 shouts
-        $sql = 'SELECT s.*, u.name user_name, u.slug user_slug 
+        $sql = 'SELECT s.*, u.name user_name, u.slug user_slug, u.avatar user_avatar
                 FROM shout s
                 LEFT JOIN user u ON(u.id_user=s.id_author) 
                 GROUP BY s.id_shout 
@@ -21,8 +21,15 @@ class ShoutboxIndexView extends View {
         $sPrevAuthor = '';
         $sClass = '';
         foreach ($aShoutsResult as $sk => &$shout) {
+            // avatar from db
+            if (!empty($shout['user_avatar'])) {
+                $sAvatarFile = $shout['user_avatar'];
+                if (file_exists(PUB_DIR . $sAvatarFile)) {
+                    $shout['avatar'] = $sAvatarFile;
+                }
+            }
             // avatar for editor
-            $sAvatarFile = '/assets/site/redaction/'.$shout['user_slug'].'.png';
+            $sAvatarFile = '/assets/users/avatars/'.$shout['user_slug'].'.png';
             if (file_exists(PUB_DIR . $sAvatarFile)) {
                 $shout['avatar'] = $sAvatarFile;
             }

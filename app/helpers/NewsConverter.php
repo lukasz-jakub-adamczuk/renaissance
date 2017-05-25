@@ -9,7 +9,7 @@ class NewsConverter {
         $sLocalPath = '/'.$sYear.'/'.$sMonth.'/'.$sDay.'/'.$iId;
         $sAssetsPath = '/assets/news' . $sLocalPath;
         $sCompletePath = PUB_DIR . $sAssetsPath;
-        $sCompletePath = '/home/ash/domains/dev.squarezone.pl' . $sAssetsPath;
+        // $sCompletePath = '/home/ash/domains/dev.squarezone.pl' . $sAssetsPath;
         // echo $sCompletePath;
 
         // create directory if does not exists
@@ -20,7 +20,7 @@ class NewsConverter {
                 // make each directory is writable
                 $aParts = explode('/', $sLocalPath);
                 $sTmpPath = PUB_DIR . '/assets/news';
-                $sTmpPath = '/home/ash/domains/dev.squarezone.pl' . $sAssetsPath;
+                // $sTmpPath = '/home/ash/domains/dev.squarezone.pl' . $sAssetsPath;
                 foreach ($aParts as $dir) {
                     if ($dir) {
                         $sTmpPath .= '/' . $dir;
