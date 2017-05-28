@@ -52,6 +52,7 @@
             <div class="inner copyright-items">
                 <div class="front-item col-4-with-gap">
                     <span>Squarezone &copy; 2003-{$smarty.now|date_format:'%Y'}</span>
+                    &middot; <span>ver {$smarty.CONST.VERSION}</span>
                 </div><div class="front-item col-4-with-gap">
                     <a href="https://validator.w3.org/nu/?doc=http%3A%2F%2Fsquarezone.pl%2F" class="icon-html" title="Nu Html Checker"></a>
                     <a href="https://github.com/lukasz-jakub-adamczuk/renaissance#renaissance" class="icon-github"></a>

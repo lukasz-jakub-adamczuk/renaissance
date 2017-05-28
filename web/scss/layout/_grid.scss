@@ -46,3 +46,15 @@ footer > .footer-items,
     );
   background: none;
 }
+
+_figure {
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      #6af,
+      #6af 64px,
+      #ccf 64px,
+      #ccf 80px
+    ) !important;
+  // background: none;
+}

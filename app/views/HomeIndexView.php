@@ -89,7 +89,7 @@ class HomeIndexView extends View {
 
         // echo count($aUniqueActivities);
 
-        $this->_renderer->assign('aActivities', $aActivities);
+        $this->_renderer->assign('activities', $aActivities);
 
         // $aImages = array();
         // $aBackgrounds = array();

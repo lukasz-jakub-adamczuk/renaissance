@@ -14,6 +14,10 @@ var minify = require('gulp-minify');
     return gulp.src('./web/css', { read: false })
         .pipe(rm())
 });*/
+// var gulp = require('gulp');
+var cleanCSS = require('gulp-clean-css');
+
+
 
 gulp.task('clean-css', function () {
     return gulp.src('web/css', {read: false})
@@ -33,11 +37,21 @@ gulp.task('compile-scss', function() {
     .pipe(gulp.dest('web/css'));
 });*/
 
-gulp.task('minify-css', function () {
-    gulp.src('web/css/*.css')
-        .pipe(cssmin())
+// gulp.task('minify-css', function () {
+//     gulp.src('web/css/*.css')
+//         .pipe(cssmin())
+//         .pipe(rename({suffix: '.min'}))
+//         .pipe(gulp.dest('web/css'));
+// });
+
+gulp.task('new-minify-css', function() {
+    return gulp.src('web/css/main.css')
+        .pipe(cleanCSS({debug: true}, function(details) {
+            console.log(details.name + ': ' + details.stats.originalSize);
+            console.log(details.name + ': ' + details.stats.minifiedSize);
+        }))
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('web/css'));
+        .pipe(gulp.dest('web/css', {overwrite: true}));
 });
 
 gulp.task('concat-js', function() {
@@ -62,6 +76,8 @@ gulp.task('minify-js', function() {
 
 //Watch task
 gulp.task('prepare-production', ['clean-css', 'compile-scss', 'minify-css', 'concat-js', 'minify-js']);
+gulp.task('prepare-css', ['compile-scss', 'new-minify-css']);
+gulp.task('prepare-js', ['concat-js', 'minify-js']);
 gulp.task('default',function() {
     gulp.watch('web/scss/**/*.scss', ['compile-scss']);
 });

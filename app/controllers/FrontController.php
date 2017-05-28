@@ -57,9 +57,9 @@ class FrontController extends Controller {
         $this->_renderer->assign('aNavTop', $aNavTop);
 
         // self url used in few places
-        $selfUrl = BASE_URL;
-        if (isset($_SERVER['REDIRECT_URI'])) {
-            $selfUrl = $_SERVER['REDIRECT_URI'];
+        $selfUrl = '';
+        if (isset($_SERVER['REDIRECT_URL'])) {
+            $selfUrl = $_SERVER['REDIRECT_URL'];
         }
         $this->_renderer->assign('self', $selfUrl);
 
