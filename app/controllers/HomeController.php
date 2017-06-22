@@ -4,8 +4,9 @@ class HomeController extends FrontController {
 
     public function indexAction() {
         require_once APP_DIR.'/helpers/CupManager.php';
-        
+
         $cupManager = new CupManager();
+        
         $cupManager->manageCalculationProcess();
         
         // current battle details

@@ -20,7 +20,7 @@
                             <img src="{$base}/assets/cup/{$smarty.get.category}/{$battle.player1}m.jpg" width="50" height="50" alt="{$battle.name1}">
                         </a>
                         {else}
-                        <span class="battle-person" data-person="{$aDefaults[$aBattlesKeysFlipped[$bk]][0]}">
+                        <span class="battle-person" data-person="{$aDefaults[$battle@index][0]|default:'???'}">
                             <img src="{$base}/assets/cup/0m.jpg" width="50" height="50" alt="?">
                         </span>
                         {/if}
@@ -32,7 +32,7 @@
                             <img src="{$base}/assets/cup/{$smarty.get.category}/{$battle.player2}m.jpg" width="50" height="50" alt="{$battle.name2}">
                         </a>
                         {else}
-                        <span class="battle-person" data-person="{$aDefaults[$aBattlesKeysFlipped[$bk]][1]}">
+                        <span class="battle-person" data-person="{$aDefaults[$battle@index][1]|default:'???'}">
                             <img src="{$base}/assets/cup/0m.jpg" width="50" height="50" alt="?">
                         </span>
                         {/if}

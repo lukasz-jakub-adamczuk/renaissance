@@ -5,6 +5,8 @@ class CupManager {
     private $db;
     
     private $cupCachePath;
+
+    private $tournamentSlug;
     
     private $currentBattleDate;
     
@@ -28,13 +30,13 @@ class CupManager {
 
         // tournament
         if (date('Y') % 2 == 0) {
-            $tournamentSlug = '/heroine-cup-' . date('Y');
+            $this->tournamentSlug = 'heroine-cup-' . date('Y');
         } else {
-            $tournamentSlug = '/hero-cup-' . date('Y');
+            $this->tournamentSlug = 'hero-cup-' . date('Y');
         }
 
         // cup paths
-        $this->cupCachePath = CACHE_DIR . '/cup' . $tournamentSlug;
+        $this->cupCachePath = CACHE_DIR . '/cup/' . $this->tournamentSlug;
 
         // directories
         $sStatsFile = $this->cupCachePath . '/stats';
@@ -54,13 +56,77 @@ class CupManager {
             mkdir($sPlayersFile, 0777, true);
         }
     }
+
+    public function validatePlayersStats($validationDate = null) {
+        $date = $this->currentBattleDate;
+        if ($validationDate) {
+            $date = $validationDate;
+        }
+        // stats should be validated for group phase only
+        $collection = Dao::collection('cup-player');
+        $players = $collection->getPlayersFromLatestCup();
+
+        foreach ($players as $player) {
+            $computedStats = $this->getPlayerStats($player['id_cup_player'], $date);
+
+            echo '<h2>'.$player['id_cup_player'].'</h2>';
+            echo '<img src="http://squarezone.pl/assets/cup/'.$this->tournamentSlug.'/'.$player['id_cup_player'].'m.jpg" width="50" height="50">';
+
+            $fields = [];
+            if ($player['battles'] != $computedStats['matches']) {
+                $bg = 'red';
+                $fields[] = 'battles='.$computedStats['matches'];
+            } else {
+                $bg = '#080';
+            }
+            echo '<p style="width: 320px; background: '.$bg.';">Battles: is '.$player['battles'].', should be '.$computedStats['matches'].'</p>';
+
+            $points = $computedStats['wins'] + $computedStats['draws'];
+            if ($player['points'] != $points) {
+                $bg = 'red';
+                $fields[] = 'points='.$points;
+            } else {
+                $bg = '#080';
+            }
+            echo '<p style="width: 320px; background: '.$bg.';">Points: is '.$player['points'].', should be '.$points.'</p>';
+
+            if ($player['won'] != $computedStats['won']) {
+                $bg = 'red';
+                $fields[] = 'won='.$computedStats['won'];
+            } else {
+                $bg = '#080';
+            }
+            echo '<p style="width: 320px; background: '.$bg.';">Won: is '.$player['won'].', should be '.$computedStats['won'].'</p>';
+
+            if ($player['lost'] != $computedStats['lost']) {
+                $bg = 'red';
+                $fields[] = 'lost='.$computedStats['lost'];
+            } else {
+                $bg = '#080';
+            }
+            echo '<p style="width: 320px; background: '.$bg.';">Lost: is '.$player['lost'].', should be '.$computedStats['lost'].'</p>';
+
+            if (count($fields)) {
+                $sql = 'UPDATE cup_player
+                        SET '.implode(', ', $fields).'
+                        WHERE id_cup_player="'.$player['id_cup_player'].'"';
+
+                $this->sqlQueries[] = $sql;
+            }
+        }
+        
+        $this->commit();
+        
+        $this->clearAllBattlesCache();
+    }
     
     public function manageCalculationProcess() {
         $allBattlesKeys = $this->getAllBattlesKeys();
         
         $allBattlesKeysFlipped = array_flip($allBattlesKeys);
         
-        if ($allBattlesKeysFlipped) {
+        // only during group phase
+        if ($allBattlesKeysFlipped[$this->currentBattleDate] < 48) {
             $battleDetails = $this->getBattleDetails($this->lastBattleDate);
             
             if (isset($battleDetails)) {
@@ -79,16 +145,14 @@ class CupManager {
         
         // cup phase
         $winnersFile = $this->cupCachePath . '/winners/' . $this->lastBattleDate;
-        if (file_exists($winnersFile)) {
-            // nothing
-            // $aStats = unserialize(file_get_contents($sStatsFile));
-        } else {
+        if (!file_exists($winnersFile)) {
+            // echo '...';
             $collection = Dao::collection('cup-player');
             $players = $collection->getPlayersFromLatestCup();
             
             $groups = array();
 
-            // analyze players
+            // grouping players
             foreach ($players as $pk => $player) {
                 if ($player['battles'] == 3) {
                     $groups[$player['group']][] = $player;
@@ -97,7 +161,7 @@ class CupManager {
 
             $winners = array();
             
-            // analyze groups
+            // only 1st and 2nd player are winners
             foreach ($groups as $group) {
                 if (count($group) == 4) {
                     foreach ($group as $pk => $player) {
@@ -111,8 +175,9 @@ class CupManager {
             $collection = Dao::collection('cup-battle');
 
             $battles = $collection->getCupPhaseBattles();
-            
-            // process battles
+
+
+            // extend winners by cup phase players
             foreach ($battles as $bk =>$battle) {
                 if (date_create($battle['id_cup_battle']) < date_create($this->currentBattleDate)) {
                     if ($battle['score1'] > $battle['score2']) {
@@ -125,43 +190,23 @@ class CupManager {
                     }
                 }
             }
-            
-            // defaults for matches
-            $defalutBattles = array(
-                '48' => array('1A', '2B'),
-                '49' => array('1C', '2D'),
-                '50' => array('1B', '2A'),
-                '51' => array('1D', '2C'),
-                '52' => array('1E', '2F'),
-                '53' => array('1G', '2H'),
-                '54' => array('1F', '2E'),
-                '55' => array('1H', '2G'),
 
-                '56' => array('W49', 'W50'),
-                '57' => array('W53', 'W54'),
-                '58' => array('W51', 'W52'),
-                '59' => array('W55', 'W56'),
-                
-                '60' => array('W57', 'W58'),
-                '61' => array('W59', 'W60'),
-
-                '62' => array('L61', 'L62'),
-                '63' => array('W61', 'W62')
-            );
+            // defaults for cup phase battles
+            $defaultBattles = $this->getCupPhaseDefaults();
             
             // check all cup phase winners and set if needed
-            foreach ($defalutBattles as $bk => $battle) {
+            foreach ($defaultBattles as $bk => $battle) {
                 $fields = array();
 
                 foreach ($battle as $pk => $player) {
                     $playersFile = $this->cupCachePath . '/players/' . $player;
                     if (file_exists($playersFile)) {
-                        // nothing
-                    } else {
                         if (isset($winners[$player])) {
+                            // winner for cup phase battle
                             $fields[] = 'player'.($pk+1).'='.$winners[$player];
                             file_put_contents($playersFile, serialize($player));
                         }
+                        
                     }
                 }
                 if (count($fields)) {
@@ -178,10 +223,7 @@ class CupManager {
             $this->clearAllBattlesCache();
             
             file_put_contents($winnersFile, serialize($winners));
-            
-            
         }
-        
     }
     
     public function manageVotingProcess($userId, $player1, $player2, $vote) {
@@ -203,6 +245,21 @@ class CupManager {
         $this->clearCurrentBattleCache();
         $this->clearAllBattlesCache();
     }
+
+    public function getAllBattles() {
+        $allBattlesFile = $this->cupCachePath . '/all-battles';
+        
+        if (file_exists($allBattlesFile)) {
+            $allBattles = unserialize(file_get_contents($allBattlesFile));
+        } else {
+            $collection = Dao::collection('cup-battle');
+            $allBattles = $collection->getBattles($this->tournamentSlug);
+            
+            file_put_contents($allBattlesFile, serialize($allBattles));
+        }
+        
+        return $allBattles;
+    }
     
     public function getAllBattlesKeys() {
         $allBattlesKeysFile = $this->cupCachePath . '/all-battles-keys';
@@ -210,8 +267,7 @@ class CupManager {
         if (file_exists($allBattlesKeysFile)) {
             $allBattlesKeys = unserialize(file_get_contents($allBattlesKeysFile));
         } else {
-            $collection = Dao::collection('cup-battle');
-            $allBattles = $collection->getBattles();
+            $allBattles = $this->getAllBattles();
             
             $allBattlesKeys = array_keys($allBattles);
 
@@ -256,6 +312,31 @@ class CupManager {
             }
         }
         return false;
+    }
+
+    public function getCupPhaseDefaults() {
+        $defaultBattles = array(
+            '48' => array('1A', '2B'),
+            '49' => array('1C', '2D'),
+            '50' => array('1B', '2A'),
+            '51' => array('1D', '2C'),
+            '52' => array('1E', '2F'),
+            '53' => array('1G', '2H'),
+            '54' => array('1F', '2E'),
+            '55' => array('1H', '2G'),
+
+            '56' => array('W49', 'W50'),
+            '57' => array('W53', 'W54'),
+            '58' => array('W51', 'W52'),
+            '59' => array('W55', 'W56'),
+            
+            '60' => array('W57', 'W58'),
+            '61' => array('W59', 'W60'),
+
+            '62' => array('L61', 'L62'),
+            '63' => array('W61', 'W62')
+        );
+        return $defaultBattles;
     }
     
     private function getBattleDetails($battleDate) {
@@ -323,6 +404,7 @@ class CupManager {
     
     private function commit() {
         foreach ($this->sqlQueries as $sql) {
+            // echo $sql;
             $this->db->execute($sql);
         }
     }
@@ -335,7 +417,12 @@ class CupManager {
     }
 
     private function clearAllBattlesCache() {
+        // echo 'clear cache';
         $allBattlesFile = $this->cupCachePath . '/all-battles';
+        if (file_exists($allBattlesFile)) {
+            unlink($allBattlesFile);
+        }
+        $allBattlesFile = $this->cupCachePath . '/all-battles-keys';
         if (file_exists($allBattlesFile)) {
             unlink($allBattlesFile);
         }

@@ -6,7 +6,7 @@ class HomeIndexView extends View {
     public function fill() {
         $sStreamFile = CACHE_DIR . '/stream';
         if (CACHE_OUTPUT && file_exists($sStreamFile)) {
-            // echo 'from cache';
+            echo 'from cache';
             $aActivities = unserialize(file_get_contents($sStreamFile));
         } else {
             // echo 'from db';
@@ -20,6 +20,9 @@ class HomeIndexView extends View {
             $oArticleCollection = Dao::collection('article');
             $aActivities['article'] = $oArticleCollection->getArticlesForStream(5);
 
+            // print_r($aActivities['article']);
+            // echo count($aActivities['article']);
+
             // stories
             $oStoryCollection = Dao::collection('story');
             $aActivities['story'] = $oStoryCollection->getStoriesForStream(5);
@@ -30,7 +33,7 @@ class HomeIndexView extends View {
             foreach ($aActivities['news'] as &$item) {
                 $item['key'] = 'id_news';
                 $item['type'] = 'news';
-                $item['category'] = '';
+                $item['category_name'] = '';
                 $item['url'] = ValueMapper::getUrl('news').'/'.str_replace('-', '/', substr($item['creation_date'], 0, 10)).'/'.$item['slug'];
 
                 $aImageItem = $oNewsImageEntity->getFirstImage($item['id_news']);

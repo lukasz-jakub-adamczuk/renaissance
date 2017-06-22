@@ -8,7 +8,7 @@
                         {/if}
                         <header>
                             <h3 class="front-item-title">
-                                {if $object.category}<span class="front-item-category">{$object.category}</span>{/if}
+                                {if $object.category_name}<span class="front-item-category">{$object.category_name}</span>{/if}
                                 {$object.title|stripslashes|humanize}
                             </h3>
                         </header>

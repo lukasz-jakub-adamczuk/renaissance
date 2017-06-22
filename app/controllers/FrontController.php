@@ -63,67 +63,38 @@ class FrontController extends Controller {
         }
         $this->_renderer->assign('self', $selfUrl);
 
-        // resources
-        $aResources = array();
-
-        // css
-        $sCssFile = PUB_DIR . '/config/resources/css';
-        if (file_exists($sCssFile)) {
-            $config = file_get_contents($sCssFile);
-            $aResources['css'] = explode("\n", $config);
-        }
-
-        // js
-        $sJsFile = PUB_DIR . '/config/resources/js';
-        if (file_exists($sJsFile)) {
-            $config = file_get_contents($sJsFile);
-            $aResources['js'] = explode("\n", $config);
-        }
-
-        $this->_renderer->assign('aResources', $aResources);
 
         // cosplays
         $sCosplaysFile = CACHE_DIR . '/cosplays';
-        if (file_exists($sCosplaysFile)) {
+        if (!file_exists($sCosplaysFile)) {
             $aCosplays = unserialize(file_get_contents($sCosplaysFile));
         } else {
-            $sql = 'SELECT gi.*
-                    FROM gallery_image gi 
-                    -- LEFT JOIN gallery_category gc ON(gc.id_gallery_category=gi.id_gallery_category)
-                    WHERE gi.id_gallery=4
-                    -- GROUP BY a.id_article_category
-                    ORDER BY gi.id_gallery_image DESC
-                    LIMIT 0,8
-                    ';
-
-            $oCollection = Dao::collection('gallery-image');
-            $oCollection->query($sql);
-
-            $aCosplays = $oCollection->getRows();
+            $collection = Dao::collection('gallery-image');
+            
+            $aCosplays = $collection->getGalleryCosplays();
 
             file_put_contents($sCosplaysFile, serialize($aCosplays));
         }
         $this->_renderer->assign('aCosplays', $aCosplays);
 
         // wallpapers
+        // CacheManager::restore('front-wallpapers', Dao::collection('gallery-image')->getGalleryWallpapers());
+        
+        // if (CacheManager::has('front-wallpapers')) {
+        //     CacheManager::restore('front-wallpapers');
+        // } else {
+        //     CacheManager::save('front-wallpapers', Dao::collection('gallery-image')->getGalleryWallpapers());
+        // }
+        
         $sWallpapersFile = CACHE_DIR . '/wallpapers';
-        if (file_exists($sWallpapersFile)) {
+        if (!file_exists($sWallpapersFile)) {
             $aWallpapers = unserialize(file_get_contents($sWallpapersFile));
         } else {
-            $sql = 'SELECT gi.*, g.slug, gc.slug AS category_slug
-                    FROM gallery_image gi 
-                    LEFT JOIN gallery g ON(g.id_gallery=gi.id_gallery)
-                    LEFT JOIN gallery_category gc ON(gc.id_gallery_category=g.id_gallery_category)
-                    WHERE gc.id_gallery_category=1
-                    GROUP BY gi.id_gallery
-                    ORDER BY gi.id_gallery_image DESC
-                    LIMIT 0,8
-                    ';
-
-            $oCollection = Dao::collection('gallery-image');
-            $oCollection->query($sql);
-
-            $aWallpapers = $oCollection->getRows();
+            // echo 'wallpapers from db';
+            // $collection = Dao::collection('gallery-image');
+            
+            // $aWallpapers = $collection->getGalleryWallpapers();
+            $aWallpapers = Dao::collection('gallery-image')->getGalleryWallpapers();
 
             file_put_contents($sWallpapersFile, serialize($aWallpapers));
         }
@@ -131,23 +102,15 @@ class FrontController extends Controller {
 
         // fanarts
         $sFanartsFile = CACHE_DIR . '/fanarts';
-        if (file_exists($sFanartsFile)) {
+        if (!file_exists($sFanartsFile)) {
+            // echo 'fanarts from cache';
             $aFanarts = unserialize(file_get_contents($sFanartsFile));
         } else {
-            $sql = 'SELECT gi.*, g.slug, gc.slug AS category_slug
-                    FROM gallery_image gi 
-                    LEFT JOIN gallery g ON(g.id_gallery=gi.id_gallery)
-                    LEFT JOIN gallery_category gc ON(gc.id_gallery_category=g.id_gallery_category)
-                    WHERE gc.id_gallery_category=2
-                    GROUP BY gi.id_gallery
-                    ORDER BY gi.id_gallery_image DESC
-                    LIMIT 0,8
-                    ';
+            // echo 'fanarts from db';
 
-            $oCollection = Dao::collection('gallery-image');
-            $oCollection->query($sql);
+            $collection = Dao::collection('gallery-image');
 
-            $aFanarts = $oCollection->getRows();
+            $aFanarts = $collection->getGalleryFanarts();
 
             file_put_contents($sFanartsFile, serialize($aFanarts));
         }
