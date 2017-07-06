@@ -6,7 +6,7 @@ class HomeController extends FrontController {
         require_once APP_DIR.'/helpers/CupManager.php';
 
         $cupManager = new CupManager();
-        
+
         $cupManager->manageCalculationProcess();
         
         // current battle details

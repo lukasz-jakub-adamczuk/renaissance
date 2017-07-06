@@ -7,12 +7,6 @@ setlocale(LC_ALL, 'pl_PL.UTF8');
 // load config
 if ($_SERVER['HTTP_HOST'] == 'squarezone.pl') {
 	error_reporting(0);
-	// if ($_SERVER['REMOTE_ADDR'] == '89.64.24.64') {
-    //         echo 'remote debug';
-    //         error_reporting(E_ALL);
-    //         ini_set('display_errors', 1);
-    //         // $cupManager->manageCalculationProcess();
-    //     }
 	require_once 'config/production.php';
 } else {
 	// if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == IP) {
