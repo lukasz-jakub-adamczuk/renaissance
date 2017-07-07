@@ -66,7 +66,7 @@ class FrontController extends Controller {
 
         // cosplays
         $sCosplaysFile = CACHE_DIR . '/cosplays';
-        if (!file_exists($sCosplaysFile)) {
+        if (file_exists($sCosplaysFile)) {
             $aCosplays = unserialize(file_get_contents($sCosplaysFile));
         } else {
             $collection = Dao::collection('gallery-image');
@@ -87,7 +87,7 @@ class FrontController extends Controller {
         // }
         
         $sWallpapersFile = CACHE_DIR . '/wallpapers';
-        if (!file_exists($sWallpapersFile)) {
+        if (file_exists($sWallpapersFile)) {
             $aWallpapers = unserialize(file_get_contents($sWallpapersFile));
         } else {
             // echo 'wallpapers from db';
@@ -102,7 +102,7 @@ class FrontController extends Controller {
 
         // fanarts
         $sFanartsFile = CACHE_DIR . '/fanarts';
-        if (!file_exists($sFanartsFile)) {
+        if (file_exists($sFanartsFile)) {
             // echo 'fanarts from cache';
             $aFanarts = unserialize(file_get_contents($sFanartsFile));
         } else {
