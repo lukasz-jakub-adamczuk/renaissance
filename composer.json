@@ -2,7 +2,11 @@
     "require": {
     },
     "autoload": {
-        "psr-0": {"": ""}
+        "psr-4": {
+            "Aya\\": "../aya/src/Aya/",
+            "Dao\\": "../dao/src/Dao/",
+            "Renaissance\\": "src/Renaissance/"
+        }
     },
     "config": {
         "bin-dir": "bin"

@@ -9,7 +9,16 @@ var concat = require('gulp-concat');
 var minify = require('gulp-minify');
 
 //var rm = require( 'gulp-rm' );
- 
+
+// var mkdirp = require('mkdirp');
+
+// gulp.task('init-project-structure', function() {
+//     mkdirp('./app/templates_c/default', function (err) {
+//         if (err) console.error(err)
+//         else console.log('pow!')
+//     });
+// });    
+
 /*gulp.task('clean-css', function() {
     return gulp.src('./web/css', { read: false })
         .pipe(rm())

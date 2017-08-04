@@ -1,5 +1,8 @@
 <?php
-require_once AYA_DIR.'/Core/Controller.php';
+namespace Aya\Core;
+
+// require_once AYA_DIR.'/Core/Controller.php';
+use Aya\Core\Controller;
 
 class FrontController extends Controller {
 
