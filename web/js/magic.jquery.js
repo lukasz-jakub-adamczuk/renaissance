@@ -99,7 +99,7 @@ for (var i = 0, j = imgNodes.length; i<j; ++i) {
 			// 	style.style.display = 'none';
 			// }
 			// style.setAttribute('src', src);
-			// style.clasname = '';
+			// style.className = '';
 	    // }
 }
 
@@ -160,7 +160,7 @@ var debugtgr = document.getElementById('console-tgr');
 
 if (debugtgr) {
 	debugtgr.onclick = function(event) {
-		var stack = document.getElementsByClasname('stack')[0];
+		var stack = document.getElementsByClassName('stack')[0];
 		if (stack.style.display == 'block') {
 			stack.style.display = 'none';
 			ajax.get(page.urls.ivy + 'dev/reset/console');

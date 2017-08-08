@@ -57,7 +57,7 @@ var SwipeView = (function (window, document) {
 		SwipeView = function (el, options) {
 			var i,
 				div,
-				clasname,
+				className,
 				pageIndex;
 
 			this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
@@ -100,8 +100,8 @@ var SwipeView = (function (window, document) {
 				this.masterPages.push(div);
 			}
 			
-			clasname = this.masterPages[1].clasname;
-			this.masterPages[1].clasname = !clasname ? 'swipeview-active' : clasname + ' swipeview-active';
+			className = this.masterPages[1].className;
+			this.masterPages[1].className = !className ? 'swipeview-active' : className + ' swipeview-active';
 
 			window.addEventListener(resizeEvent, this, false);
 			this.wrapper.addEventListener(startEvent, this, false);
@@ -181,10 +181,10 @@ var SwipeView = (function (window, document) {
 		goToPage: function (p) {
 			var i;
 
-			this.masterPages[this.currentMasterPage].clasname = this.masterPages[this.currentMasterPage].clasname.replace(/(^|\s)swipeview-active(\s|$)/, '');
+			this.masterPages[this.currentMasterPage].className = this.masterPages[this.currentMasterPage].className.replace(/(^|\s)swipeview-active(\s|$)/, '');
 			for (i=0; i<3; i++) {
-				clasname = this.masterPages[i].clasname;
-				/(^|\s)swipeview-loading(\s|$)/.test(clasname) || (this.masterPages[i].clasname = !clasname ? 'swipeview-loading' : clasname + ' swipeview-loading');
+				className = this.masterPages[i].className;
+				/(^|\s)swipeview-loading(\s|$)/.test(className) || (this.masterPages[i].className = !className ? 'swipeview-loading' : className + ' swipeview-loading');
 			}
 			
 			p = p < 0 ? 0 : p > this.options.numberOfPages-1 ? this.options.numberOfPages-1 : p;
@@ -195,7 +195,7 @@ var SwipeView = (function (window, document) {
 
 			this.currentMasterPage = (this.page + 1) - Math.floor((this.page + 1) / 3) * 3;
 
-			this.masterPages[this.currentMasterPage].clasname = this.masterPages[this.currentMasterPage].clasname + ' swipeview-active';
+			this.masterPages[this.currentMasterPage].className = this.masterPages[this.currentMasterPage].className + ' swipeview-active';
 
 			if (this.currentMasterPage === 0) {
 				this.masterPages[2].style.left = this.page * 100 - 100 + '%';
@@ -387,9 +387,9 @@ var SwipeView = (function (window, document) {
 		__checkPosition: function () {
 			var pageFlip,
 				pageFlipIndex,
-				clasname;
+				className;
 
-			this.masterPages[this.currentMasterPage].clasname = this.masterPages[this.currentMasterPage].clasname.replace(/(^|\s)swipeview-active(\s|$)/, '');
+			this.masterPages[this.currentMasterPage].className = this.masterPages[this.currentMasterPage].className.replace(/(^|\s)swipeview-active(\s|$)/, '');
 
 			// Flip the page
 			if (this.directionX > 0) {
@@ -415,12 +415,12 @@ var SwipeView = (function (window, document) {
 			}
 
 			// Add active class to current page
-			clasname = this.masterPages[this.currentMasterPage].clasname;
-			/(^|\s)swipeview-active(\s|$)/.test(clasname) || (this.masterPages[this.currentMasterPage].clasname = !clasname ? 'swipeview-active' : clasname + ' swipeview-active');
+			className = this.masterPages[this.currentMasterPage].className;
+			/(^|\s)swipeview-active(\s|$)/.test(className) || (this.masterPages[this.currentMasterPage].className = !className ? 'swipeview-active' : className + ' swipeview-active');
 
 			// Add loading class to flipped page
-			clasname = this.masterPages[pageFlip].clasname;
-			/(^|\s)swipeview-loading(\s|$)/.test(clasname) || (this.masterPages[pageFlip].clasname = !clasname ? 'swipeview-loading' : clasname + ' swipeview-loading');
+			className = this.masterPages[pageFlip].className;
+			/(^|\s)swipeview-loading(\s|$)/.test(className) || (this.masterPages[pageFlip].className = !className ? 'swipeview-loading' : className + ' swipeview-loading');
 			
 			pageFlipIndex = pageFlipIndex - Math.floor(pageFlipIndex / this.options.numberOfPages) * this.options.numberOfPages;
 			this.masterPages[pageFlip].dataset.upcomingPageIndex = pageFlipIndex;		// Index to be loaded in the newly flipped page
@@ -446,7 +446,7 @@ var SwipeView = (function (window, document) {
 			this.__event('flip');
 
 			for (var i=0; i<3; i++) {
-				this.masterPages[i].clasname = this.masterPages[i].clasname.replace(/(^|\s)swipeview-loading(\s|$)/, '');		// Remove the loading class
+				this.masterPages[i].className = this.masterPages[i].className.replace(/(^|\s)swipeview-loading(\s|$)/, '');		// Remove the loading class
 				this.masterPages[i].dataset.pageIndex = this.masterPages[i].dataset.upcomingPageIndex;
 			}
 		},

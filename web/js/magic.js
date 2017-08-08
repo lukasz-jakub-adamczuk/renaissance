@@ -92,23 +92,23 @@ var sendAjax = function() {
 // events functions
 var openOverlay = function() {
 	console.log('openOverlay...');
-	document.getElementById('overlay').clasname = '';
+	document.getElementById('overlay').className = '';
 };
 var closeOverlay = function() {
 	console.log('closeOverlay...');
-	document.getElementById('overlay').clasname = 'hidden';
+	document.getElementById('overlay').className = 'hidden';
 };
 
 var showAuthDialog = function() {
 	console.log('showAuthDialog...');
-	document.getElementById('overlay').clasname = '';
+	document.getElementById('overlay').className = '';
 
 	return false;
 };
 
 var changeArticleCategory = function() {
 	console.log('changeArticleCategory...');
-	// document.getElementById('overlay').clasname = 'hidden';
+	// document.getElementById('overlay').className = 'hidden';
 };
 
 var showEditForm = function() {
@@ -116,9 +116,9 @@ var showEditForm = function() {
 	openOverlay();
 
 	// var dialog = document.getElementById('dialog');
-	var dialog = document.getElementsByClasname('dialog')[0];
+	var dialog = document.getElementsByClassName('dialog')[0];
 
-	dialog.clasname = 'dialog full';
+	dialog.className = 'dialog full';
 
 	var form = '<header>'
 	+'				<h3>Edycja artykułu</h3>'
@@ -313,7 +313,7 @@ for (var i = 0, j = imgNodes.length; i<j; ++i) {
 			// 	style.style.display = 'none';
 			// }
 			style.setAttribute('src', src);
-			// style.clasname = '';
+			// style.className = '';
 	    }
 }
 
@@ -335,7 +335,7 @@ var debugtgr = document.getElementById('console-tgr');
 
 if (debugtgr) {
 	debugtgr.onclick = function(event) {
-		var stack = document.getElementsByClasname('stack')[0];
+		var stack = document.getElementsByClassName('stack')[0];
 		if (stack.style.display == 'block') {
 			stack.style.display = 'none';
 			ajax.get(page.urls.ivy + 'dev/reset/console');
