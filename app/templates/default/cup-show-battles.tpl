@@ -2,7 +2,7 @@
             {if $aBattles}
             <header class="inner">
                 <h2>Terminarz</h2>
-                <h3>{$sCategoryName}</h3>
+                <h3>{$categoryName}</h3>
             </header>
             <div class="content">
                 <div class="inner center">

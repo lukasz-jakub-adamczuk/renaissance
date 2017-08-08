@@ -7,7 +7,7 @@
                 <h3>Brak wyników</h3>
                 {/if}
             </header>
-            <!-- <p>total: {$aNavigator.total}, fetched: {$aNavigator.fetched}</p> -->
+            <!-- <p>total: {$navigator.total}, fetched: {$navigator.fetched}</p> -->
             
             {if $aActivities}
             <div class="items">

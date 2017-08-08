@@ -22,9 +22,9 @@
                 </section>
                 {if $aArticle.template eq 'intro'}
                 <section class="inner main-items">
-                    {if $aArticles}
+                    {if $articles}
                     <h2>Artykuły</h2>
-                    {foreach from=$aArticles item=art}<article class="front-item col-3">
+                    {foreach from=$articles item=art}<article class="front-item col-3">
                         <a href="{$base}/{#article#}/{$art.category_slug}/{$art.slug}" class="front-item-content s-item">
                             <span>{$art.title|stripslashes|humanize}</span>
                         </a>

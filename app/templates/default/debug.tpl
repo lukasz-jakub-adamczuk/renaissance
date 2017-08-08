@@ -1,6 +1,7 @@
         <div class="debug-panel">
             <div>
                 <span><b>Controller:</b> {$debugPanel.vars.ctrl.0}</span>
+                <span><b>Action:</b> {$debugPanel.vars.act.0}</span>
                 <span><b>View:</b> {$debugPanel.vars.view.0}</span>
                 <span><b>Template:</b> {$debugPanel.vars.tpl.0}</span>
             </div>

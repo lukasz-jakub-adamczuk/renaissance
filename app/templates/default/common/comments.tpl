@@ -1,7 +1,7 @@
 {if isset($aComments) and count($aComments) gt 0}<div id="comments">
             <div class="inner">
                 <div class="comments">
-                    <h2 class="padding">Komentarze <span>({$aNavigator.loaded})</span></h2>
+                    <h2 class="padding">Komentarze <span>({$navigator.loaded})</span></h2>
                     {foreach from=$aComments item=c}
                     <section data-comment-id="{$c[$sCommentPrimaryKey]}">
                         <header class="meta">

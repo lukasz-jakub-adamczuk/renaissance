@@ -2,8 +2,8 @@
             <h2>Artykuły</h2>
         </header>
         <section class="inner main-items">
-            {if $aCategories}
-            {foreach from=$aCategories item=cat}<article class="front-item with-image col-3">
+            {if $categories}
+            {foreach from=$categories item=cat}<article class="front-item with-image col-3">
                     
 
                 <a href="{$base}/{#article#}/{$cat.slug}" class="front-item-content m-item">

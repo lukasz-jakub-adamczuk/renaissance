@@ -1,7 +1,7 @@
         <section>
             {if isset($aObject)}
             <header class="inner">
-                <h2>{$sCategoryName}</h2>
+                <h2>{$categoryName}</h2>
                 <!-- <h3>{$smarty.get.slug}</h3> -->
             </header>
             <div class="_content">

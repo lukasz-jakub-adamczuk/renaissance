@@ -22,7 +22,7 @@ class FrontController extends Controller {
         $this->_renderer->assign('datetimeFormat', '%Y-%m-%dT%H:%M');
 
         // title
-        $this->_renderer->assign('sTitle', 'Squarezone - '.ValueMapper::getName($this->getCtrlName()));
+        $this->_renderer->assign('title', 'Squarezone - '.ValueMapper::getName($this->getCtrlName()));
 
         // top nav
         $aNavTop = array(
@@ -119,6 +119,9 @@ class FrontController extends Controller {
         }
         $this->_renderer->assign('aFanarts', $aFanarts);
 
+
+
+        
     }
     
     // TODO should name init()

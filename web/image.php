@@ -71,9 +71,9 @@ if (isset($aParams['width']) && isset($aParams['height'])) {
 	if (file_exists($sTmpFile)) {
 		echo file_get_contents($sTmpFile);
 	} else {
-		$sUrl = getImageUrl($sImageName, $aParams);
-		echo file_get_contents(APP_DIR . '/' . $sUrl);
-		// echo '<img src="'.$sUrl.'">';
+		$url = getImageUrl($sImageName, $aParams);
+		echo file_get_contents(APP_DIR . '/' . $url);
+		// echo '<img src="'.$url.'">';
 	}
 } else {
 	if (substr($sImageName, 0, 7) == '/assets') {
@@ -82,7 +82,7 @@ if (isset($aParams['width']) && isset($aParams['height'])) {
 		echo file_get_contents($sImageName);
 	}
 }
-// echo file_get_contents(APP_DIR . '/' . $sUrl);
+// echo file_get_contents(APP_DIR . '/' . $url);
 
 function getImageUrl($sImageName, $aParams) {
 

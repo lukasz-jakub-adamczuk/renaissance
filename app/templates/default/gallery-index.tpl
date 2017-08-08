@@ -4,8 +4,8 @@
             </header>
             <div class="wrapper">
                 <section class="items">
-                    {if $aCategories}
-                    {foreach from=$aCategories item=cat}<article class="item">
+                    {if $categories}
+                    {foreach from=$categories item=cat}<article class="item">
                         <a href="{$base}/{#gallery#}/{$cat.slug}" class="block m-item">
                             <span>{$cat.name|stripslashes|humanize}</span>
                         </a>

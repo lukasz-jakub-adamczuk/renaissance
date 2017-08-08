@@ -4,7 +4,7 @@
                 <h3>all articles</h3>
             </header>
             <div class="wrapper">
-                {foreach from=$aArticles item=aArticle}
+                {foreach from=$articles item=aArticle}
                 <h2>{$aArticle.title|stripslashes}</h2>
                 <h2>{$aArticle.category_slug|stripslashes}</h2>
                 <section>

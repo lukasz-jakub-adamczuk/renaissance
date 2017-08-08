@@ -4,7 +4,7 @@
             <div class="content">
                 <header>
                     <h2>Klasyfikacja</h2>
-                    <h3>{$sCategoryName}</h3>
+                    <h3>{$categoryName}</h3>
                 </header>
                 <!--<div class="inner center">-->
                     <p>

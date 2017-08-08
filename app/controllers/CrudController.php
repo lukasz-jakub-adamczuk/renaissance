@@ -16,15 +16,15 @@ class CrudController extends FrontController {
         $aPossibleNameKeys = array('title', 'name');
         foreach ($aPossibleNameKeys as $key) {
             if (isset($aPost['dataset'][$key])) {
-                $sName = $aPost['dataset'][$key];
+                $name = $aPost['dataset'][$key];
                 break;
             }
         }
         // print_r($aPost['dataset']);
 
         // slug by used name if empty or changed name
-        if (isset($sName) && isset($aPost['dataset']['slug']) && (empty($aPost['dataset']['slug']) || $aPost['dataset']['slug'] != $this->slugify($sName))) {
-            $oEntity->setField('slug', $this->slugify($sName));
+        if (isset($name) && isset($aPost['dataset']['slug']) && (empty($aPost['dataset']['slug']) || $aPost['dataset']['slug'] != $this->slugify($name))) {
+            $oEntity->setField('slug', $this->slugify($name));
         }
 
         // no creation date
@@ -42,7 +42,7 @@ class CrudController extends FrontController {
             // clear cache
             $sSqlCacheFile = TMP_DIR . '/sql/collection/'.$this->_ctrlName.'-'.$this->_sActionName.'';
 
-            $this->raiseInfo('Wpis '.(isset($sName) ? '<strong>'.$sName.'</strong>' : '').' został utworzony.');
+            $this->raiseInfo('Wpis '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' został utworzony.');
 
             $this->addHistoryLog('create', $this->_ctrlName, $mId);
 
@@ -77,7 +77,7 @@ class CrudController extends FrontController {
         $aPossibleNameKeys = array('title', 'name');
         foreach ($aPossibleNameKeys as $key) {
             if (isset($_POST['dataset'][$key])) {
-                $sName = $_POST['dataset'][$key];
+                $name = $_POST['dataset'][$key];
                 break;
             }
         }
@@ -85,8 +85,8 @@ class CrudController extends FrontController {
         // print_r($_POST['dataset']);
 
         // slug by used name if empty or changed name
-        if (isset($_POST['dataset']['slug']) && (empty($_POST['dataset']['slug']) || $_POST['dataset']['slug'] != $this->slugify($sName))) {
-            $oEntity->setField('slug', $this->slugify($sName));
+        if (isset($_POST['dataset']['slug']) && (empty($_POST['dataset']['slug']) || $_POST['dataset']['slug'] != $this->slugify($name))) {
+            $oEntity->setField('slug', $this->slugify($name));
         }
 
         if (isset($_POST['dataset']['modification_date'])) {
@@ -114,8 +114,8 @@ class CrudController extends FrontController {
             // file_put_contents($sConvertSql.'/'.$this->_ctrlName.'-'.$mId.'.sql', $oEntity->getQuery().';'."\n\n");
 
             $sEditUrl = BASE_URL.'/'.$this->_ctrlName.'/'.$mId;
-            if (isset($sName)) {
-                $this->raiseInfo('Wpis '.(isset($sName) ? '<strong>'.$sName.'</strong>' : '').' został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
+            if (isset($name)) {
+                $this->raiseInfo('Wpis '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
             } else {
                 $this->raiseInfo('Wpis został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
             }
@@ -150,9 +150,9 @@ class CrudController extends FrontController {
                 $aPossibleNameKeys = array('title', 'name');
                 foreach ($aPossibleNameKeys as $key) {
                     if ($oEntity->hasField($key)) {
-                        $sName = $oEntity->getField($key);
+                        $name = $oEntity->getField($key);
                     } else {
-                        $sName = $id;
+                        $name = $id;
                     }
                 }
 
@@ -160,7 +160,7 @@ class CrudController extends FrontController {
                 
                 if ($oEntity->update()) {
                     $this->addHistoryLog('delete', $this->_ctrlName, $id);
-                    $aNames[] = $sName;
+                    $aNames[] = $name;
                 }
             }
 
@@ -192,15 +192,15 @@ class CrudController extends FrontController {
                 $aPossibleNameKeys = array('title', 'name');
                 foreach ($aPossibleNameKeys as $key) {
                     if ($oEntity->hasField($key)) {
-                        $sName = $oEntity->getField($key);
+                        $name = $oEntity->getField($key);
                     } else {
-                        $sName = $id;
+                        $name = $id;
                     }
                 }
                 
                 if ($oEntity->delete()) {
                     $this->addHistoryLog('remove', $this->_ctrlName, $id);
-                    $aNames[] = $sName;
+                    $aNames[] = $name;
                 }
             }
 
@@ -264,11 +264,11 @@ class CrudController extends FrontController {
         
         $oEntity->setField($sField, $mValue);
 
-        $sName = $mId;
+        $name = $mId;
         $aPossibleNameKeys = array('title', 'name');
         foreach ($aPossibleNameKeys as $key) {
             if (isset($_POST['dataset'][$key])) {
-                $sName = $_POST['dataset'][$key];
+                $name = $_POST['dataset'][$key];
                 break;
             }
         }
@@ -277,8 +277,8 @@ class CrudController extends FrontController {
             // $this->postUpdate($mId);
 
             $sEditUrl = BASE_URL.'/'.$this->_ctrlName.'/'.$mId;
-            if (isset($sName)) {
-                $this->raiseInfo('Wpis '.(isset($sName) ? '<strong>'.$sName.'</strong>' : '').' został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
+            if (isset($name)) {
+                $this->raiseInfo('Wpis '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
             } else {
                 $this->raiseInfo('Wpis został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
             }

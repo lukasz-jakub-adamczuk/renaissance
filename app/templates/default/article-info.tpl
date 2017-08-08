@@ -23,9 +23,9 @@
                 </section>
                 {if $aArticle.template eq 'intro'}
                 <section class="inner items">
-                    {if $aArticles}
+                    {if $articles}
                     <h2>Artykuły</h2>
-                    {foreach from=$aArticles item=art}<article class="item">
+                    {foreach from=$articles item=art}<article class="item">
                         <a href="{$base}/{#article#}/{$art.category_slug}/{$art.slug}" class="block s-item">
                             <span>{$art.title|stripslashes|humanize}</span>
                             

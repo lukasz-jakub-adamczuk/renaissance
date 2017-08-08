@@ -1,12 +1,12 @@
         <div>
             <header class="inner">
                 <h2>Galerie</h2>
-                <h3>{$sCategory|capitalize}</h3>
+                <h3>{$category|capitalize}</h3>
             </header>
             <!-- <div class="wrapper"> -->
                 <section class="items">
-                    {if $aArticles}
-                    {foreach from=$aArticles item=art}<article class="item">
+                    {if $articles}
+                    {foreach from=$articles item=art}<article class="item">
                         <a href="{$base}/{#gallery#}/{$art.category_slug}/{$art.slug}" class="block s-item">
                             <span>{$art.name|stripslashes|humanize}</span>
                             
