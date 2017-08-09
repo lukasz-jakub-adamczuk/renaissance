@@ -16,9 +16,9 @@
                             {/if}
                         </div><div class="column">
                             <h3>Artykuły</h3>
-                            {if isset($aArticleAuthorsEver)}
+                            {if isset($articleAuthorsEver)}
                             <ul class="_x-padding x-style key-value">
-                                {foreach from=$aArticleAuthorsEver item=aae}
+                                {foreach from=$articleAuthorsEver item=aae}
                                 <li{if isset($user) and $aae.id_user eq $user.id} class="marked"{/if}><a href="{$base}/{#user#}/{$aae.slug|default:$aae.id_user}">{$aae.name}:</a> <span>{$aae.total}</span></li>
                                 {/foreach}
                             </ul>
@@ -43,9 +43,9 @@
                             {/if}
                         </div><div class="column">
                             <h3>Komentarze artykułów</h3>
-                            {if isset($aArticleCommentsAuthorsEver)}
+                            {if isset($articleCommentsAuthorsEver)}
                             <ul class="_x-padding x-style key-value">
-                                {foreach from=$aArticleCommentsAuthorsEver item=acae}
+                                {foreach from=$articleCommentsAuthorsEver item=acae}
                                 <li{if isset($user) and $acae.id_user eq $user.id} class="marked"{/if}><a href="{$base}/{#user#}/{$acae.slug|default:$acae.id_user}">{$acae.name}</a>: <span>{$acae.total}</span></li>
                                 {/foreach}
                             </ul>
@@ -61,9 +61,9 @@
                             {/if}
                         </div><div class="column">
                             <h3>Oceny gier</h3>
-                            {if isset($aArticleVerdictsAuthorsEver)}
+                            {if isset($articleVerdictsAuthorsEver)}
                             <ul class="_x-padding x-style key-value">
-                                {foreach from=$aArticleVerdictsAuthorsEver item=avae}
+                                {foreach from=$articleVerdictsAuthorsEver item=avae}
                                 <li{if isset($user) and $avae.id_user eq $user.id} class="marked"{/if}><a href="{$base}/{#user#}/{$avae.slug|default:$avae.id_user}">{$avae.name}</a>: <span>{$avae.total}</span></li>
                                 {/foreach}
                             </ul>

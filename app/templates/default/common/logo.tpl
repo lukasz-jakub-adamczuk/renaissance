@@ -1,3 +1,3 @@
-{if $aArticle.template eq 'intro' and isset($aLogoImage)}
-                        <img class="game-logo" src="{$base}{$aLogoImage.0.fragment}" alt="game logo" />
+{if $article.template eq 'intro' and isset($gameLogo)}
+                        <img class="game-logo" src="{$base}{$gameLogo.0.fragment}" alt="game logo" />
                     {/if}

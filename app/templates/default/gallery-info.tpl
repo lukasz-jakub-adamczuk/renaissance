@@ -1,4 +1,4 @@
-        {if !is_array($aArticle)}
+        {if !is_array($article)}
             <article>
                 <section class="padding">
                     <h2>Błąd</h2>
@@ -7,9 +7,9 @@
             </article>
         {else}
             <section class="inner">
-                <h2>{$aArticle.name|stripslashes}</h2>
-                <h3>{$aArticle.category_name|stripslashes}</h3>
-                <!-- {$aArticle.id_gallery} -->
+                <h2>{$article.name|stripslashes}</h2>
+                <h3>{$article.category_name|stripslashes}</h3>
+                <!-- {$article.id_gallery} -->
             </section>
             <article>
             <!-- <div class="wrapper"> -->
@@ -22,10 +22,10 @@
                     </div>
                 </section>
                 <footer class="theme">
-                    <div class="inner theme-dark"{if isset($aVerdict)} data-verdict="{$aVerdict.rating}"{/if}>
+                    <div class="inner theme-dark"{if isset($verdict)} data-verdict="{$verdict.rating}"{/if}>
                     </div>
                 </footer>
             <!-- </div> -->
         </article>{/if}
         {include file='common/ratings.tpl'}
-        {include file='common/comments.tpl' sCommentPrimaryKey='id_gallery_comment'}
+        {include file='common/comments.tpl' commentPrimaryKey='id_gallery_comment'}

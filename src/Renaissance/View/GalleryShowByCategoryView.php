@@ -1,7 +1,11 @@
 <?php
-require_once AYA_DIR.'/Management/IndexView.php';
 
-class GalleryShowByCategoryView extends IndexView {
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\View;
+
+class GalleryShowByCategoryView extends View {
 
     public function fill() {
         $category = $_GET['category'];

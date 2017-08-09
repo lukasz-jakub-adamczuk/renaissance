@@ -5,7 +5,7 @@
             {include file='partials/front-items.tpl' type=news items=$activities.news}
 
             <!-- cup battle -->
-            {if $aMatch}
+            {if $cupBattle}
             {include file='cup-battle.tpl'}
             {/if}
             

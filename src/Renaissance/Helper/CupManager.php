@@ -1,5 +1,10 @@
 <?php
 
+namespace Renaissance\Helper;
+
+use Aya\Core\Dao;
+use Aya\Core\Db;
+
 class CupManager {
 
     private $db;

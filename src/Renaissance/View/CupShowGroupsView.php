@@ -1,5 +1,11 @@
 <?php
-require_once AYA_DIR.'/Core/View.php';
+
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\View;
+use Aya\Helper\Breadcrumbs;
+use Aya\Helper\ValueMapper;
 
 // klasyfikacja
 
@@ -37,20 +43,20 @@ class CupShowGroupsView extends View {
 
         if ($aPlayers) {
             // category name
-            $this->_renderer->assign('sCategoryName', $categoryName);
+            $this->_renderer->assign('categoryName', $categoryName);
 
             // title
             $this->_renderer->assign('title', 'Squarezone - Mistrzostwa - '.$categoryName.' - Klasyfikacja');
 
             // breadcrumbs
-            $aItem = array(
+            $item = array(
                 'url' => ValueMapper::getUrl('cup').'/'.$categorySlug,
                 'text' => $categoryName
             );
-            Breadcrumbs::add($aItem);
+            Breadcrumbs::add($item);
 
             // groups
-            $aGroups = array();
+            $aGroups = [];
             foreach ($aPlayers as $player) {
                 $aGroups[$player['group']][$player['id_cup_player']] = $player;
             }

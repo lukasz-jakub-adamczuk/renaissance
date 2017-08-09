@@ -67,8 +67,8 @@ class NewsInfoView extends View {
         Breadcrumbs::add($item);
 
         // self url
-        $sSelfUrl = BASE_URL . '/' . $item['url'] . '/' . $slug;
-        $this->_renderer->assign('sSelfUrlEncode', urlencode($sSelfUrl));
+        $selfUrl = BASE_URL . '/' . $item['url'] . '/' . $slug;
+        $this->_renderer->assign('encodedSelfUrl', urlencode($selfUrl));
 
         // news details
         $id = $aNews['id_news'];
@@ -112,7 +112,7 @@ class NewsInfoView extends View {
                     // print_r($oNewsImageEntity);
                     if ($oNewsImageEntity->update()) {
                         // echo $oNewsEntity->getQuery();
-                    //  // ChangeLog::add('create', $this->_ctrlName, $mId);
+                    //  // ChangeLog::add('create', $this->_ctrlName, $id);
                     }
                 }
             }
@@ -148,7 +148,7 @@ class NewsInfoView extends View {
         $oNewsCollection = Dao::collection('news');
         $aSiblings = $oNewsCollection->getNewsSiblings($newsEntity->getField('id_news'));
 
-        $aRelatedNews = array();
+        $aRelatedNews = [];
 
         if (is_array($aSiblings)) {
             foreach ($aSiblings as $nk => $news) {
@@ -167,12 +167,12 @@ class NewsInfoView extends View {
 
         $this->_renderer->assign('aRelatedNews', $aRelatedNews);
 
-        $this->_renderer->assign('aCommentsForm', Comments::getFormParams('news', $newsEntity));
+        $this->_renderer->assign('commentsForm', Comments::getFormParams('news', $newsEntity));
 
         // comments
         $oCommentsCollection = Dao::collection('comments');
 
-        $this->_renderer->assign('aComments', $oCommentsCollection->getCommentsById('news', $newsEntity->getField('id_news')));
+        $this->_renderer->assign('comments', $oCommentsCollection->getCommentsById('news', $newsEntity->getField('id_news')));
         $this->_renderer->assign('navigator', $oCommentsCollection->getNavigator());
     }
 }

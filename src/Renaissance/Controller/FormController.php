@@ -1,10 +1,16 @@
 <?php
 
+namespace Renaissance\Controller;
+
+use Aya\Core\Dao;
+
+use Renaissance\Controller\CrudController;
+
 class FormController extends CrudController {
 
     public function preInsert() {
         // print_r($_POST);
-        $aPost = array();
+        $aPost = [];
         if (isset($_POST)) {
             foreach ($_POST as $key => $val) {
                 foreach ($val as $k => $v) {
@@ -104,7 +110,7 @@ class FormController extends CrudController {
 
             // params to override request
             // print_r($aPost['request']);
-            $aParams = array();
+            $aParams = [];
             foreach ($aPost['request'] as $key => $value) {
                 $aParams['get:'.$key] = $value;
             }

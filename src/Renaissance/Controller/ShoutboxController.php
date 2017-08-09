@@ -1,5 +1,11 @@
 <?php
 
+namespace Renaissance\Controller;
+
+use Aya\Core\Dao;
+
+use Renaissance\Controller\CrudController;
+
 class ShoutboxController extends CrudController {
 
     public function insertAction() {
@@ -7,7 +13,7 @@ class ShoutboxController extends CrudController {
 
         $this->_renderer->assign('shout', $_POST['shout']);
 
-        $aShout = array();
+        $aShout = [];
         $aShout['shout'] = $_POST['shout'];
         $aShout['id_author'] = isset($_POST['id_user']) ? $_POST['id_user'] : $_SESSION['user']['id'];
         $aShout['creation_date'] = date('Y-m-d H:i:s');
@@ -21,7 +27,7 @@ class ShoutboxController extends CrudController {
                 $aShouts = json_decode(file_get_contents($sFile), true);
                 // print_r($aShouts);
             } else {
-                $aShouts = array();
+                $aShouts = [];
             }
             // TODO be sure it will be disabled on production
             $aShout['name'] = isset($_POST['name']) ? $_POST['name'] : $_SESSION['user']['name'];
@@ -46,7 +52,7 @@ class ShoutboxController extends CrudController {
             if ($iTimestamp) {
                 $aShouts = json_decode(file_get_contents($sFile), true);
                 // print_r($aShouts);
-                $aJsonContent = array();
+                $aJsonContent = [];
                 foreach ($aShouts as $sk => $shout) {
                     if ($iTimestamp < (int)$sk) {
                         $aJsonContent[$sk] = $shout;
@@ -57,7 +63,7 @@ class ShoutboxController extends CrudController {
                 $this->_renderer->assign('sJsonContent', file_get_contents($sFile));
             }
         } else {
-            $aShouts = array();
+            $aShouts = [];
             $aShouts[] = $aShout;
             file_put_contents($sFile, json_encode($aShouts));
         }

@@ -1,5 +1,11 @@
 <?php
 
+namespace Renaissance\Controller;
+
+use Aya\Core\Dao;
+
+use Renaissance\Controller\CrudController;
+
 class CommentController extends CrudController {
 
     public function removeAction() {
@@ -11,7 +17,7 @@ class CommentController extends CrudController {
         }
         
         if (isset($aIds)) {
-            $aNames = array();
+            $aNames = [];
             foreach ($aIds as $id) {
                 $oEntity = Dao::entity($this->_ctrlName, $id, 'id_'.$this->_ctrlName);
 
@@ -39,7 +45,7 @@ class CommentController extends CrudController {
                 $this->raiseError('Wystąpił nieoczekiwany wyjątek.');
             }
             // 
-            $aParams = array();
+            $aParams = [];
             $aParams['get:category'] = 'tomb-raider';
             $aParams['get:slug'] = 'recenzja';
 

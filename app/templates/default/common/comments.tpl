@@ -1,13 +1,13 @@
-{if isset($aComments) and count($aComments) gt 0}<div id="comments">
+{if isset($comments) and count($comments) gt 0}<div id="comments">
             <div class="inner">
                 <div class="comments">
                     <h2 class="padding">Komentarze <span>({$navigator.loaded})</span></h2>
-                    {foreach from=$aComments item=c}
-                    <section data-comment-id="{$c[$sCommentPrimaryKey]}">
+                    {foreach from=$comments item=c}
+                    <section data-comment-id="{$c[$commentPrimaryKey]}">
                         <header class="meta">
                             {if $c.id_author}<a href="{$base}/{#user#}/{$c.author_slug|default:'???'}" rel="nofollow">{$c.author_name}</a>{else}{$c.author_name|default:"Gość"}{/if} ~ {$c.creation_date|date_format:"%d %B %Y, %H:%M"|localize_date}
                             {if false}
-                            <a href="{$base}/{$ctrl}-comment/{$c[$sCommentPrimaryKey]}/remove" class="icon-remove visible-on-hover"></a>
+                            <a href="{$base}/{$ctrl}-comment/{$c[$commentPrimaryKey]}/remove" class="icon-remove visible-on-hover"></a>
                             {/if}
                         </header>
                         {$c.comment|stripslashes|bbcode|replace:'<br />':'<br>'|humanize}
@@ -27,10 +27,10 @@
                     <p>Wypowiedzi obraźliwe, infantylne oraz nie na temat będą moderowane - pisząc postaraj się zwiększyć wartość dyskusji.</p>
                 </div>
                 <form id="add-comment-form" method="post" action="{$base}/form/insert">
-                    {foreach from=$aCommentsForm.request item=value key=vk}
+                    {foreach from=$commentsForm.request item=value key=vk}
                     <input name="request[{$vk}]" type="hidden" value="{$value}">
                     {/foreach}
-                    <input name="dataset[{$aCommentsForm.object}]" type="hidden" value="{$aCommentsForm.id_object}">
+                    <input name="dataset[{$commentsForm.object}]" type="hidden" value="{$commentsForm.id_object}">
                     <div>
                         <label for="form-comment">Treść</label>
                         <textarea id="form-comment" name="dataset[comment]" rows="5" cols="40" class="input" placeholder="Wpisz treść komentarza" required></textarea>

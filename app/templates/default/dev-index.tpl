@@ -4,11 +4,11 @@
                 <h3>all articles</h3>
             </header>
             <div class="wrapper">
-                {foreach from=$articles item=aArticle}
-                <h2>{$aArticle.title|stripslashes}</h2>
-                <h2>{$aArticle.category_slug|stripslashes}</h2>
+                {foreach from=$articles item=article}
+                <h2>{$article.title|stripslashes}</h2>
+                <h2>{$article.category_slug|stripslashes}</h2>
                 <section>
-                    {$aArticle.markup|stripslashes|gb_replace|replace:"image/":"../../i/"}
+                    {$article.markup|stripslashes|gb_replace|replace:"image/":"../../i/"}
                 </section>
                 {/foreach}
             </div>

@@ -1,5 +1,9 @@
 <?php
-require_once AYA_DIR.'/Core/View.php';
+
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\View;
 
 // grupy
 
@@ -33,7 +37,7 @@ class CupShowByCategoryView extends View {
             $collection->query($sql);
 
             // category name
-            $this->_renderer->assign('sCategoryName', $categoryName);
+            $this->_renderer->assign('categoryName', $categoryName);
 
             // title
             $this->_renderer->assign('title', 'Squarezone - Mistrzostwa - '.$categoryName);

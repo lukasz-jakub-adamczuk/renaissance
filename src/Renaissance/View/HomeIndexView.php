@@ -83,8 +83,8 @@ class HomeIndexView extends View {
             $i++;
         }
 
-        $aReducedItems = array();
-        $aUniqueActivities = array();
+        $aReducedItems = [];
+        $aUniqueActivities = [];
         foreach ($aActivities as $key => $val) {
             // $sItemKey = $val['ctrl'].'-'.$val['id'];
             // if (!isset($aReducedItems[$sItemKey])) {
@@ -99,8 +99,8 @@ class HomeIndexView extends View {
 
         $this->_renderer->assign('activities', $aActivities);
 
-        // $aImages = array();
-        // $aBackgrounds = array();
+        // $aImages = [];
+        // $aBackgrounds = [];
         // foreach ($aActivities['news'] as $ak => $a) {
         //     if (!isset($a['ctrl'])) {
         //         $sql = 'SELECT ni.*

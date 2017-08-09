@@ -1,5 +1,9 @@
 <?php
-require_once AYA_DIR.'/Core/View.php';
+
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\View;
 
 class RssIndexView extends View {
 
@@ -32,7 +36,7 @@ class RssIndexView extends View {
             //     $item['fragment'] = $sAsset;
             // }
         }
-        $aRss = array();
+        $aRss = [];
 
         // config
         $aRss['title'] = 'Squarezone - Aktualności';
@@ -41,7 +45,7 @@ class RssIndexView extends View {
         $aRss['lastBuildDate'] = '...';
         $aRss['generator'] = 'genrator';
 
-        $aRss['image'] = array();
+        $aRss['image'] = [];
         $aRss['image']['url'] = BASE_URL . '/favicon.png';
         $aRss['image']['title'] = 'title';
         $aRss['image']['link'] = BASE_URL;

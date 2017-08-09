@@ -1,11 +1,14 @@
 <?php
-// require_once AYA_DIR.'/Management/InfoView.php';
-require_once AYA_DIR.'/Core/View.php';
 
-require_once APP_DIR.'/helpers/Comments.php';
+namespace Renaissance\View;
 
-// temporary
-require_once APP_DIR.'/helpers/GalleryConverter.php';
+use Aya\Core\Dao;
+use Aya\Core\View;
+use Aya\Helper\Breadcrumbs;
+use Aya\Helper\ValueMapper;
+
+use Renaissance\Helper\Comments;
+use Renaissance\Helper\GalleryConverter;
 
 class GalleryInfoView extends View {
 
@@ -42,10 +45,10 @@ class GalleryInfoView extends View {
 
         $oEntity = Dao::entity('gallery');
         $oEntity->query($sql);
-        $aArticle = $oEntity->getFields();
+        $article = $oEntity->getFields();
 
 
-        // print_r($aArticle);
+        // print_r($article);
 
         // headers
         if ($url) {
@@ -59,28 +62,28 @@ class GalleryInfoView extends View {
         }
 
         // var_dump($oEntity->getQuery());
-        // echo $aArticle['title'];
+        // echo $article['title'];
 
         // news details
-        $iId = $aArticle['id_gallery'];
+        $iId = $article['id_gallery'];
 
-        if ($aArticle) {
+        if ($article) {
             // title
             $this->_renderer->assign('title', 'Squarezone - Galerie - '.$oEntity->getField('category_name').' - '.$oEntity->getField('title'));
 
-            $mId = $aArticle['id_gallery'];
+            $id = $article['id_gallery'];
 
-            $aArticle['id'] = $mId;
-            $aArticle['template'] = 'gallery';
+            $article['id'] = $id;
+            $article['template'] = 'gallery';
 
-            $this->_renderer->assign('aArticle', $aArticle);
+            $this->_renderer->assign('article', $article);
 
             // breadcrumbs
-            $aItem = array(
+            $item = array(
                 'url' => ValueMapper::getUrl('gallery').'/'.$oEntity->getField('category_slug'),
                 'text' => $oEntity->getField('category_name')
             );
-            Breadcrumbs::add($aItem);
+            Breadcrumbs::add($item);
 
             // echo $oEntity->getField('id_gallery');
 
@@ -112,7 +115,7 @@ class GalleryInfoView extends View {
                         // print_r($oGalleryImageEntity);
                         if ($oGalleryImageEntity->update()) {
                             // echo $oGalleryEntity->getQuery();
-                        //     // ChangeLog::add('create', $this->_ctrlName, $mId);
+                        //     // ChangeLog::add('create', $this->_ctrlName, $id);
                         }
                     }
                 }
@@ -121,12 +124,12 @@ class GalleryInfoView extends View {
             $this->_renderer->assign('aImages', $aImages);
 
             // comments form
-            $this->_renderer->assign('aCommentsForm', Comments::getFormParams('gallery', $oEntity));
+            $this->_renderer->assign('commentsForm', Comments::getFormParams('gallery', $oEntity));
 
             // comments
             $oCommentsCollection = Dao::collection('gallery-comment');
 
-            $this->_renderer->assign('aComments', $oCommentsCollection->getCommentsById($oEntity->getField('id_gallery')));
+            $this->_renderer->assign('comments', $oCommentsCollection->getCommentsById($oEntity->getField('id_gallery')));
             $this->_renderer->assign('navigator', $oCommentsCollection->getNavigator());
         } else {
             // log 404

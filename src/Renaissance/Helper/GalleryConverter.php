@@ -30,7 +30,7 @@ class GalleryConverter {
             // echo 'dir exists';
         }
 
-        $aAssets = array();
+        $aAssets = [];
 
         // images download
         $i = 0;

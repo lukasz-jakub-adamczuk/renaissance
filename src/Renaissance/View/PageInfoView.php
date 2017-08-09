@@ -1,5 +1,11 @@
 <?php
-require_once AYA_DIR.'/Core/View.php';
+
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\View;
+use Aya\Helper\Breadcrumbs;
+use Aya\Helper\ValueMapper;
 
 class PageInfoView extends View {
 
@@ -7,7 +13,7 @@ class PageInfoView extends View {
         $url = isset($_GET['url']) ? $_GET['url'] : null;
 
         // mappings
-        $aRedirections = array(
+        $redirects = array(
             'redaction' => ValueMapper::getUrl('page').'/redakcja',
             'redaction_details' => ValueMapper::getUrl('user'),
             'redaction_co_details' => ValueMapper::getUrl('user'),
@@ -18,15 +24,15 @@ class PageInfoView extends View {
         );
     
         // headers
-        if ($url && isset($aRedirections[$url])) {
+        if ($url && isset($redirects[$url])) {
             $sLogFile = LOG_DIR.'/redirects/'.date('Y-m-d').'.log';
-            Logger::logStandardRequest($sLogFile);
+            // Logger::logStandardRequest($sLogFile);
 
-            header('Location: '.BASE_URL.'/'.$aRedirections[$url].'', TRUE, 301);
+            header('Location: '.BASE_URL.'/'.$redirects[$url].'', TRUE, 301);
         } else {
             // log 404
             $sLogFile = LOG_DIR.'/404/'.date('Y-m-d').'.log';
-            Logger::logStandardRequest($sLogFile);
+            // Logger::logStandardRequest($sLogFile);
         }
     }
 }

@@ -48,4 +48,4 @@
                     {/if}
                 </section>
         </article>{/if}
-        {include file='common/comments.tpl' sCommentPrimaryKey='id_news_comment'}
+        {include file='common/comments.tpl' commentPrimaryKey='id_news_comment'}

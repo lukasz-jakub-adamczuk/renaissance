@@ -11,7 +11,7 @@ class NewsConverter {
     static public function check($iId, $year, $month, $day, $aImages) {
         $sLocalPath = '/'.$year.'/'.$month.'/'.$day.'/'.$iId;
         $sAssetsPath = '/assets/news' . $sLocalPath;
-        $sCompletePath = PUB_DIR . $sAssetsPath;
+        $sCompletePath = WEB_DIR . $sAssetsPath;
         // $sCompletePath = '/home/ash/domains/dev.squarezone.pl' . $sAssetsPath;
         // echo $sCompletePath;
 
@@ -22,7 +22,7 @@ class NewsConverter {
                 
                 // make each directory is writable
                 $aParts = explode('/', $sLocalPath);
-                $sTmpPath = PUB_DIR . '/assets/news';
+                $sTmpPath = WEB_DIR . '/assets/news';
                 // $sTmpPath = '/home/ash/domains/dev.squarezone.pl' . $sAssetsPath;
                 foreach ($aParts as $dir) {
                     if ($dir) {
@@ -36,7 +36,7 @@ class NewsConverter {
             // echo 'dir exists';
         }
 
-        $aAssets = array();
+        $aAssets = [];
 
         // images download
         $i = 0;
@@ -55,6 +55,6 @@ class NewsConverter {
 
         // $aAllContent = Folder::getContent($sCompletePath, true);
 
-        // return $aCommentsForm;
+        // return $commentsForm;
     }
 }

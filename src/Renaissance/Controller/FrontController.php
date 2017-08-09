@@ -1,8 +1,8 @@
 <?php
 namespace Renaissance\Controller;
 
-// require_once AYA_DIR.'/Core/Controller.php';
 use Aya\Core\Controller;
+use Aya\Core\User;
 use Aya\Helper\ValueMapper;
 use Aya\Helper\Breadcrumbs;
 
@@ -13,12 +13,12 @@ class FrontController extends Controller {
     public function runBeforeMethod() {
         // decide when to show and hide
         if ($this->_ctrlName != 'home' ) {
-            $aItem = array(
+            $item = array(
                 'name' => 'ctrl',
                 'url' => ValueMapper::getUrl($this->getCtrlName()),
                 'text' => ValueMapper::getName($this->getCtrlName()),
             );
-            Breadcrumbs::add($aItem);
+            Breadcrumbs::add($item);
         }
 
         $this->_renderer->assign('datetimeFormat', '%Y-%m-%dT%H:%M');

@@ -1,5 +1,9 @@
 <?php
-require_once AYA_DIR.'/Core/View.php';
+
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\View;
 
 class ShoutboxIndexView extends View {
 
@@ -17,20 +21,20 @@ class ShoutboxIndexView extends View {
 
         $aShoutsResult = $oShoutsCollection->getRows();
         
-        $aShouts = array();
+        $aShouts = [];
         $sPrevAuthor = '';
         $sClass = '';
         foreach ($aShoutsResult as $sk => &$shout) {
             // avatar from db
             if (!empty($shout['user_avatar'])) {
                 $sAvatarFile = $shout['user_avatar'];
-                if (file_exists(PUB_DIR . $sAvatarFile)) {
+                if (file_exists(WEB_DIR . $sAvatarFile)) {
                     $shout['avatar'] = $sAvatarFile;
                 }
             }
             // avatar for editor
             $sAvatarFile = '/assets/users/avatars/'.$shout['user_slug'].'.png';
-            if (file_exists(PUB_DIR . $sAvatarFile)) {
+            if (file_exists(WEB_DIR . $sAvatarFile)) {
                 $shout['avatar'] = $sAvatarFile;
             }
 

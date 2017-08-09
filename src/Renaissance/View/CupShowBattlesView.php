@@ -1,5 +1,13 @@
 <?php
-require_once AYA_DIR.'/Core/View.php';
+
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\View;
+use Aya\Helper\Breadcrumbs;
+use Aya\Helper\ValueMapper;
+
+use Renaissance\Helper\CupManager;
 
 // terminarz
 
@@ -67,17 +75,17 @@ class CupShowBattlesView extends View {
             }
 
             // category name
-            $this->_renderer->assign('sCategoryName', $categoryName);
+            $this->_renderer->assign('categoryName', $categoryName);
 
             // title
             $this->_renderer->assign('title', 'Squarezone - Mistrzostwa - '.$categoryName.' - Terminarz');
 
             // breadcrumbs
-            $aItem = array(
+            $item = array(
                 'url' => ValueMapper::getUrl('cup').'/'.$categorySlug,
                 'text' => $categoryName
             );
-            Breadcrumbs::add($aItem);
+            Breadcrumbs::add($item);
 
             // defaults for matches
             // $aDefaults = array(
@@ -120,7 +128,7 @@ class CupShowBattlesView extends View {
             //     echo '</pre>';
             // }
 
-            require_once APP_DIR.'/helpers/CupManager.php';
+            // require_once APP_DIR.'/helpers/CupManager.php';
                 
             $cupManager = new CupManager();
 

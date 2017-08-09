@@ -1,19 +1,19 @@
 <?php
-// require_once APP_DIR.'/helpers/ChangeLog.php';
-// require_once APP_DIR.'/helpers/Utilities.php';
 
 namespace Renaissance\Controller;
+
+use Aya\Core\Dao;
 
 use Renaissance\Controller\FrontController;
 
 class CrudController extends FrontController {
     
     public function insertAction() {
-        $mId = 0;
+        $id = 0;
 
         $aPost = $this->preInsert();
 
-        $oEntity = Dao::entity($this->_ctrlName, $mId);
+        $oEntity = Dao::entity($this->_ctrlName, $id);
         
         $oEntity->setFields($aPost['dataset']);
 
@@ -41,16 +41,16 @@ class CrudController extends FrontController {
             $oEntity->unsetField('modification_date');
         }
         
-        if ($mId = $oEntity->insert(true)) {
-            $this->postInsert($mId);
+        if ($id = $oEntity->insert(true)) {
+            $this->postInsert($id);
             // clear cache
             $sSqlCacheFile = TMP_DIR . '/sql/collection/'.$this->_ctrlName.'-'.$this->_sActionName.'';
 
             $this->raiseInfo('Wpis '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' został utworzony.');
 
-            $this->addHistoryLog('create', $this->_ctrlName, $mId);
+            $this->addHistoryLog('create', $this->_ctrlName, $id);
 
-            // $aStreamItem = $this->prepareStreamItem($mId, $aPost);
+            // $aStreamItem = $this->prepareStreamItem($id, $aPost);
             // $this->addToStream($aStreamItem);
 
             $this->actionForward('index', $this->_ctrlName, true);
@@ -72,9 +72,9 @@ class CrudController extends FrontController {
             Lock::set($this->_ctrlName, (int)$_GET['id'], $_SESSION['user']);
         }
 
-        $mId = isset($_POST['id']) ? $_POST['id'] : 0;
+        $id = isset($_POST['id']) ? $_POST['id'] : 0;
         
-        $oEntity = Dao::entity($this->_ctrlName, $mId, 'id_'.$this->_ctrlName);
+        $oEntity = Dao::entity($this->_ctrlName, $id, 'id_'.$this->_ctrlName);
         
         $oEntity->setFields($_POST['dataset']);
 
@@ -110,26 +110,26 @@ class CrudController extends FrontController {
         // echo $oEntity->getQuery();
         
         if ($oEntity->update()) {
-            // $this->postUpdate($mId);
+            // $this->postUpdate($id);
 
             // echo $oEntity->getQuery();
 
             // file_put_contents($sConvertSqlFile, $oEntity->getQuery().';'."\n\n", FILE_APPEND | LOCK_EX);
-            // file_put_contents($sConvertSql.'/'.$this->_ctrlName.'-'.$mId.'.sql', $oEntity->getQuery().';'."\n\n");
+            // file_put_contents($sConvertSql.'/'.$this->_ctrlName.'-'.$id.'.sql', $oEntity->getQuery().';'."\n\n");
 
-            $sEditUrl = BASE_URL.'/'.$this->_ctrlName.'/'.$mId;
+            $sEditUrl = BASE_URL.'/'.$this->_ctrlName.'/'.$id;
             if (isset($name)) {
                 $this->raiseInfo('Wpis '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
             } else {
                 $this->raiseInfo('Wpis został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
             }
 
-            $this->addHistoryLog('update', $this->_ctrlName, $mId);
+            $this->addHistoryLog('update', $this->_ctrlName, $id);
 
-            // $aStreamItem = $this->prepareStreamItem($mId, $_POST);
+            // $aStreamItem = $this->prepareStreamItem($id, $_POST);
             // $this->addToStream($aStreamItem);
 
-            $this->postUpdate($mId);
+            $this->postUpdate($id);
             
             $this->actionForward('index', $this->_ctrlName, true);
         } else {
@@ -147,7 +147,7 @@ class CrudController extends FrontController {
         }
 
         if (isset($aIds)) {
-            $aNames = array();
+            $aNames = [];
             foreach ($aIds as $id) {
                 $oEntity = Dao::entity($this->_ctrlName, $id, 'id_'.$this->_ctrlName);
 
@@ -189,7 +189,7 @@ class CrudController extends FrontController {
         }
         
         if (isset($aIds)) {
-            $aNames = array();
+            $aNames = [];
             foreach ($aIds as $id) {
                 $oEntity = Dao::entity($this->_ctrlName, $id, 'id_'.$this->_ctrlName);
 
@@ -226,11 +226,11 @@ class CrudController extends FrontController {
         return $_POST;
     }
 
-    public function postInsert($mId) {}
+    public function postInsert($id) {}
 
     public function preUpdate() {}
 
-    public function postUpdate($mId) {}
+    public function postUpdate($id) {}
 
     public function fetchTemplateAction() {
         $sPath = isset($_GET['path']) ? str_replace(',', '/', strip_tags($_GET['path'])) : null;
@@ -244,13 +244,13 @@ class CrudController extends FrontController {
 
     // additional common tasks 
 
-    public function addHistoryLog($sActionType, $sTableName, $mId, $sLog = '') {
+    public function addHistoryLog($sActionType, $sTableName, $id, $sLog = '') {
         $oEntity = Dao::entity('change_log');
 
         $sUser = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : 0;
 
         $oEntity->setField('id_author', $sUser);
-        $oEntity->setField('id_record', $mId);
+        $oEntity->setField('id_record', $id);
         $oEntity->setField('table', $sTableName);
         $oEntity->setField('log', $sLog);
         $oEntity->setField('creation_date', date('Y-m-d H:i:s'));
@@ -262,13 +262,13 @@ class CrudController extends FrontController {
     // private methods
 
     protected function _changeStatusField($sField, $mValue) {
-        $mId = $_GET['id'];
+        $id = $_GET['id'];
         
-        $oEntity = Dao::entity($this->_ctrlName, $mId, 'id_'.$this->_ctrlName);
+        $oEntity = Dao::entity($this->_ctrlName, $id, 'id_'.$this->_ctrlName);
         
         $oEntity->setField($sField, $mValue);
 
-        $name = $mId;
+        $name = $id;
         $aPossibleNameKeys = array('title', 'name');
         foreach ($aPossibleNameKeys as $key) {
             if (isset($_POST['dataset'][$key])) {
@@ -278,18 +278,18 @@ class CrudController extends FrontController {
         }
         
         if ($oEntity->update()) {
-            // $this->postUpdate($mId);
+            // $this->postUpdate($id);
 
-            $sEditUrl = BASE_URL.'/'.$this->_ctrlName.'/'.$mId;
+            $sEditUrl = BASE_URL.'/'.$this->_ctrlName.'/'.$id;
             if (isset($name)) {
                 $this->raiseInfo('Wpis '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
             } else {
                 $this->raiseInfo('Wpis został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
             }
 
-            $this->addHistoryLog('change', $this->_ctrlName, $mId);
+            $this->addHistoryLog('change', $this->_ctrlName, $id);
 
-            $this->postUpdate($mId);
+            $this->postUpdate($id);
             
             $this->actionForward('index', $this->_ctrlName, true);
         } else {
@@ -323,21 +323,21 @@ class CrudController extends FrontController {
     }
 
     public function raiseInfo($sMessage) {
-        $aMsg = array();
+        $aMsg = [];
         $aMsg['text'] = $sMessage;
         $aMsg['type'] = 'info';
         MessageList::add($aMsg);
     }
 
     public function raiseWarning($sMessage) {
-        $aMsg = array();
+        $aMsg = [];
         $aMsg['text'] = $sMessage;
         $aMsg['type'] = 'warning';
         MessageList::add($aMsg);
     }
 
     public function raiseError($sMessage) {
-        $aMsg = array();
+        $aMsg = [];
         $aMsg['text'] = $sMessage;
         $aMsg['type'] = 'alert';
         MessageList::add($aMsg);

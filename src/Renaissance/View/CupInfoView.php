@@ -1,5 +1,11 @@
 <?php
-require_once AYA_DIR.'/Core/View.php';
+
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\View;
+use Aya\Helper\Breadcrumbs;
+use Aya\Helper\ValueMapper;
 
 class CupInfoView extends View {
 
@@ -42,17 +48,17 @@ class CupInfoView extends View {
 
         if ($aObject) {
             // category name
-            $this->_renderer->assign('sCategoryName', $categoryName);
+            $this->_renderer->assign('categoryName', $categoryName);
 
             // title
             $this->_renderer->assign('title', 'Squarezone - Mistrzostwa - '.$categoryName.' - '.$oEntity->getField('name'));
 
             // breadcrumbs
-            $aItem = array(
+            $item = array(
                 'url' => ValueMapper::getUrl('cup').'/'.$categorySlug,
                 'text' => $categoryName
             );
-            Breadcrumbs::add($aItem);
+            Breadcrumbs::add($item);
 
             $this->_renderer->assign('aPlayer', $aObject);
             // $this->_renderer->assign('navigator', $oEntity->getNavigator());

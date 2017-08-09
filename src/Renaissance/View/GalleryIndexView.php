@@ -1,7 +1,11 @@
 <?php
-require_once AYA_DIR.'/Management/IndexView.php';
 
-class GalleryIndexView extends IndexView {
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\View;
+
+class GalleryIndexView extends View {
 
     public function fill() {
         $sql = 'SELECT c.*, COUNT(g.id_gallery) items

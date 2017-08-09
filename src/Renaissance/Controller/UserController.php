@@ -1,6 +1,11 @@
-
 <?php
-require_once AYA_DIR.'/Helpers/Utilities.php';
+
+namespace Renaissance\Controller;
+
+use Aya\Core\Dao;
+use Aya\Helper\Text;
+
+use Renaissance\Controller\FrontController;
 
 class UserController extends FrontController {
 
@@ -16,7 +21,7 @@ class UserController extends FrontController {
         if ($aPost) {
             // MessageList::raiseError('register post data...');
 
-            $aErrors = array();
+            $aErrors = [];
             // start checking
 
             // name
@@ -50,7 +55,7 @@ class UserController extends FrontController {
                 $sPass = $aPost['password'];
                 $sEmail = $aPost['email'];
 
-                $slug = Utilities::slugify($aPost['name']);
+                $slug = Text::slugify($aPost['name']);
 
                 // be sure the account can be created
                 $db = Db::getInstance();

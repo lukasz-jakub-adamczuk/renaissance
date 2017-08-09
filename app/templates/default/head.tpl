@@ -19,11 +19,11 @@
     {/if}
     {if ($ctrl eq 'article' or $ctrl eq 'story') and $act eq 'info'}
     <meta property="og:url" content="{$base}{$self}" />
-        {if isset($aCoverImage)}
-        <meta property="og:image" content="{$base}/image.php?img={$aCoverImage.0.fragment}&size=640x360&margin=0" />
+        {if isset($mainImage)}
+        <meta property="og:image" content="{$base}/image.php?img={$mainImage.0.fragment}&size=640x360&margin=0" />
         {/if}
-    <meta property="og:title" content="{$aArticle.title|stripslashes}" />
-    <meta property="og:description" content="{$aArticle.markup|stripslashes|strip_tags|replace:'"':''|truncate:256}" />
+    <meta property="og:title" content="{$article.title|stripslashes}" />
+    <meta property="og:description" content="{$article.markup|stripslashes|strip_tags|replace:'"':''|truncate:256}" />
     {/if}
     {if $ctrl eq 'home'}
     <meta property="og:title" content="Squarezone" />

@@ -1,7 +1,15 @@
 <?php
-require_once AYA_DIR.'/Core/View.php';
 
-require_once APP_DIR.'/helpers/Comments.php';
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\Db;
+// use Aya\Core\Folder;
+use Aya\Core\View;
+// use Aya\Helper\Breadcrumbs;
+// use Aya\Helper\ValueMapper;
+
+use Renaissance\Helper\Comments;
 
 class UserInfoView extends View {
 
@@ -45,7 +53,7 @@ class UserInfoView extends View {
 
             // avatar for editor
             $sAvatarFile = '/assets/site/redaction/'.$slug.'.png';
-            if (file_exists(PUB_DIR . $sAvatarFile)) {
+            if (file_exists(WEB_DIR . $sAvatarFile)) {
                 $aUser['avatar'] = $sAvatarFile;
             }
             
@@ -54,8 +62,8 @@ class UserInfoView extends View {
 
             $db = Db::getInstance();
             
-            // $aStats = array();
-            $aStatsCounters = array();
+            // $aStats = [];
+            $aStatsCounters = [];
             $aStatsCounters['news'] = $db->getOne('SELECT COUNT(id_news) FROM news WHERE id_author="'.$iId.'"');
             $aStatsCounters['article'] = $db->getOne('SELECT COUNT(id_article) FROM article WHERE id_author="'.$iId.'"');
             $aStatsCounters['story'] = $db->getOne('SELECT COUNT(id_story) FROM story WHERE id_author="'.$iId.'"');
@@ -64,7 +72,7 @@ class UserInfoView extends View {
             $aStatsCounters['shout'] = $db->getOne('SELECT COUNT(id_shout) FROM shout WHERE id_author="'.$iId.'"');
 
             // comments
-            $aStatsComments = array();
+            $aStatsComments = [];
             $aStatsComments['news']         = $db->getOne('SELECT COUNT(id_news_comment) FROM news_comment WHERE id_author="'.$iId.'"');
             $aStatsComments['article']         = $db->getOne('SELECT COUNT(id_article_comment) FROM article_comment WHERE id_author="'.$iId.'"');
             $aStatsComments['story']         = $db->getOne('SELECT COUNT(id_story_comment) FROM story_comment WHERE id_author="'.$iId.'"');
@@ -78,7 +86,7 @@ class UserInfoView extends View {
             $this->_renderer->assign('aUser', $aUser);
 
             // comments form
-            $this->_renderer->assign('aCommentsForm', Comments::getFormParams('user', $oEntity));
+            $this->_renderer->assign('commentsForm', Comments::getFormParams('user', $oEntity));
 
             // comments
             $sql = 'SELECT uc.*, u.name author_name 
@@ -89,7 +97,7 @@ class UserInfoView extends View {
             $oCommentsCollection = Dao::collection('user-comment');
             $oCommentsCollection->query($sql);
 
-            $this->_renderer->assign('aComments', $oCommentsCollection->getRows());
+            $this->_renderer->assign('comments', $oCommentsCollection->getRows());
             $this->_renderer->assign('navigator', $oCommentsCollection->getNavigator());
         } else {
             // log 404

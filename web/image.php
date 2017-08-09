@@ -13,7 +13,7 @@ if (isset($_GET['img'])) {
 	$sImageName = strip_tags($_GET['img']);
 }
 
-$aParams = array();
+$aParams = [];
 if (substr($sImageName, 0, 7) == '/assets') {
 	$aParams['path'] = $sDir . $sImageName;
 } else {

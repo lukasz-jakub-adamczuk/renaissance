@@ -3,20 +3,19 @@
 namespace Renaissance\Controller;
 
 use Renaissance\Controller\FrontController;
+use Renaissance\Helper\CupManager;
 
 class HomeController extends FrontController {
 
     public function indexAction() {
-        // require_once APP_DIR.'/helpers/CupManager.php';
+        $cupManager = new CupManager();
 
-        // $cupManager = new CupManager();
-
-        // $cupManager->manageCalculationProcess();
+        $cupManager->manageCalculationProcess();
         
-        // // current battle details
-        // $this->_renderer->assign('aMatch', $cupManager->getCurrentBattle());
+        // current battle details
+        $this->_renderer->assign('cupBattle', $cupManager->getCurrentBattle());
         
-        // // can user vote on current battle
-        // $this->_renderer->assign('canVote', $cupManager->canUserVote());
+        // can user vote on current battle
+        $this->_renderer->assign('canVote', $cupManager->canUserVote());
     }
 }

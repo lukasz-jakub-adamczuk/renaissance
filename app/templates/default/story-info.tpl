@@ -1,12 +1,12 @@
-        {if isset($aArticle)}<article{if $aArticle.template eq 'review'} itemtype="http://schema.org/Product"{/if}{if isset($aCoverImage)} class="bg-cover" style="background-image: url({$base}{$aCoverImage.0.fragment});"{else} class="inside"{/if}>
+        {if isset($article)}<article{if $article.template eq 'review'} itemtype="http://schema.org/Product"{/if}{if isset($mainImage)} class="bg-cover" style="background-image: url({$base}{$mainImage.0.fragment});"{else} class="inside"{/if}>
             {include file='common/article-header-2.tpl'}
             <div class="wrapper inside ">
                 <div class="content-meta">
-                    <a href="{$base}/{#user#}/{$aArticle.author_slug}">{$aArticle.author_name}</a> - <time>{$aArticle.creation_date|date_format:"%d %B %Y, %H:%M"}</time>
+                    <a href="{$base}/{#user#}/{$article.author_slug}">{$article.author_name}</a> - <time>{$article.creation_date|date_format:"%d %B %Y, %H:%M"}</time>
                     <a href="{$base}/{$self}#comments" class="comments-count">{$navigator.loaded|default:0} komentarze</a>
                 </div>
                 <section class="center text">
-                    <!-- <h3>{$aArticle.title|stripslashes}</h3> -->
+                    <!-- <h3>{$article.title|stripslashes}</h3> -->
                     <div class="social-media">
                         {include file='common/fb-like.tpl'}
                     </div>
@@ -14,7 +14,7 @@
 
                     <!-- {include file='common/review-description.tpl'} -->
                 <!-- </section> -->
-                <!-- <section class="inner center _padding" data-id-article="{$aArticle.id_article}"> -->
+                <!-- <section class="inner center _padding" data-id-article="{$article.id_article}"> -->
                     <!-- <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div> -->
                     <!-- {include file='common/fb-like.tpl'} -->
 
@@ -22,15 +22,15 @@
                     {include file='common/game-info.tpl'}
                     {include file='common/music-info.tpl'}
                     
-                    {$aArticle.markup|stripslashes|gb_replace|replace:"image/":"../../i/"|mediabox:medium|humanize}
+                    {$article.markup|stripslashes|gb_replace|replace:"image/":"../../i/"|mediabox:medium|humanize}
                     <!-- <h1>ALTERNATYWNA WERSJA</h1> -->
-                    <!-- {$aArticle.markup|stripslashes|gb_replace|replace:"image/":"../../i/"|mediabox:small:left|humanize} -->
+                    <!-- {$article.markup|stripslashes|gb_replace|replace:"image/":"../../i/"|mediabox:small:left|humanize} -->
                     
                 </section>
                 <section>    
                     {include file='common/screens.tpl'}
                 </section>
-                {if $aArticle.template eq 'intro'}
+                {if $article.template eq 'intro'}
                 <section class="inner items">
                     {if $articles}
                     <h2>Artykuły</h2>
@@ -55,7 +55,7 @@
                     <button id="edit-text-tgr" class="button">Edytuj ten tekst</button>
                 </section>*}
                 <footer class="theme">
-                    <div class="inner theme-dark"{if isset($aVerdict)} data-verdict="{$aVerdict.rating}"{/if}>
+                    <div class="inner theme-dark"{if isset($verdict)} data-verdict="{$verdict.rating}"{/if}>
                         {include file='common/verdict.tpl'}
                         {include file='common/statistics.tpl'}
                     </div>
@@ -63,7 +63,7 @@
             </div>
         </article>
         {include file='common/ratings.tpl'}
-        {include file='common/comments.tpl' sCommentPrimaryKey='id_story_comment'}
+        {include file='common/comments.tpl' commentPrimaryKey='id_story_comment'}
         {else}
         <article>
             <section class="padding">

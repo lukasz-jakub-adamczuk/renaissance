@@ -5,17 +5,17 @@ namespace Renaissance\Helper;
 class Comments {
 
     static public function getFormParams($sCtrl, $oEntity) {
-        $sIdLabel = 'id_'.$sCtrl;
+        $idLabel = 'id_'.$sCtrl;
 
-        $aCommentsForm = array();
-        $aCommentsForm['request'] = Comments::_createFormParams($sCtrl, $oEntity);
+        $commentsForm = [];
+        $commentsForm['request'] = Comments::_createFormParams($sCtrl, $oEntity);
         // value from request is mapped
-        $aCommentsForm['request']['ctrl'] = $sCtrl;
+        $commentsForm['request']['ctrl'] = $sCtrl;
 
-        $aCommentsForm['object'] = $sIdLabel;
-        $aCommentsForm['id_object'] = $oEntity->getField($sIdLabel);
+        $commentsForm['object'] = $idLabel;
+        $commentsForm['id_object'] = $oEntity->getField($idLabel);
 
-        return $aCommentsForm;
+        return $commentsForm;
     }
 
     static private function _createFormParams($sCtrl, $oEntity) {
@@ -23,7 +23,7 @@ class Comments {
         $sMethod = '_get'.ucfirst($sCtrl).'ConfigParams';
         $aParams = Comments::$sMethod();
 
-        $aRequestParams = array();
+        $aRequestParams = [];
         if ($aParams['request']) {
             foreach ($aParams['request'] as $value) {
                 $aRequestParams[$value] = isset($_GET[$value]) ? strip_tags($_GET[$value]) : null;

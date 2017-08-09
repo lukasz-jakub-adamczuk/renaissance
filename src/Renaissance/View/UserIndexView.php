@@ -1,5 +1,9 @@
 <?php
-require_once AYA_DIR.'/Core/View.php';
+
+namespace Renaissance\View;
+
+use Aya\Core\Dao;
+use Aya\Core\View;
 
 class UserIndexView extends View {
 
@@ -49,7 +53,7 @@ class UserIndexView extends View {
         $oArticleAuthorsEverCollection = Dao::collection('article');
         $oArticleAuthorsEverCollection->query($sql);
 
-        $this->_renderer->assign('aArticleAuthorsEver', $oArticleAuthorsEverCollection->getRows());
+        $this->_renderer->assign('articleAuthorsEver', $oArticleAuthorsEverCollection->getRows());
 
 
         // top10 story authors ever
@@ -93,7 +97,7 @@ class UserIndexView extends View {
         $oArticleCommentsAuthorsEverCollection = Dao::collection('article-comment');
         $oArticleCommentsAuthorsEverCollection->query($sql);
 
-        $this->_renderer->assign('aArticleCommentsAuthorsEver', $oArticleCommentsAuthorsEverCollection->getRows());
+        $this->_renderer->assign('articleCommentsAuthorsEver', $oArticleCommentsAuthorsEverCollection->getRows());
 
 
         // top10 story comments authors ever
@@ -123,7 +127,7 @@ class UserIndexView extends View {
         $oArticleVerdictsAuthorsEverCollection = Dao::collection('article-verdict');
         $oArticleVerdictsAuthorsEverCollection->query($sql);
 
-        $this->_renderer->assign('aArticleVerdictsAuthorsEver', $oArticleVerdictsAuthorsEverCollection->getRows());
+        $this->_renderer->assign('articleVerdictsAuthorsEver', $oArticleVerdictsAuthorsEverCollection->getRows());
         // $this->_renderer->assign('navigator', $oAllAuthorsCollection->getNavigator());
     }
 }

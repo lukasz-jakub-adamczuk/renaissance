@@ -14,7 +14,7 @@
 
 <h3>Reklama</h3>
 <div class="ent">
-     <p>Oferujemy mo¿liwo¶æ reklamy w naszym serwisie. W ramach reklamy proponujemy wymianê buttonów, bannerów lub favicony, w zale¿no¿ci od preferencji danej strony. Najlepiej je¶li serwis, z którym sie wymieniamy jest o podobnej tematyce i ogl±dalno¶ci.</p>
+     <p>Oferujemy możliwość reklamy w naszym serwisie. W ramach reklamy proponujemy wymianę buttonów, bannerów lub favicony, w zależności od preferencji danej strony. Najlepiej jeśli serwis, z którym sie wymieniamy jest o podobnej tematyce i oglądalności.</p>
    
 
   <h3>Banner 400x50</h3>

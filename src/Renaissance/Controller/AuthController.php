@@ -1,5 +1,14 @@
 <?php
 
+namespace Renaissance\Controller;
+
+use Aya\Core\Dao;
+use Aya\Core\Debug;
+use Aya\Helper\Text;
+use Aya\Core\User;
+
+use Renaissance\Controller\FrontController;
+
 class AuthController extends FrontController {
 
     public function indexAction() {
@@ -49,7 +58,7 @@ class AuthController extends FrontController {
 
                     // avatar for editor
                     $sAvatarFile = '/assets/users/avatars/'.$aUser['slug'].'.png';
-                    if (file_exists(PUB_DIR . $sAvatarFile)) {
+                    if (file_exists(WEB_DIR . $sAvatarFile)) {
                         $_SESSION['user']['avatar'] = $sAvatarFile;
                     }
 
