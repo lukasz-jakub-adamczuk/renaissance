@@ -303,34 +303,36 @@ class CupManager {
         }
 
         $finalBattle = $this->getBattleDetails(end($this->allBattlesKeys));
-        $details = current($finalBattle);
-        
-        if ($details['score1'] > $details['score2']) {
-            $winner = $details['player1'];
-        }
-        if ($details['score1'] < $details['score2']) {
-            $winner = $details['player2'];
-        }
-        if (isset($winner)) {
-            $description = '/assets/cup/'.$this->tournamentSlug.'/'.$winner.'.jpg';
-
-            // $entity = Dao::entity('cup', 12);
-            // $entity->setField('description', $description);
-            // $entity->update();
+        if (is_array($finalBattle) && count($finalBattle) == 1) {
+            $details = current($finalBattle);
             
-            $sql = 'UPDATE cup
-                    SET description="'.$description.'"
-                    WHERE slug="'.$this->tournamentSlug.'"';
-            $this->sqlQueries[] = $sql;
+            if ($details['score1'] > $details['score2']) {
+                $winner = $details['player1'];
+            }
+            if ($details['score1'] < $details['score2']) {
+                $winner = $details['player2'];
+            }
+            if (isset($winner)) {
+                $description = '/assets/cup/'.$this->tournamentSlug.'/'.$winner.'.jpg';
 
-            $this->commit();
+                // $entity = Dao::entity('cup', 12);
+                // $entity->setField('description', $description);
+                // $entity->update();
+                
+                $sql = 'UPDATE cup
+                        SET description="'.$description.'"
+                        WHERE slug="'.$this->tournamentSlug.'"';
+                $this->sqlQueries[] = $sql;
 
-            // winner set
-            file_put_contents($tournamentWinnerFile, '');
+                $this->commit();
 
-            // finish tournament
-            $tournamentFinishedFile = $this->cupCachePath . '/cup-finished';
-            file_put_contents($tournamentFinishedFile, '');
+                // winner set
+                file_put_contents($tournamentWinnerFile, '');
+
+                // finish tournament
+                $tournamentFinishedFile = $this->cupCachePath . '/cup-finished';
+                file_put_contents($tournamentFinishedFile, '');
+            }
         }
     }
     

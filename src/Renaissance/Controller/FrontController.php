@@ -2,6 +2,7 @@
 namespace Renaissance\Controller;
 
 use Aya\Core\Controller;
+use Aya\Core\Dao;
 use Aya\Core\User;
 use Aya\Helper\ValueMapper;
 use Aya\Helper\Breadcrumbs;
