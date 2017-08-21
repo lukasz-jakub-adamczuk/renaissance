@@ -70,7 +70,7 @@ var runShoutboxIndex = function() {
 $(document).ready(function() {
 	console.log('jQuery is ready...');
 
-	console.log('runAfterMethod is ready...');
+	console.log('afterAction is ready...');
 
 	// console.log(conf.func());
 

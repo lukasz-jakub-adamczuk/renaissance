@@ -8,7 +8,7 @@ use Renaissance\Controller\CrudController;
 
 class FormController extends CrudController {
 
-    public function preInsert() {
+    public function beforeInsert() {
         // print_r($_POST);
         $aPost = [];
         if (isset($_POST)) {
@@ -21,7 +21,7 @@ class FormController extends CrudController {
         return $aPost;
     }
 
-    public function postUpdate($iId) {
+    public function afterUpdate($iId) {
 
     }
 
@@ -29,7 +29,7 @@ class FormController extends CrudController {
         $iId = 0;
 
         if (isset($_POST['request'])) {
-            $aPost = $this->preInsert($_POST);
+            $aPost = $this->beforeInsert($_POST);
 
             if (isset($aPost['dataset']['check']) && $aPost['dataset']['check'] !== date('Y')) {
                 $sLogFile = LOG_DIR.'/issues/'.date('Y-m-d').'.log';
@@ -76,7 +76,7 @@ class FormController extends CrudController {
             // print_r($oEntity);
             
             if ($iId = $oEntity->insert(true)) {
-                // $this->postInsert($iId);
+                // $this->afterInsert($iId);
 
                 if (isset($aPost['dataset']['id_author'])) {
                     // authorized
@@ -135,7 +135,7 @@ class FormController extends CrudController {
 
                 // echo 'glosowanie';
 
-                $aPost = $this->preInsert();
+                $aPost = $this->beforeInsert();
 
                 // print_r($aPost);
 

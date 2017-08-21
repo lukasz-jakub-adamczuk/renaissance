@@ -11,7 +11,7 @@ class CrudController extends FrontController {
     public function insertAction() {
         $id = 0;
 
-        $aPost = $this->preInsert();
+        $aPost = $this->beforeInsert();
 
         $oEntity = Dao::entity($this->_ctrlName, $id);
         
@@ -24,11 +24,10 @@ class CrudController extends FrontController {
                 break;
             }
         }
-        // print_r($aPost['dataset']);
 
         // slug by used name if empty or changed name
-        if (isset($name) && isset($aPost['dataset']['slug']) && (empty($aPost['dataset']['slug']) || $aPost['dataset']['slug'] != $this->slugify($name))) {
-            $oEntity->setField('slug', $this->slugify($name));
+        if (isset($name) && isset($aPost['dataset']['slug']) && (empty($aPost['dataset']['slug']) || $aPost['dataset']['slug'] != Text::slugify($name))) {
+            $oEntity->setField('slug', Text::slugify($name));
         }
 
         // no creation date
@@ -42,16 +41,13 @@ class CrudController extends FrontController {
         }
         
         if ($id = $oEntity->insert(true)) {
-            $this->postInsert($id);
+            $this->afterInsert($id);
             // clear cache
             $sSqlCacheFile = TMP_DIR . '/sql/collection/'.$this->_ctrlName.'-'.$this->_sActionName.'';
 
             $this->raiseInfo('Wpis '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' został utworzony.');
 
             $this->addHistoryLog('create', $this->_ctrlName, $id);
-
-            // $aStreamItem = $this->prepareStreamItem($id, $aPost);
-            // $this->addToStream($aStreamItem);
 
             $this->actionForward('index', $this->_ctrlName, true);
         } else {
@@ -86,11 +82,9 @@ class CrudController extends FrontController {
             }
         }
 
-        // print_r($_POST['dataset']);
-
         // slug by used name if empty or changed name
-        if (isset($_POST['dataset']['slug']) && (empty($_POST['dataset']['slug']) || $_POST['dataset']['slug'] != $this->slugify($name))) {
-            $oEntity->setField('slug', $this->slugify($name));
+        if (isset($_POST['dataset']['slug']) && (empty($_POST['dataset']['slug']) || $_POST['dataset']['slug'] != Text::slugify($name))) {
+            $oEntity->setField('slug', Text::slugify($name));
         }
 
         if (isset($_POST['dataset']['modification_date'])) {
@@ -98,25 +92,8 @@ class CrudController extends FrontController {
                 $oEntity->setField('modification_date', date('Y-m-d H:i:s'));
             }
         }
-
-        $sConvertSqlFile = TMP_DIR.'/files.sql';
-        // $sConvertSql = TMP_DIR.'/texts';
-        $sConvertSql = TMP_DIR.'/casperjs';
-        // if (!file_exists($sConvertSql)) {
-        //     mkdir($sConvertSql, 0777, true);
-        // }
-
-        // file_put_contents($sConvertSqlFile, $oEntity->getQuery().';'."\n\n");
-        // echo $oEntity->getQuery();
         
         if ($oEntity->update()) {
-            // $this->postUpdate($id);
-
-            // echo $oEntity->getQuery();
-
-            // file_put_contents($sConvertSqlFile, $oEntity->getQuery().';'."\n\n", FILE_APPEND | LOCK_EX);
-            // file_put_contents($sConvertSql.'/'.$this->_ctrlName.'-'.$id.'.sql', $oEntity->getQuery().';'."\n\n");
-
             $sEditUrl = BASE_URL.'/'.$this->_ctrlName.'/'.$id;
             if (isset($name)) {
                 $this->raiseInfo('Wpis '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' został zmieniony. <a href="'.$sEditUrl.'">Edytuj</a> ponownie.');
@@ -126,10 +103,7 @@ class CrudController extends FrontController {
 
             $this->addHistoryLog('update', $this->_ctrlName, $id);
 
-            // $aStreamItem = $this->prepareStreamItem($id, $_POST);
-            // $this->addToStream($aStreamItem);
-
-            $this->postUpdate($id);
+            $this->afterUpdate($id);
             
             $this->actionForward('index', $this->_ctrlName, true);
         } else {
@@ -222,15 +196,15 @@ class CrudController extends FrontController {
 
     // action hooks
 
-    public function preInsert() {
+    public function beforeInsert() {
         return $_POST;
     }
 
-    public function postInsert($id) {}
+    public function afterInsert($id) {}
 
-    public function preUpdate() {}
+    public function beforeUpdate() {}
 
-    public function postUpdate($id) {}
+    public function afterUpdate($id) {}
 
     public function fetchTemplateAction() {
         $sPath = isset($_GET['path']) ? str_replace(',', '/', strip_tags($_GET['path'])) : null;
@@ -278,7 +252,7 @@ class CrudController extends FrontController {
         }
         
         if ($oEntity->update()) {
-            // $this->postUpdate($id);
+            // $this->afterUpdate($id);
 
             $sEditUrl = BASE_URL.'/'.$this->_ctrlName.'/'.$id;
             if (isset($name)) {
@@ -289,37 +263,13 @@ class CrudController extends FrontController {
 
             $this->addHistoryLog('change', $this->_ctrlName, $id);
 
-            $this->postUpdate($id);
+            $this->afterUpdate($id);
             
             $this->actionForward('index', $this->_ctrlName, true);
         } else {
             $this->raiseError('Wystąpił nieoczekiwany wyjątek.');
             $this->actionForward('info', $this->_ctrlName);
         }
-    }
-
-    
-    private function slugify($text) { 
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
-        
-        // trim
-        $text = trim($text, '-');
-        
-        // transliterate
-        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-        
-        // lowercase
-        $text = strtolower($text);
-        
-        // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
-        
-        if (empty($text)) {
-            return 'n-a';
-        }
-        
-        return $text;
     }
 
     public function raiseInfo($sMessage) {

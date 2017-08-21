@@ -26,18 +26,17 @@ if (!$env) {
 }
 
 // config loading
-
 if ($env == 'prod') {
     error_reporting(0);
-    require_once dirname(__FILE__) . '/config/prod.php';
+    require_once __DIR__ . '/config/prod.php';
 }
 if ($env == 'dev') {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    require_once dirname(__FILE__) . '/config/dev.php';
+    require_once __DIR__ . '/config/dev.php';
 }
 if ($env == 'local') {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    require_once dirname(__FILE__) . '/config/local.php';
+    require_once __DIR__ . '/config/local.php';
 }

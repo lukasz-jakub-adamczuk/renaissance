@@ -1,6 +1,7 @@
 {
     "require": {
-        "symfony/yaml": "^3.3"
+        "symfony/yaml": "^3.3",
+        "gajus/dindent": "*"
     },
     "autoload": {
         "psr-4": {

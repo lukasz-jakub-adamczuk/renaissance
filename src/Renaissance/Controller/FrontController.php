@@ -9,9 +9,14 @@ use Aya\Helper\Breadcrumbs;
 
 class FrontController extends Controller {
 
-    protected function _afterInit() {}
+    // protected function _afterInit() {}
+    
+    public function indexAction() {}
 
-    public function runBeforeMethod() {
+    public function infoAction() {}
+
+    public function beforeAction() {
+        parent::beforeAction();
         // decide when to show and hide
         if ($this->_ctrlName != 'home' ) {
             $item = array(
@@ -125,24 +130,7 @@ class FrontController extends Controller {
     }
     
     // TODO should name init()
-    public function runAfterMethod() {
-        parent::runAfterMethod();
-
-        if (isset($_SESSION['user'])) {
-            $this->_renderer->assign('user', User::get());
-        }
-
-        $this->_renderer->assign('aBreadcrumbs', Breadcrumbs::get());
-        
-        // vars in templates
-        $this->_renderer->assign('base', BASE_URL);
-        if (defined('SITE_URL')) {
-            $this->_renderer->assign('site', SITE_URL);
-        }
+    public function afterAction() {
+        parent::afterAction();
     }
-    
-    public function indexAction() {}
-
-    public function infoAction() {}
-
 }
