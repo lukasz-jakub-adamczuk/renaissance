@@ -9,8 +9,9 @@ web/css
 web/tmp
 
 bin
-build
 node_modules
+scripts
+vendor
 
 .vscode
 **/.sass-cache

@@ -15,7 +15,7 @@
                     {include file='common/game-info.tpl'}
                     {include file='common/music-info.tpl'}
                     
-                    {$article.markup|stripslashes|gb_replace|replace:"image/":"../../i/"|mediabox|humanize}
+                    {$article.markup|stripslashes|gb_replace|replace:"image/":"../../i/"|figure|mediabox|humanize}
                 </section>
                 <section>    
                     {include file='common/screens.tpl'}

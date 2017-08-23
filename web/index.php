@@ -10,6 +10,8 @@ require_once __DIR__ . '/../app/bootstrap.php';
 // analytics
 Time::start();
 
+error_reporting(E_ALL);
+
 Logger::addLogSpace('404', LOG_DIR.'/404/'.date('Y-m-d').'.log');
 Logger::addLogSpace('visits', LOG_DIR.'/visits/'.date('Y-m-d').'.log');
 Logger::addLogSpace('issues', LOG_DIR.'/issues/'.date('Y-m-d').'.log');

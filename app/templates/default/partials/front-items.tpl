@@ -2,10 +2,10 @@
                 {foreach from=$items item=object}<article class="{if $object@first}col-8 full-image-item{else}col-4{/if} front-item large-item" data-id="{$object[$object.key]}">
                     <a href="{$base}/{$object.url}" class="front-item-content">
                         {if $object@first}
-                        <!--{image file=$object.fragment size=640x320}-->
+                        <!-- size=640x320 -->
                         {image file=$object.fragment size=624x312}
                         {else}
-                        <!--{image file=$object.fragment size=320x180}-->
+                        <!-- size=320x180 -->
                         {image file=$object.fragment size=304x171}
                         {/if}
                         <header>
