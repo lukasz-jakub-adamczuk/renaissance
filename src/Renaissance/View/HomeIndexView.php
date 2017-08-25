@@ -36,7 +36,7 @@ class HomeIndexView extends View {
                 $item['category_name'] = '';
                 $item['url'] = ValueMapper::getUrl('news').'/'.str_replace('-', '/', substr($item['creation_date'], 0, 10)).'/'.$item['slug'];
 
-                $imageItem = $oNewsImageEntity->getFirstImage($item['id_news']); 
+                $imageItem = $oNewsImageEntity->getFirstImage($item['id_news']);
                 if ($imageItem) {
                     $item['fragment'] = $imageItem['name'];
                 }
