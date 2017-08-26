@@ -92,37 +92,6 @@ class NewsInfoView extends View {
                 }
             }
         }
-        // or unverified
-        if ($aNews['verified'] == 0) {
-            $bValidNews = false;
-        }
-        // $bValidNews = false;
-        if ($bValidNews == false) {
-            $aAssets = NewsConverter::check($id, $year, $month, $day, $aImages);
-
-            if ($aAssets) {
-                // print_r($aAssets);
-                foreach ($aAssets as $ak => $asset) {
-                    $aImages[$ak]['name'] = $asset;
-
-                    $oNewsImageEntity = Dao::entity('news-image', $ak);
-                    // print_r($oNewsImageEntity);
-                    $oNewsImageEntity->setField('name', $asset);
-                    // echo $oNewsImageEntity->getQuery();
-                    // print_r($oNewsImageEntity);
-                    if ($oNewsImageEntity->update()) {
-                        // echo $oNewsEntity->getQuery();
-                    //  // ChangeLog::add('create', $this->_ctrlName, $id);
-                    }
-                }
-            }
-            // update news as verified
-            $oTmpEntity = Dao::entity('news', $id);
-            $oTmpEntity->setField('verified', 1);
-            if ($oTmpEntity->update()) {
-                // 
-            }
-        }
 
         if ($aImages) {
             // print_r($aImages);
