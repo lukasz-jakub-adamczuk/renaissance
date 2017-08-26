@@ -32,9 +32,10 @@
                     {if isset($aImages)}
                     <div class="gallery">
                     {foreach from=$aImages item=img}<a href="{$base}{$img.name}" class="miniature">
-                        <figure class"ratio-16-9">
+                        {*<figure class"ratio-16-9">
                             <img data-src="image.php?img={$img.name}&size=256x144" class="image">
-                        </figure>
+                        </figure>*}
+                        {image file=$img.name size=256x144}
                     </a>{/foreach}
                     </div>
                     {/if}

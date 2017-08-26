@@ -80,19 +80,6 @@ class NewsInfoView extends View {
         $oImagesCollection = Dao::collection('news-image');
         $aImages = $oImagesCollection->getNewsImagesById($newsEntity->getField('id_news'));
 
-        // print_r($aImages);
-
-        // news conversion
-        $bValidNews = true;
-        // not valid if images have not paths
-        if (count($aImages)) {
-            foreach ($aImages as $img) {
-                if ($img['name'] == '') {
-                    $bValidNews = false;
-                }
-            }
-        }
-
         if ($aImages) {
             // print_r($aImages);
             if (count($aImages) > 1)  {

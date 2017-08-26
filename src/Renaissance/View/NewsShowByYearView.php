@@ -12,7 +12,7 @@ class NewsShowByYearView extends View {
 
         $newsCollection = Dao::collection('news');
         
-        $this->_renderer->assign('aActivities', $newsCollection->getNewsByYear($year));
+        $this->_renderer->assign('entries', $newsCollection->getNewsByYear($year));
         $this->_renderer->assign('navigator', $newsCollection->getNavigator());
     }
 }

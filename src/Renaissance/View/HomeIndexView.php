@@ -12,25 +12,25 @@ class HomeIndexView extends View {
         $sStreamFile = CACHE_DIR . '/stream';
         if (CACHE_OUTPUT && file_exists($sStreamFile)) {
             // echo 'from cache';
-            $aActivities = unserialize(file_get_contents($sStreamFile));
+            $entries = unserialize(file_get_contents($sStreamFile));
         } else {
             // echo 'from db';
             // news
             $oNewsCollection = Dao::collection('news');
-            $aActivities['news'] = $oNewsCollection->getNewsForStream(5);
+            $entries['news'] = $oNewsCollection->getNewsForStream(5);
 
             // articles
             $oArticleCollection = Dao::collection('article');
-            $aActivities['article'] = $oArticleCollection->getArticlesForStream(5);
+            $entries['article'] = $oArticleCollection->getArticlesForStream(5);
 
             // stories
             $oStoryCollection = Dao::collection('story');
-            $aActivities['story'] = $oStoryCollection->getStoriesForStream(5);
+            $entries['story'] = $oStoryCollection->getStoriesForStream(5);
 
             $oNewsImageEntity = Dao::entity('news-image');
 
-            // ksort($aActivities)
-            foreach ($aActivities['news'] as &$item) {
+            // ksort($entries)
+            foreach ($entries['news'] as &$item) {
                 $item['key'] = 'id_news';
                 $item['type'] = 'news';
                 $item['category_name'] = '';
@@ -42,26 +42,26 @@ class HomeIndexView extends View {
                 }
             }
 
-            foreach ($aActivities['article'] as &$item) {
+            foreach ($entries['article'] as &$item) {
                 $item['key'] = 'id_article';
                 $item['type'] = 'article';
                 $item['url'] = ValueMapper::getUrl('article').'/'.$item['category_slug'].'/'.$item['slug'];
             }
 
-            foreach ($aActivities['story'] as &$item) {
+            foreach ($entries['story'] as &$item) {
                 $item['key'] = 'id_story';
                 $item['type'] = 'story';
                 $item['url'] = ValueMapper::getUrl('story').'/'.$item['category_slug'].'/'.$item['slug'];
             }
 
-            file_put_contents($sStreamFile, serialize($aActivities));
+            file_put_contents($sStreamFile, serialize($entries));
 
-            file_put_contents($sStreamFile.'-news', serialize($aActivities['news']));
-            file_put_contents($sStreamFile.'-article', serialize($aActivities['article']));
-            file_put_contents($sStreamFile.'-story', serialize($aActivities['story']));
+            file_put_contents($sStreamFile.'-news', serialize($entries['news']));
+            file_put_contents($sStreamFile.'-article', serialize($entries['article']));
+            file_put_contents($sStreamFile.'-story', serialize($entries['story']));
         }
 
-        $this->_renderer->assign('activities', $aActivities);
+        $this->_renderer->assign('activities', $entries);
     }
 
     protected function _runBeforeFill() {

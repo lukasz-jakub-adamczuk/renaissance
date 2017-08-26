@@ -9,33 +9,21 @@ class ShoutboxIndexView extends View {
 
     public function fill() {
         // last 30 shouts
-        $sql = 'SELECT s.*, u.name user_name, u.slug user_slug, u.avatar user_avatar
-                FROM shout s
-                LEFT JOIN user u ON(u.id_user=s.id_author) 
-                GROUP BY s.id_shout 
-                ORDER BY creation_date DESC 
-                LIMIT 0, 30';
-        
-        $oShoutsCollection = Dao::collection('shout');
-        $oShoutsCollection->query($sql);
-
-        $aShoutsResult = $oShoutsCollection->getRows();
+        $shoutsCollection = Dao::collection('shout');
+        $recentShouts = $shoutsCollection->getRecentShouts();
         
         $aShouts = [];
         $sPrevAuthor = '';
         $sClass = '';
-        foreach ($aShoutsResult as $sk => &$shout) {
+        foreach ($recentShouts as $sk => &$shout) {
+            
+            $shout['avatar'] = AvatarManager::getAvatar($shout['user_slug']);
             // avatar from db
             if (!empty($shout['user_avatar'])) {
                 $sAvatarFile = $shout['user_avatar'];
                 if (file_exists(WEB_DIR . $sAvatarFile)) {
                     $shout['avatar'] = $sAvatarFile;
                 }
-            }
-            // avatar for editor
-            $sAvatarFile = '/assets/users/avatars/'.$shout['user_slug'].'.png';
-            if (file_exists(WEB_DIR . $sAvatarFile)) {
-                $shout['avatar'] = $sAvatarFile;
             }
 
             if ($shout['id_author'] == $sPrevAuthor) {
@@ -46,11 +34,8 @@ class ShoutboxIndexView extends View {
                 $aShouts[$sk][] = $shout;
                 $sPrevKey = $sk;
             }
-            // $sPrevKey = $sk;
             $sPrevAuthor = $shout['id_author'];
         }
-
-        // print_r($aShouts);
 
         $this->_renderer->assign('aShouts', $aShouts);
 

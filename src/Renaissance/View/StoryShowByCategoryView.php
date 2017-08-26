@@ -8,19 +8,18 @@ use Aya\Core\View;
 class StoryShowByCategoryView extends View {
 
     public function fill() {
-        $category = $_GET['category'];
-
-        
+        $category = isset($_GET['category']) ? $_GET['category'] : null;
 
         $collection = Dao::collection('story');
-        // $collection->query($sql);
-
+        
         $articles = $collection->getStoriesForCategory($category);
 
-        $aCurrent = current($articles);
+        $firstItem = current($articles);
 
         $this->_renderer->assign('articles', $articles);
+        $this->_renderer->assign('category', $firstItem['category_name']);
 
-        $this->_renderer->assign('category', $aCurrent['category']);
+        // title
+        $this->_renderer->assign('title', 'Squarezone - Publicystyka - '.$firstItem['category_name']);
     }
 }

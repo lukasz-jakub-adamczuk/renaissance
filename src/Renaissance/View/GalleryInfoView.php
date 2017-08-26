@@ -18,123 +18,54 @@ class GalleryInfoView extends View {
 
         // new page urls
         $categorySlug = isset($_GET['category']) ? $_GET['category'] : null;
-        $slug = isset($_GET['slug']) ? $_GET['slug'] : null;
+        $gallerySlug = isset($_GET['slug']) ? $_GET['slug'] : null;
+
+        $galleryEntity = Dao::entity('gallery');
 
         if ($url) {
-            // gallery
-            // $sql = 'SELECT s.*, c.name category_name, c.slug category_slug, u.name author_name 
-            //         FROM gallery s 
-            //         LEFT JOIN gallery_category c ON(c.id_gallery_category=s.id_gallery_category) 
-            //         LEFT JOIN user u ON(u.id_user=s.id_author) 
-            //         WHERE s.old_url="'.$url.'" ';
-            $sql = 'SELECT gi.*, c.name category_name, c.slug category_slug, u.name author_name 
-                    FROM gallery_image gi 
-                    LEFT JOIN gallery g ON(g.id_gallery=gi.id_gallery) 
-                    LEFT JOIN gallery_category c ON(c.id_gallery_category=g.id_gallery_category) 
-                    LEFT JOIN user u ON(u.id_user=g.id_author) 
-                    WHERE g.old_url="'.$url.'" ';
+            $article = $galleryEntity->getGalleryByOldUrl();
         } else {
-            // gallery
-            $sql = 'SELECT gi.*, g.name name, c.name category_name, c.slug category_slug, u.name author_name 
-                    FROM gallery_image gi 
-                    LEFT JOIN gallery g ON(g.id_gallery=gi.id_gallery) 
-                    LEFT JOIN gallery_category c ON(c.id_gallery_category=g.id_gallery_category) 
-                    LEFT JOIN user u ON(u.id_user=g.id_author) 
-                    WHERE g.slug="'.$slug.'" ';
+            $article = $galleryEntity->getGallery($gallerySlug, $categorySlug);
         }
-
-        $oEntity = Dao::entity('gallery');
-        $oEntity->query($sql);
-        $article = $oEntity->getFields();
-
-
-        // print_r($article);
 
         // headers
         if ($url) {
-            $categorySlug = $oEntity->getField('category_slug');
-            $slug = $oEntity->getField('slug');
+            $gallerySlug = $galleryEntity->getField('slug');
+            $categorySlug = $galleryEntity->getField('category_slug');
+            
+            Logger::logStandardRequest('redirects');
 
-            $sLogFile = LOG_DIR.'/redirects/'.date('Y-m-d').'.log';
-            Logger::logStandardRequest($sLogFile);
-
-            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('gallery').'/'.$categorySlug.'/'.$slug, TRUE, 301);
+            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('gallery').'/'.$categorySlug.'/'.$gallerySlug, TRUE, 301);
         }
 
-        // var_dump($oEntity->getQuery());
-        // echo $article['title'];
+        // title
+        $this->_renderer->assign('title', 'Squarezone - Galerie - '.$galleryEntity->getField('category_name').' - '.$galleryEntity->getField('title'));
+        
+        $article['id'] = $article['id_gallery'];
+        $article['template'] = 'gallery';
 
-        // news details
-        $iId = $article['id_gallery'];
+        $this->_renderer->assign('article', $article);
 
-        if ($article) {
-            // title
-            $this->_renderer->assign('title', 'Squarezone - Galerie - '.$oEntity->getField('category_name').' - '.$oEntity->getField('title'));
+        // breadcrumbs
+        $item = array(
+            'url' => ValueMapper::getUrl('gallery').'/'.$categorySlug,
+            'text' => $galleryEntity->getField('category_name')
+        );
+        Breadcrumbs::add($item);
 
-            $id = $article['id_gallery'];
+        // images
+        $imagesCollection = Dao::collection('gallery-image');
+        $images = $imagesCollection->getGalleryImagesById($galleryEntity->getField('id_gallery'));
 
-            $article['id'] = $id;
-            $article['template'] = 'gallery';
+        $this->_renderer->assign('images', $images);
 
-            $this->_renderer->assign('article', $article);
+        // comments form
+        $this->_renderer->assign('commentsForm', Comments::getFormParams('gallery', $galleryEntity));
 
-            // breadcrumbs
-            $item = array(
-                'url' => ValueMapper::getUrl('gallery').'/'.$oEntity->getField('category_slug'),
-                'text' => $oEntity->getField('category_name')
-            );
-            Breadcrumbs::add($item);
+        // comments
+        $oCommentsCollection = Dao::collection('gallery-comment');
 
-            // echo $oEntity->getField('id_gallery');
-
-            $oImagesCollection = Dao::collection('gallery-image');
-            $aImages = $oImagesCollection->getGalleryImagesById($oEntity->getField('id_gallery'));
-
-
-            // gallery conversion
-            $bValidGallery = true;
-            if (count($aImages)) {
-                foreach ($aImages as $img) {
-                    if ($img['name'] == '') {
-                        $bValidGallery = false;
-                    }
-                }
-            }
-            // $bValidGallery = false;
-            if ($bValidGallery == false) {
-                $aAssets = GalleryConverter::check($iId, $categorySlug, $aImages);
-
-                if ($aAssets) {
-                    foreach ($aAssets as $ak => $asset) {
-                        $aImages[$ak]['name'] = $asset;
-
-                        $oGalleryImageEntity = Dao::entity('gallery-image', $ak);
-                        // print_r($oGalleryImageEntity);
-                        $oGalleryImageEntity->setField('name', $asset);
-                        // echo $oGalleryImageEntity->getQuery();
-                        // print_r($oGalleryImageEntity);
-                        if ($oGalleryImageEntity->update()) {
-                            // echo $oGalleryEntity->getQuery();
-                        //     // ChangeLog::add('create', $this->_ctrlName, $id);
-                        }
-                    }
-                }
-            }
-
-            $this->_renderer->assign('aImages', $aImages);
-
-            // comments form
-            $this->_renderer->assign('commentsForm', Comments::getFormParams('gallery', $oEntity));
-
-            // comments
-            $oCommentsCollection = Dao::collection('gallery-comment');
-
-            $this->_renderer->assign('comments', $oCommentsCollection->getCommentsById($oEntity->getField('id_gallery')));
-            $this->_renderer->assign('navigator', $oCommentsCollection->getNavigator());
-        } else {
-            // log 404
-            $sLogFile = LOG_DIR.'/404/'.date('Y-m-d').'.log';
-            Logger::logStandardRequest($sLogFile);
-        }
+        $this->_renderer->assign('comments', $oCommentsCollection->getCommentsById($galleryEntity->getField('id_gallery')));
+        $this->_renderer->assign('navigator', $oCommentsCollection->getNavigator());
     }
 }

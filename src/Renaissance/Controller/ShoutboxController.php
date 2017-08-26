@@ -4,9 +4,7 @@ namespace Renaissance\Controller;
 
 use Aya\Core\Dao;
 
-use Renaissance\Controller\CrudController;
-
-class ShoutboxController extends CrudController {
+class ShoutboxController extends FrontController {
 
     public function insertAction() {
         $oEntity = Dao::entity('shout');
@@ -22,7 +20,7 @@ class ShoutboxController extends CrudController {
 
         if ($oEntity->insert(true)) {
             // put shout to file
-            $sFile = ROOT_DIR . '/../renaissance/app/cache/shouts';
+            $sFile = CACHE_DIR . '/shouts';
             if (file_exists($sFile)) {
                 $aShouts = json_decode(file_get_contents($sFile), true);
                 // print_r($aShouts);
@@ -47,7 +45,7 @@ class ShoutboxController extends CrudController {
         $this->setContentType('json');
 
         $iTimestamp = isset($_GET['timestamp']) ? (int)$_GET['timestamp'] : null;
-        $sFile = ROOT_DIR . '/../renaissance/app/cache/shouts';
+        $sFile = CACHE_DIR . '/shouts';
         if (file_exists($sFile)) {
             if ($iTimestamp) {
                 $aShouts = json_decode(file_get_contents($sFile), true);

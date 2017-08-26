@@ -1,19 +1,12 @@
-        <section>
-            <header class="inner">
-                <h2>Archiwum</h2>
-            </header>
-            <div class="items main-items">
-            {if $aActivities}
-            {foreach from=$aActivities item=a}<article class="front-item col-3">
-                <a href="{$base}/{#news#}/{$a.year}" class="front-item-content m-item">
-                    <span>{$a.year}</span>
-                    <!-- <span class="total">{$a.items}</span> -->
-                </a>
-                <footer>
-                    <small>{$a.items}</small>
-                </footer>
-            </article>{/foreach}
-            {else}
-            <p>Brak aktualności</p>
-            {/if}
-        </section>
+<section>
+    <header class="inner">
+        <h2>Archiwum</h2>
+    </header>
+    <section class="inner main-items">
+        {if $entries}
+        {include file='partials/list-items.tpl' list=$entries entity=#news# col=year url=year footer=counter}
+        {else}
+        <p>Brak aktualności</p>
+        {/if}
+    </section>
+</section>

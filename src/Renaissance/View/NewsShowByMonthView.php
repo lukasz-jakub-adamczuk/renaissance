@@ -20,10 +20,12 @@ class NewsShowByMonthView extends View {
         ];
         Breadcrumbs::add($item);
 
+        // print_r($_SERVER['REQEST_']);
+
         // collection
         $newsCollection = Dao::collection('news');
 
-        $this->_renderer->assign('aActivities', $newsCollection->getNewsByMonth($year, $month));
+        $this->_renderer->assign('entries', $newsCollection->getNewsByMonth($year, $month));
         $this->_renderer->assign('navigator', $newsCollection->getNavigator());
     }
 }

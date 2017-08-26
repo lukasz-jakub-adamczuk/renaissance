@@ -27,7 +27,7 @@ class ArticleInfoView extends View {
         $articleEntity = Dao::entity('article');
 
         if ($url) {
-            $article = $storyEntity->getArticleByOldUrl($url);
+            $article = $articleEntity->getArticleByOldUrl($url);
         } else {
             $article = $articleEntity->getArticle($articleSlug, $categorySlug);
         }

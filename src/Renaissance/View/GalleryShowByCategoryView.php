@@ -8,23 +8,18 @@ use Aya\Core\View;
 class GalleryShowByCategoryView extends View {
 
     public function fill() {
-        $category = $_GET['category'];
-
-        $sql = 'SELECT g.*, c.name category, c.slug category_slug
-                FROM gallery g 
-                LEFT JOIN gallery_category c ON(c.id_gallery_category=g.id_gallery_category) 
-                WHERE c.slug="'.$category.'" 
-                ORDER BY g.name';
-
+        $category = isset($_GET['category']) ? $_GET['category'] : null;
+        
         $collection = Dao::collection('gallery');
-        $collection->query($sql);
+        
+        $articles = $collection->getGalleriesForCategory($category);
 
-        $articles = $collection->getRows();
-
-        $aCurrent = current($articles);
+        $firstItem = current($articles);
 
         $this->_renderer->assign('articles', $articles);
+        $this->_renderer->assign('category', $firstItem['category_name']);
 
-        $this->_renderer->assign('sCategory', $aCurrent['category']);
+        // title
+        $this->_renderer->assign('title', 'Squarezone - Galerie - '.$firstItem['category_name']);
     }
 }
