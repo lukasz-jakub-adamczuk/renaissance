@@ -13,5 +13,5 @@
                 {/foreach}
             </div>
         </article>
-        {include file='common/ratings.tpl'}
-        {include file='common/comments.tpl'}
+        {include file='partials/ratings.tpl'}
+        {include file='partials/comments.tpl'}

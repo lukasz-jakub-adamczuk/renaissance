@@ -94,7 +94,6 @@ class Comments {
                 'ctrl', 'act'
             ),
             'entity' => array(
-                // 'category' => 'category_slug',
                 'slug' => 'slug'
             )
         );

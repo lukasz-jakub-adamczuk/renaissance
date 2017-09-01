@@ -1,14 +1,17 @@
 
-/* media-wrapper */
 figure {
+  margin: 0;
+}
+
+/* media-wrapper */
+figure[class*="ratio"] {
   /*margin: 0 0 1em;*/
   margin: 0;
   /*max-width: 640px;*/
   position: relative;
   height: 0;
   background: #000;
-  padding-bottom: 56.25%;
-
+  // padding-bottom: 56.25%;
   overflow: hidden;
 }
 figcaption {

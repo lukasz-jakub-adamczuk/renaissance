@@ -96,7 +96,7 @@ class NewsInfoView extends View {
                 $this->_renderer->assign('aGallery', $aGallery);
             } else {
                 $this->_renderer->assign('aFirstImage', current($aImages));
-                // print_r(current($aImages));
+                
             }
         }
 
@@ -126,9 +126,9 @@ class NewsInfoView extends View {
         $this->_renderer->assign('commentsForm', Comments::getFormParams('news', $newsEntity));
 
         // comments
-        $oCommentsCollection = Dao::collection('comments');
+        $commentCollection = Dao::collection('comment');
 
-        $this->_renderer->assign('comments', $oCommentsCollection->getCommentsById('news', $newsEntity->getField('id_news')));
-        $this->_renderer->assign('navigator', $oCommentsCollection->getNavigator());
+        $this->_renderer->assign('comments', $commentCollection->getCommentsById('news', $newsEntity->getField('id_news')));
+        $this->_renderer->assign('navigator', $commentCollection->getNavigator());
     }
 }

@@ -316,14 +316,19 @@ q {
 
 .visible-on-hover {
   visibility: hidden;
+  opacity: .25;
+}
+section:hover .visible-on-hover {
+  visibility: visible;
+}
+.visible-on-hover:hover {
+  opacity: 1;
 }
 
 
 .inline-block {
   display: inline-block;
 }
-
-
 
 /* article */
 .bg-cover {
@@ -447,7 +452,8 @@ aside {
   width: 320px;
   margin-left: 20px;
 }
-.text blockquote {
+.text blockquote,
+.review blockquote {
   font-family: Georgia, serif;
   font-weight: 400;
   font-style: italic;
@@ -457,7 +463,8 @@ aside {
   font-weight: 300;
   max-width: 640px;
 }
-.text blockquote:before {
+.text blockquote:before,
+.review blockquote:before {
   content: '\201D';
   display: block;
   width: .875em;
@@ -688,3 +695,13 @@ p + br {
   padding: 1rem;
   float: right;
 }
+
+
+
+
+
+
+
+
+
+

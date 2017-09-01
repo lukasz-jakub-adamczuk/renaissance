@@ -22,7 +22,7 @@
 }
 .breadcrumbs > span:after {
   /*content: '\2192';*/
-  content: '▶';
+  content: '/';
   /*content: '/';*/
   font-size: .75em;
   color: #ccc;
@@ -36,3 +36,11 @@
 .breadcrumbs a:hover {
   color: #000;
 }
+
+
+// Breadcrumbs
+// .wvu-breadcrumbs { font-size: .85em; color: #ccc; line-height: 1.5; margin: 18px; padding-left: 0;
+//   li { display: inline; list-style-type: none; margin-left: 0; }
+//   li:before { content: "/"; padding-right: 3px; }
+//   li:first-child:before { content: ""; padding-right: 0; }
+// } //.wvu-breadcrumbs

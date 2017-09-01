@@ -3,17 +3,23 @@
 namespace Renaissance\Controller;
 
 use Aya\Core\Dao;
+use Aya\Helper\ChangeLog;
 
-use Renaissance\Controller\CrudController;
+class CommentController extends FrontController {
 
-class CommentController extends CrudController {
+    public function acceptAction() {
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+
+        if ($id) {
+            $this->_changeStatusField('visible', 1);
+
+            header('Location: '.$_SERVER['HTTP_REFERER'].'#komentarz-'.$id, TRUE, 303);
+        }
+    }
 
     public function removeAction() {
         if (isset($_GET['id'])) {
             $aIds = array($_GET['id']);
-        }
-        if (isset($_POST['ids'])) {
-            $aIds = $_POST['ids'];
         }
         
         if (isset($aIds)) {
@@ -31,27 +37,42 @@ class CommentController extends CrudController {
                 }
                 
                 if ($oEntity->delete()) {
-                    $this->addHistoryLog('remove', $this->_ctrlName, $id);
+                    // $this->addHistoryLog('remove', $this->_ctrlName, $id);
+                    ChangeLog::add('delete', $this->_ctrlName, $id);
                     $aNames[] = $name;
                 }
             }
 
             // msg
             if (count($aNames) == 1) {
-                $this->raiseInfo('Wpis <strong>'.$aNames[0].'</strong> został usunięty.');
-            } elseif (count($aNames) > 1) {
-                $this->raiseInfo('Wpisy <strong>'.implode(', ', $aNames).'</strong> zostały usunięte.');
+                $this->raiseInfo('Komentarz <strong>'.$aNames[0].'</strong> został usunięty.');
             } else {
                 $this->raiseError('Wystąpił nieoczekiwany wyjątek.');
             }
-            // 
-            $aParams = [];
-            $aParams['get:category'] = 'tomb-raider';
-            $aParams['get:slug'] = 'recenzja';
 
-            // print_r($aParams);
+            // $aParams = [];
+            // foreach ($aPost['request'] as $key => $value) {
+            //     $aParams['get:'.$key] = $value;
+            // }
 
-            $this->actionForward('info', 'article', true, $aParams);
+            // // redirect to right page after comment
+            // $redirectParams = [];
+
+            // foreach ($aPost['request'] as $pk => $param) {
+            //     if ($pk === 'ctrl') {
+            //         $redirectParams[] = ValueMapper::getUrl($param);
+            //     } elseif ($pk === 'act') {
+            //         // ignore
+            //     } else {
+            //         $redirectParams[] = $param;
+            //     }
+            // }
+
+            header('Location: '.$_SERVER['HTTP_REFERER'].'#komentarze', TRUE, 303);
+
+            // $this->actionForward('info', $aPost['request']['ctrl'], true, $aParams);
+
+            // $this->actionForward('info', 'article', true, $aParams);
         }
     }
 }

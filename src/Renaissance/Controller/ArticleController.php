@@ -19,7 +19,7 @@ class ArticleController extends FrontController {
         if ($slug == 'galeria') {
             $this->setTemplateName('article-gallery');
         } else {
-            $this->setTemplateName('article-info-2');
+            $this->setTemplateName('article-info');
         }
     }
 }

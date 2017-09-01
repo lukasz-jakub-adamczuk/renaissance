@@ -97,7 +97,7 @@ class ArticleInfoView extends View {
 
         // intro article
         if ($articleSlug == 'wstep') {
-            $sPath = ROOT_DIR . '/web/assets/games/'.$articleEntity->getField('category_abbr').'/imgs';
+            $sPath = WEB_DIR . '/assets/games/'.$articleEntity->getField('category_abbr').'/imgs';
 
             $aDirContent = Folder::getContent($sPath, false, ['.DS_Store', 'thumbs.db']);
 
@@ -152,6 +152,8 @@ class ArticleInfoView extends View {
                 $this->_renderer->assign('verdict', $verdict);
             }
         }
+        // echo 'aaaa';
+        // print_r(\Aya\Core\User::atLeast('moderator'));
 
         // update views counter
         $articleEntity->increaseField('views');
@@ -161,9 +163,9 @@ class ArticleInfoView extends View {
         $this->_renderer->assign('commentPrimaryKey', 'id_article_comment');
 
         // comments
-        $oCommentsCollection = Dao::collection('article-comment');
+        $commentCollection = Dao::collection('comment');
 
-        $this->_renderer->assign('comments', $oCommentsCollection->getCommentsById($articleEntity->getField('id_article')));
-        $this->_renderer->assign('navigator', $oCommentsCollection->getNavigator());
+        $this->_renderer->assign('comments', $commentCollection->getCommentsById('article', $articleEntity->getField('id_article')));
+        $this->_renderer->assign('navigator', $commentCollection->getNavigator());
     }
 }

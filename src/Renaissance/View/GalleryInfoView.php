@@ -63,9 +63,9 @@ class GalleryInfoView extends View {
         $this->_renderer->assign('commentsForm', Comments::getFormParams('gallery', $galleryEntity));
 
         // comments
-        $oCommentsCollection = Dao::collection('gallery-comment');
+        $commentCollection = Dao::collection('comment');
 
-        $this->_renderer->assign('comments', $oCommentsCollection->getCommentsById($galleryEntity->getField('id_gallery')));
-        $this->_renderer->assign('navigator', $oCommentsCollection->getNavigator());
+        $this->_renderer->assign('comments', $commentCollection->getCommentsById('gallery', $galleryEntity->getField('id_gallery')));
+        $this->_renderer->assign('navigator', $commentCollection->getNavigator());
     }
 }

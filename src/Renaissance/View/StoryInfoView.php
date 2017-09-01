@@ -92,9 +92,9 @@ class StoryInfoView extends View {
         $this->_renderer->assign('commentPrimaryKey', 'id_story_comment');
 
         // comments
-        $oCommentsCollection = Dao::collection('story-comment');
+        $commentCollection = Dao::collection('comment');
 
-        $this->_renderer->assign('comments', $oCommentsCollection->getCommentsById($storyEntity->getField('id_story')));
-        $this->_renderer->assign('navigator', $oCommentsCollection->getNavigator());
+        $this->_renderer->assign('comments', $commentCollection->getCommentsById('story', $storyEntity->getField('id_story')));
+        $this->_renderer->assign('navigator', $commentCollection->getNavigator());
     }
 }

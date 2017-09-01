@@ -10,6 +10,8 @@
         {include file='search.tpl'}
         {include file='breadcrumbs.tpl'}
 
+        {include file='messages.tpl'}
+
         {include file="$content.tpl"}
     </main>
     {include file='footer.tpl'}

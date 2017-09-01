@@ -10,6 +10,6 @@ class StoryController extends FrontController {
     }
 
     public function infoAction() {
-        $this->setTemplateName('article-info-2');
+        $this->setTemplateName('article-info');
     }
 }

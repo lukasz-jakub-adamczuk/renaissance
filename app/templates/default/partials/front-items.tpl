@@ -1,5 +1,5 @@
 <div class="main-items {$type}-item">
-    {foreach from=$items item=object}<article class="{if $object@first}col-8 full-image-item{else}col-4{/if} front-item large-item" data-id="{$object[$object.key]}">
+    {foreach from=$items item=object}<article class="{if $object@first}normal-size full-image-item{else}small-size{/if} front-item large-item" data-id="{$object[$object.key]}">
         <a href="{$base}/{$object.url}" class="front-item-content">
             {if $object@first}
             <!-- size=640x320 -->

@@ -1,5 +1,5 @@
         {if isset($article)}<article{if $article.template eq 'review'} itemtype="http://schema.org/Product"{/if}{if isset($mainImage)} class="bg-cover" style="background-image: url({$base}{$mainImage.0.fragment});"{else} class="inside"{/if}>
-            {include file='common/article-header-2.tpl'}
+            {include file='partials/article-header-2.tpl'}
             <div class="wrapper inside ">
                 <div class="content-meta">
                     <a href="{$base}/{#user#}/{$article.author_slug}">{$article.author_name}</a> - <time>{$article.creation_date|date_format:"%d %B %Y, %H:%M"}</time>
@@ -8,19 +8,19 @@
                 <section class="center text">
                     <!-- <h3>{$article.title|stripslashes}</h3> -->
                     <div class="social-media">
-                        {include file='common/fb-like.tpl'}
+                        {include file='partials/fb-like.tpl'}
                     </div>
-                    {include file='common/standard-notice.tpl'}
+                    {include file='partials/standard-notice.tpl'}
 
-                    <!-- {include file='common/review-description.tpl'} -->
+                    <!-- {include file='partials/review-description.tpl'} -->
                 <!-- </section> -->
                 <!-- <section class="inner center _padding" data-id-article="{$article.id_article}"> -->
                     <!-- <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div> -->
-                    <!-- {include file='common/fb-like.tpl'} -->
+                    <!-- {include file='partials/fb-like.tpl'} -->
 
-                    {include file='common/game-logo.tpl'}
-                    {include file='common/game-info.tpl'}
-                    {include file='common/music-info.tpl'}
+                    {include file='partials/game-logo.tpl'}
+                    {include file='partials/game-info.tpl'}
+                    {include file='partials/music-info.tpl'}
                     
                     {$article.markup|stripslashes|gb_replace|replace:"image/":"../../i/"|mediabox:medium|humanize}
                     <!-- <h1>ALTERNATYWNA WERSJA</h1> -->
@@ -28,7 +28,7 @@
                     
                 </section>
                 <section>    
-                    {include file='common/screens.tpl'}
+                    {include file='partials/screens.tpl'}
                 </section>
                 {if $article.template eq 'intro'}
                 <section class="inner items">
@@ -56,14 +56,14 @@
                 </section>*}
                 <footer class="theme">
                     <div class="inner theme-dark"{if isset($verdict)} data-verdict="{$verdict.rating}"{/if}>
-                        {include file='common/verdict.tpl'}
-                        {include file='common/statistics.tpl'}
+                        {include file='partials/verdict.tpl'}
+                        {include file='partials/statistics.tpl'}
                     </div>
                 </footer>
             </div>
         </article>
-        {include file='common/ratings.tpl'}
-        {include file='common/comments.tpl' commentPrimaryKey='id_story_comment'}
+        {include file='partials/ratings.tpl'}
+        {include file='partials/comments.tpl' commentPrimaryKey='id_story_comment'}
         {else}
         <article>
             <section class="padding">

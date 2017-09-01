@@ -21,25 +21,12 @@
   
 }
 .features span {
-  /*vertical-align: middle;*/
+  vertical-align: middle;
   /*display: inline-block;*/
 }
-.features .icon-plus-circle:before,
-.features .icon-minus-circle:before {
-  /*display: inline-block;*/
-  /*color: #888;*/
-  font-size: 1.25em;
-  /*vertical-align: middle;*/
-  /*margin-left: -1.25em;*/
-  position: absolute;
-  left: 0;
-  /*font-size: 2em;*/
+.features .icon-plus-circle,
+.features .icon-minus-circle {
+  width: 24px;
+  height: 24px;
+  opacity: .8;
 }
-.icon-plus-circle {
-  color: #0c0;
-}
-.icon-minus-circle {
-  color: #c00;
-}
-
-

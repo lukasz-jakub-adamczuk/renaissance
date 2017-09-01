@@ -1,5 +1,5 @@
         <article>
             <section>
-                {include file='common/screens.tpl'}
+                {include file='partials/screens.tpl'}
             </section>
         </article>

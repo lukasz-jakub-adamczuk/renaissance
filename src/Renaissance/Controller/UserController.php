@@ -4,6 +4,7 @@ namespace Renaissance\Controller;
 
 use Aya\Core\Dao;
 use Aya\Helper\Text;
+use Aya\Helper\MessageList;
 
 use Renaissance\Controller\FrontController;
 
@@ -17,7 +18,8 @@ class UserController extends FrontController {
         // think about sanitize data
         $aPost = isset($_POST['register']) ? $_POST['register'] : null;
 
-        // 
+        die('regisrarion is disabled now...');
+
         if ($aPost) {
             // MessageList::raiseError('register post data...');
 

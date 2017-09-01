@@ -1,8 +1,8 @@
 @import 'base/mixins';
 @import 'base/variables';
 @import 'base/typography';
-@import 'base/icons-icomoon';
-// @import 'base/icons-google';
+// @import 'base/icons-icomoon';
+@import 'base/icons-google';
 
 @import 'layout/main';
 @import 'layout/grid';
@@ -32,3 +32,9 @@
 @import 'components/tables';
 
 @import 'partials/shame';
+
+
+
+@import 'layout/mobile';
+@import 'layout/tablet';
+@import 'layout/desktop';

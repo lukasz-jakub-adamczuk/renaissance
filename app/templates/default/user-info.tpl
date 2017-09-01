@@ -67,7 +67,7 @@
         </footer>
     </div>
 </div>
-{include file='common/comments.tpl' commentPrimaryKey='id_user_comment'}
+{include file='partials/comments.tpl' commentPrimaryKey='id_user_comment'}
 {else}
 <div>
     <header class="inner">

@@ -14,7 +14,7 @@
     <article>
     <!-- <div class="wrapper"> -->
         <section class="inner">
-            <!-- {include file='common/screens.tpl'} -->
+            <!-- {include file='partials/screens.tpl'} -->
             <div class="gallery">
             {foreach from=$images item=img}<a href="{$base}{$img.name}" class="miniature">
                 {image file=$img.name size=128x128}
@@ -27,5 +27,5 @@
         </footer>
     <!-- </div> -->
 </article>{/if}
-{include file='common/ratings.tpl'}
-{include file='common/comments.tpl' commentPrimaryKey='id_gallery_comment'}
+{include file='partials/ratings.tpl'}
+{include file='partials/comments.tpl' commentPrimaryKey='id_gallery_comment'}

@@ -6,6 +6,21 @@ $grid-column-width:           ($grid-total-width / $grid-columns);
 // $grid-column-width:           ($grid-total-width / $grid-columns) - $grid-column-gap;
 
 
+$grid-mobile-total-width:            360px;
+$grid-desktop-total-width:            960px;
+
+
+
+
+@mixin col-mobile-width($col) {
+  width: ($grid-mobile-total-width / $grid-columns * $col) - $grid-column-gap;
+}
+@mixin col-desktop-width($col) {
+  width: ($grid-desktop-total-width / $grid-columns * $col) - $grid-column-gap;
+}
+
+
+
 .row {
   
 }

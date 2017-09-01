@@ -4,6 +4,7 @@ namespace Renaissance\View;
 
 use Aya\Core\Dao;
 use Aya\Core\View;
+use Aya\Helper\AvatarManager;
 
 class ShoutboxIndexView extends View {
 

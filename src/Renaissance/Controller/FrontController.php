@@ -1,15 +1,15 @@
 <?php
 namespace Renaissance\Controller;
 
-use Aya\Core\Controller;
 use Aya\Core\Dao;
+use Aya\Core\Debug;
 use Aya\Core\User;
-use Aya\Helper\ValueMapper;
+use Aya\Helper\AuthManager;
 use Aya\Helper\Breadcrumbs;
+use Aya\Helper\ValueMapper;
+use Aya\Mvc\CrudController;
 
-class FrontController extends Controller {
-
-    // protected function _afterInit() {}
+class FrontController extends CrudController {
     
     public function indexAction() {}
 
@@ -31,41 +31,6 @@ class FrontController extends Controller {
 
         // title
         $this->_renderer->assign('title', 'Squarezone - '.ValueMapper::getName($this->getCtrlName()));
-
-        // top nav
-        $aNavTop = array(
-            'article' => array(
-                'name' => ValueMapper::getName('article'),
-                'url' => ValueMapper::getUrl('article')
-            ),
-            'story' => array(
-                'name' => ValueMapper::getName('story'),
-                'url' => ValueMapper::getUrl('story')
-            ),
-            'gallery' => array(
-                'name' => ValueMapper::getName('gallery'),
-                'url' => ValueMapper::getUrl('gallery')
-            ),
-            'user' => array(
-                'name' => ValueMapper::getName('user'),
-                'url' => ValueMapper::getUrl('user')
-            ),
-            // 'trophy' => array(
-            //     'name' => ValueMapper::getName('trophy'),
-            //     'url' => ValueMapper::getUrl('trophy')
-            // ),
-            'cup' => array(
-                'name' => ValueMapper::getName('cup'),
-                'url' => ValueMapper::getUrl('cup')
-            ),
-            'forum' => array(
-                'name' => ValueMapper::getName('forum'),
-                'url' => FORUM_URL,
-                'external' => true
-            )
-        );
-
-        $this->_renderer->assign('aNavTop', $aNavTop);
 
         // self url used in few places
         $selfUrl = '';
@@ -127,10 +92,21 @@ class FrontController extends Controller {
         }
         $this->_renderer->assign('aFanarts', $aFanarts);
 
+        $this->loginAction();
     }
     
     // TODO should name init()
     public function afterAction() {
         parent::afterAction();
+    }
+
+    public function loginAction() {
+        AuthManager::login();
+        // $this->actionForward('login', 'auth', true);
+    }
+
+    public function logoutAction() {
+        AuthManager::logout();
+        $this->actionForward('logout', 'auth', true);
     }
 }

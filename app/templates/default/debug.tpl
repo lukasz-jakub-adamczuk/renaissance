@@ -4,6 +4,10 @@
                 <span><b>Action:</b> {$debugPanel.vars.act.0}</span>
                 <span><b>View:</b> {$debugPanel.vars.view.0}</span>
                 <span><b>Template:</b> {$debugPanel.vars.tpl.0}</span>
+                <span><b>SQL:</b> {$debugPanel.vars.sql.0}</span>
+            </div>
+            <div>
+                <span><b>time-stats:</b> {$debugPanel.vars['time-stats'].0}</span>
             </div>
         </div>
         <style>

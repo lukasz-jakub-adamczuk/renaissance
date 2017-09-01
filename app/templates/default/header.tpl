@@ -31,9 +31,9 @@
             </div>
             <div class="ch-widgets">
                 <div class="ch-subscribe-btn-container"></div>
-                {if isset($user)}
+                {if $usr::set()}
                 <div class="ch-login">
-                    <a class="ch-user-name" href="{#user#}/{$user.slug}">{$user.name}</a>
+                    <a class="ch-user-name" href="{$base}/{#user#}/{$usr::get('slug')}">{$usr::get('name')}</a>
                 </div>
                 {/if}
                 <div class="ch-menu-trigger" role="button" aria-controls="navigation" tabindex="0" aria-label="Meny">
@@ -188,60 +188,29 @@
                     </div>
                     <div class="ch-menu-group ch-menu-group-info">
                         <ul class="ch-menu-area ch-menu-area-user" aria-label="user menu">
-                            {if isset($user)}
+                            {if $usr::set()}
                             <li class="ch-li-group">
                                 <ul>
                                     <li class="ch-user-details">
                                         {*<i class="ch-icon ch-icon-user-hollow"></i>*}
-                                        {if !empty($user.avatar)}
-                                        <img src="image.php?img={$user.avatar}&size=64x64" alt="{$user.slug}" width="32" height="32">
-                                        {else}
-                                        <img src="assets/users/no-avatar.jpg" alt="{$user.slug}" width="32" height="32">
-                                        {/if}
-                                        <a class="ch-login-info" aria-label="Profil użytkownika" href="{#user#}/{$user.slug}">{$user.name}</a>
-                                        <a class="ch-btn-logout" href="{$base}/auth/logout">Wyloguj</a>
+                                        {image file=$usr::get('avatar') size=64x64}
+                                        <a class="ch-login-info" aria-label="Profil użytkownika" href="{$base}/{#user#}/{$usr::get('slug')}">{$usr::get('name')}</a>
+                                        <a class="ch-btn-logout" href="{$base}/logout">Wyloguj</a>
                                     </li>
                                 </ul>
                             </li>
                             {/if}
-                            {*<li class="ch-li-group">
-                                <ul>
-                                    <li class="ch-li-logged-in"><a class="ch-my-site-link ch-menu-section ch-btn-account" href="https://kundeportal.aftenposten.no/minside/">Min side</a></li>
-                                    <li class="ch-li-logged-in"><a class="ch-menu-section" href="http://www.aftenposten.no/mine-varsler">Mine varsler</a></li>
-                                    <li class="ch-li-logged-in"><a class="ch-benefits-link ch-menu-section" href="https://kundeportal.aftenposten.no/fordeler/">A-kortet</a></li>
-                                </ul>
-                            </li>*}
                         </ul>
                         <ul class="ch-menu-area-pub" aria-label="publication menu">
                             <!-- <li><i class="ch-icon ch-icon-logo-short"></i></li> -->
                             <li><a href="{$base}/uzytkownicy">Użytkownicy</a></li>
                             <li><a href="http://forum.squarezone.pl">Forum</a></li>
-                          {*{{#skin.publicationMenu}}*}
-                              {*<li><a href="{{url}}">{{name}}</a></li>*}
-                          {*{{/skin.publicationMenu}}*}
                         </ul>
-                        {if not isset($user)}
+                        {if !$usr::set()}
                         <div class="message">
                             {include file='login.tpl'}
                         </div>
                         {/if}
-                        {*<div id="user-nav">
-                        {if isset($user)}
-                            
-                            <a id="auth-tgr" href="{#user#}/{$user.slug}" data-user-sign-in="true">
-                                {if !empty($user.avatar)}
-                                <img src="image.php?img={$user.avatar}&size=64x64" alt="{$user.slug}" width="32" height="32">
-                                {else}
-                                <img src="assets/users/no-avatar.jpg" alt="{$user.slug}" width="32" height="32">
-                                {/if}
-                            </a>
-                            <a href="{$base}/auth/logout" class="log-out-tgr">Wyloguj</a>
-                        {else}
-                            {<a id="auth-tgr" href="{$smarty.server.REQUEST_URI}#modal" data-user-sign-in="_false">
-                                <span class="icon-user"></span>
-                            </a>}
-                        {/if}
-                        </div>*}
                     </div>
                 </div>
             </div>

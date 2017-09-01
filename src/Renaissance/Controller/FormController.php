@@ -3,10 +3,10 @@
 namespace Renaissance\Controller;
 
 use Aya\Core\Dao;
+use Aya\Core\Logger;
+use Aya\Helper\ValueMapper;
 
-use Renaissance\Controller\CrudController;
-
-class FormController extends CrudController {
+class FormController extends FrontController {
 
     public function beforeInsert() {
         // print_r($_POST);
@@ -25,15 +25,14 @@ class FormController extends CrudController {
 
     }
 
-    public function insertAction() {
+    public function commentAction() {
         $iId = 0;
 
         if (isset($_POST['request'])) {
             $aPost = $this->beforeInsert($_POST);
 
             if (isset($aPost['dataset']['check']) && $aPost['dataset']['check'] !== date('Y')) {
-                $sLogFile = LOG_DIR.'/issues/'.date('Y-m-d').'.log';
-                Logger::logStandardRequest($sLogFile);
+                Logger::logStandardRequest('issues');
 
                 die('You are robot!');
 
@@ -83,8 +82,7 @@ class FormController extends CrudController {
                     $this->raiseInfo('Komentarz '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' został utworzony.');
                 } else {
                     $this->raiseInfo('Komentarz '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' czeka na moderację. Nie dodawaj kolejnego takiego samego, tylko zaczekaj aż ten zostanie zaakceptowany.');
-                }
-                
+                }                
                 
                 // clear right stream
                 $sStreamFile = CACHE_DIR . '/stream-' . $aPost['request']['ctrl'];
@@ -98,9 +96,19 @@ class FormController extends CrudController {
                     unlink($sStreamFile);
                 }
 
-                // clear comments
-                // $sStreamFile = CACHE_DIR . '/sql/all-';
-                // unlink($sCacheFile.'-'.$aPost['request']['ctrl']);
+                // clearing stream even could not be affected :D
+
+                // clear unauthorized comments when such created
+                if (!isset($aPost['dataset']['id_author'])) {
+                    $storageKey = CACHE_DIR . '/sql/unauthorized-'.$aPost['request']['ctrl'].'-comments';
+                    if (file_exists($storageKey)) {
+                        unlink($storageKey);
+                    }
+                    $storageKey = CACHE_DIR . '/sql/all-unauthorized-comments';
+                    if (file_exists($storageKey)) {
+                        unlink($storageKey);
+                    }
+                }
 
                 $this->actionForward('index', $this->_ctrlName, true);
             } else {
@@ -108,18 +116,28 @@ class FormController extends CrudController {
                 $this->actionForward('info', $this->_ctrlName);
             }
 
+
             // params to override request
             // print_r($aPost['request']);
             $aParams = [];
             foreach ($aPost['request'] as $key => $value) {
                 $aParams['get:'.$key] = $value;
             }
-            // $aParams['get:ctrl'] = $aPost['request']['ctrl'];
-            // $aParams['get:act'] = 'info';
-            // $aParams['get:slug'] = $aPost['request']['object_slug'];
-            // if (isset($aPost['request']['category_slug'])) {
-            //     $aParams['get:category'] = $aPost['request']['category_slug'];
-            // }
+
+            // redirect to right page after comment
+            $redirectParams = [];
+
+            foreach ($aPost['request'] as $pk => $param) {
+                if ($pk === 'ctrl') {
+                    $redirectParams[] = ValueMapper::getUrl($param);
+                } elseif ($pk === 'act') {
+                    // ignore
+                } else {
+                    $redirectParams[] = $param;
+                }
+            }
+
+            header('Location: '.BASE_URL.'/'.implode('/', $redirectParams).'#komentarze', TRUE, 303);
 
             $this->actionForward('info', $aPost['request']['ctrl'], true, $aParams);
         } else {

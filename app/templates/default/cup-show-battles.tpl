@@ -41,7 +41,7 @@
             {/foreach}
             </div>
             {else}
-            {include file='common/not-found.tpl'}
+            {include file='partials/not-found.tpl'}
             {/if}
         </section>
         

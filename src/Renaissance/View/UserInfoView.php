@@ -5,8 +5,8 @@ namespace Renaissance\View;
 use Aya\Core\Dao;
 use Aya\Core\Db;
 use Aya\Core\View;
+use Aya\Helper\AvatarManager;
 
-use Renaissance\Helper\AvatarManager;
 use Renaissance\Helper\Comments;
 
 class UserInfoView extends View {
@@ -54,11 +54,11 @@ class UserInfoView extends View {
 
         // comments
         $comments = [];
-        $comments['news']       = Dao::collection('news-comment')->howManyCommentsWroteUser($id);
-        $comments['article']    = Dao::collection('article-comment')->howManyCommentsWroteUser($id);
-        $comments['story']      = Dao::collection('story-comment')->howManyCommentsWroteUser($id);
-        $comments['gallery']    = Dao::collection('gallery-comment')->howManyCommentsWroteUser($id);
-        $comments['user']       = Dao::collection('user-comment')->howManyCommentsWroteUser($id);
+        $comments['news']       = Dao::collection('comment')->howManyCommentsWroteUser('news', $id);
+        $comments['article']    = Dao::collection('comment')->howManyCommentsWroteUser('article', $id);
+        $comments['story']      = Dao::collection('comment')->howManyCommentsWroteUser('story', $id);
+        $comments['gallery']    = Dao::collection('comment')->howManyCommentsWroteUser('gallery', $id);
+        $comments['user']       = Dao::collection('comment')->howManyCommentsWroteUser('user', $id);
         
         $user['counters'] = $counters;
         $user['comments'] = $comments;
@@ -69,11 +69,9 @@ class UserInfoView extends View {
         $this->_renderer->assign('commentsForm', Comments::getFormParams('user', $userEntity));
 
         // comments
-        
-        
-        $oCommentsCollection = Dao::collection('user-comment');
+        $commentCollection = Dao::collection('comment');
 
-        $this->_renderer->assign('comments', $oCommentsCollection->getCommentsById($id));
-        $this->_renderer->assign('navigator', $oCommentsCollection->getNavigator());
+        $this->_renderer->assign('comments', $commentCollection->getCommentsById('user', $id));
+        $this->_renderer->assign('navigator', $commentCollection->getNavigator());
     }
 }
