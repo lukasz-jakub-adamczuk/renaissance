@@ -1,0 +1,66 @@
+/* newer and older item */
+.pagination {
+  margin-top: 4em;
+  background: #eee;
+}
+.newer-item,
+.older-item {
+  width: 320px;
+  box-sizing: border-box;
+  padding: 1em;
+  // display: block;
+  background: #ddd;
+  min-height: 6em;
+  position: relative;
+  
+}
+.newer-item:hover,
+.older-item:hover {
+  background: #ddd;
+}
+.newer-item:hover::before,
+.older-item:hover::after {
+  // color: #aaa;
+}
+.newer-item {
+  // float: left;
+  padding-left: 6rem;
+  
+}
+.older-item {
+  // float: right;
+  padding-right: 6rem;
+  // right: 0;
+}
+.newer-item::before,
+.older-item::after {
+  display: block;
+  position: absolute;
+  vertical-align: middle;
+  // color: #ccc;
+  // font-size: 1.25em;
+  // text-align: center;
+  /*margin: .5em auto;*/
+  // text-transform: uppercase;
+}
+.newer-item::before {
+  // content: 'Nowsze';
+  background-image: url(../assets/site/icons/google/SVG/navigate_before.svg);
+  left: 0;
+}
+.older-item::after {
+  // content: 'Starsze';
+  background-image: url(../assets/site/icons/google/SVG/navigate_next.svg);
+  right: 0;
+}
+.newer-item::before,
+.older-item::after,
+.icon-previous,
+.icon-next {
+  content: '';
+  background-size: 100%;
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  opacity: .5;
+}

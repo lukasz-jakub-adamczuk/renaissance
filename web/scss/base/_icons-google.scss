@@ -1,38 +1,12 @@
-[class^="icon"] {
-    background-size: 100%;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-}
-
 .icon-plus-circle {
   background-image: url(../assets/site/icons/google/SVG/add_circle.svg);
 }
 .icon-minus-circle {
   background-image: url(../assets/site/icons/google/SVG/remove_circle.svg);
 }
-
-.icon-remove {
-  background-image: url(../assets/site/icons/icomoon/SVG/bin.svg);
+.icon-next {
+  background-image: url(../assets/site/icons/google/SVG/navigate_before.svg);
 }
-.icon-edit {
-  background-image: url(../assets/site/icons/icomoon/SVG/pencil.svg);
-}
-.icon-checkmark {
-  background-image: url(../assets/site/icons/icomoon/SVG/checkmark.svg);
-}
-.icon-feed {
-  background-image: url(../assets/site/icons/icomoon/SVG/rss.svg);
-}
-.icon-facebook {
-  background-image: url(../assets/site/icons/icomoon/SVG/facebook.svg);
-}
-.icon-html {
-  background-image: url(../assets/site/icons/icomoon/SVG/html-five.svg);
-}
-.icon-css {
-  background-image: url(../assets/site/icons/icomoon/SVG/css3.svg);
-}
-.icon-github {
-  background-image: url(../assets/site/icons/icomoon/SVG/github.svg);
+.icon-previous {
+  background-image: url(../assets/site/icons/google/SVG/navigate_next.svg);
 }

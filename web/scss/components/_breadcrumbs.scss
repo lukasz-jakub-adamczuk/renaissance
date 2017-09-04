@@ -3,16 +3,16 @@
 /*main > section,*/
 .breadcrumbs {
   /*background: #eee;*/
-  max-width: 944px;
-  padding: .5em;
+  // max-width: 944px;
+  // padding: .5rem;
   font-size: .875em;
 }
 
 /* breadcrubs */
 .breadcrumbs {
   /*padding: 0 1em;*/
-  padding: 0 .5em;
-  /*box-sizing: border-box;*/
+  padding: 0 .5rem;
+  box-sizing: border-box;
   vertical-align: middle;
 }
 .breadcrumbs > span {

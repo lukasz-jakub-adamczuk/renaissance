@@ -1,0 +1,31 @@
+
+/* lists */
+.x-style {
+  list-style: none;
+}
+.clean-list {
+  list-style: none;
+  padding: 0 1rem 1rem;
+  margin: 0;
+  span {
+    font-weight: bold;
+  }
+}
+
+article > ul {
+  // max-width: 640px;
+}
+
+li b,
+li strong {
+  color: #444;
+}
+dl {
+  max-width: 640px;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-bottom: 1em;
+}

@@ -327,9 +327,6 @@ if (typeof window[conf.func] == 'function') {
 	window[conf.func]();
 }
 
-
-
-
 // debug console
 var debugtgr = document.getElementById('console-tgr');
 

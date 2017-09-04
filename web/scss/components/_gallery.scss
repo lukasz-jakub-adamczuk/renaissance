@@ -27,6 +27,46 @@
   background: #aaa;
 }
 
+/* thumbnails */
+.thumbnail {
+  padding: .25em;
+  border: .25em solid #eee; 
+}
+
+.gallery {
+  margin: 0 auto;
+}
+@media (min-width: $mobile) {
+  .gallery {
+    @include gallery-width(2);
+  }
+}
+@media (min-width: $max-mobile) {
+  .gallery {
+    @include gallery-width(3);
+  }
+}
+@media (min-width: $min-tablet) {
+  .gallery {
+    @include gallery-width(3);
+  }
+}
+@media (min-width: $tablet) {
+  .gallery {
+    @include gallery-width(4);
+  }
+}
+
+.miniature {
+  display: inline-block;
+  width: 8rem;
+  border: .5rem solid #fff;
+  margin: .5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  transition: box-shadow .3s ease, border-color .3s ease;
+}
+
+
 /*
 section {
   max-width: 960px;

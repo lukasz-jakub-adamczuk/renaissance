@@ -3,14 +3,16 @@
 #comments {
 
 }
+.comments {
+  margin: 0;
+  padding: 0;
+  background: #eee;
+}
 #comments > .inner {
   border: 1px solid #aaa;
   border-width: 0 1px;
 }
-.comments {
-  margin: 0;
-  padding: 0;
-}
+
 .comments > h2 {
   margin: 0;
   padding: .75em;
@@ -23,6 +25,9 @@
   /*overflow: hidden;*/
   /*position: relative;*/
   font-size: .875em;
+}
+.comments > section > div {
+  width: 72ch;
 }
 
 .comments > section:last-child {

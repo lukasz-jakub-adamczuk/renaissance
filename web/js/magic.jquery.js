@@ -140,6 +140,16 @@ if (typeof ga === 'function') {
 
 
 
+console.log('check body width');
+
+// var bodyWidth = $('body').scrollWidth;
+// $('#body-width').innerHTML = bodyWidth;
+var bodyWidth = $('body').width();
+$('#body-width').text(bodyWidth);
+
+
+
+
 // check function to run after load page and execute
 // var runAfterAction = conf.func;
 // console.log(conf.func + '...');
