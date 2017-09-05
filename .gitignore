@@ -7,6 +7,9 @@ web/assets/*
 !/web/assets/site
 web/css
 web/tmp
+web/galeria
+web/gfx
+web/i
 
 bin
 node_modules

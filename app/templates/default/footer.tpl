@@ -1,25 +1,31 @@
-        <footer id="footer" class="theme">
-            <div class="footer-items">
-                <div class="art-item front-item col-4-with-gap">
-                    <h3>Cosplay</h3>
-                    {foreach from=$aCosplays item=img}<a href="{$base}/{#gallery#}/cosplay/cosplay" class="footer-thumbnail">
-                    {image file=$img.name size=64x64 margin=0 y=top}
+        <footer id="footer" class="_theme">
+            <div class="inner footer-items">
+                <div class="footer-gallery-item">
+                    <header class="col-4">
+                        <h3>Cosplay</h3>
+                    </header>
+                    {foreach from=$aCosplays item=img}<a href="{$base}/{#gallery#}/cosplay/cosplay" class="_footer-thumbnail footer-item">
+                        {image file=$img.name sizes='74x74,48x48,74x74' margin=0 y=top}
                     </a>{/foreach}
-                </div><div class="art-item front-item col-4-with-gap">
-                    <h3>Tapety</h3>
-                    {foreach from=$aWallpapers item=img}<a href="{$base}/{#gallery#}/{$img.category_slug}/{$img.slug}" class="footer-thumbnail">
-                    {image file=$img.name size=64x64 margin=0 y=top}
+                </div><div class="footer-gallery-item">
+                    <header class="col-4">
+                        <h3>Tapety</h3>
+                    </header>
+                    {foreach from=$aWallpapers item=img}<a href="{$base}/{#gallery#}/{$img.category_slug}/{$img.slug}" class="_footer-thumbnail footer-item">
+                        {image file=$img.name sizes='74x74,48x48,74x74' margin=0 y=top}
                     </a>{/foreach}
-                </div><div class="art-item front-item col-4-with-gap">
-                    <h3>Fanarty</h3>
-                    {foreach from=$aFanarts item=img}<a href="{$base}/{#gallery#}/{$img.category_slug}/{$img.slug}" class="footer-thumbnail">
+                </div><div class="footer-gallery-item">
+                    <header class="col-4">
+                        <h3>Fanarty</h3>
+                    </header>
+                    {foreach from=$aFanarts item=img}<a href="{$base}/{#gallery#}/{$img.category_slug}/{$img.slug}" class="_footer-thumbnail footer-item">
                     {if $img.name neq ''}
-                    {image file=$img.name size=64x64 margin=0 y=top}
+                        {image file=$img.name sizes='74x74,48x48,74x74' margin=0 y=top}
                     {/if}
                     </a>{/foreach}
                 </div>
             </div>
-            <div class="footer-items">
+            <div class="inner footer-items">
                 <div class="list-item front-item col-4">
                     <h3>Treść</h3>
                     <ul>

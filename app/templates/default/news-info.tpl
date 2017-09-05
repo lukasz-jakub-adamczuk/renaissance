@@ -32,17 +32,21 @@
             {if isset($aImages)}
             <div class="gallery">
             {foreach from=$aImages item=img}<a href="{$base}{$img.name}" class="miniature">
-                {image file=$img.name size=256x144}
+                {image file=$img.name size=128x128}
             </a>{/foreach}
             </div>
             {/if}
         </section>
-        <section class="other-content clearfix">
+        <section class="pagination">
             {if isset($aRelatedNews.newer)}
-            <a href="{$base}/{#news#}/{$aRelatedNews.newer.date}/{$aRelatedNews.newer.slug}" class="newer-news">{$aRelatedNews.newer.title|stripslashes}</a>
+            <a href="{$base}/{#news#}/{$aRelatedNews.newer.date}/{$aRelatedNews.newer.slug}" class="newer-item">
+                {$aRelatedNews.newer.title|stripslashes}
+            </a>
             {/if}
             {if isset($aRelatedNews.older)}
-            <a href="{$base}/{#news#}/{$aRelatedNews.older.date}/{$aRelatedNews.older.slug}" class="older-news">{$aRelatedNews.older.title|stripslashes}</a>
+            <a href="{$base}/{#news#}/{$aRelatedNews.older.date}/{$aRelatedNews.older.slug}" class="older-item">
+                {$aRelatedNews.older.title|stripslashes}
+            </a>
             {/if}
         </section>
 </article>{/if}

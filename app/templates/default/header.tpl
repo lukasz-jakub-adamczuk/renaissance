@@ -33,7 +33,7 @@
                 <div class="ch-subscribe-btn-container"></div>
                 {if $usr::set()}
                 <div class="ch-login">
-                    <a class="ch-user-name" href="{$base}/{#user#}/{$usr::get('slug')}">{$usr::get('name')}</a>
+                    <a class="ch-user-name" href="{$base}/{#user#}/{$usr::getSlug()}">{$usr::getName()}</a>
                 </div>
                 {/if}
                 <div class="ch-menu-trigger" role="button" aria-controls="navigation" tabindex="0" aria-label="Meny">
@@ -193,9 +193,11 @@
                                 <ul>
                                     <li class="ch-user-details">
                                         {*<i class="ch-icon ch-icon-user-hollow"></i>*}
+                                        <a class="ch-login-info" aria-label="Profil użytkownika" href="{$base}/{#user#}/{$usr::getSlug()}">
                                         {image file=$usr::get('avatar') size=64x64}
-                                        <a class="ch-login-info" aria-label="Profil użytkownika" href="{$base}/{#user#}/{$usr::get('slug')}">{$usr::get('name')}</a>
-                                        <a class="ch-btn-logout" href="{$base}/logout">Wyloguj</a>
+                                        </a>
+                                        <!-- <a class="ch-login-info" aria-label="Profil użytkownika" href="{$base}/{#user#}/{$usr::getSlug()}">{$usr::getName()}</a> -->
+                                        <a class="ch-btn-logout" href="{$base}/wyloguj">Wyloguj</a>
                                     </li>
                                 </ul>
                             </li>

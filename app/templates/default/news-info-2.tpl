@@ -12,11 +12,11 @@
             <article class="inside">
                 <div class="content-meta">
                     <a href="{$base}/{#user#}/{$aNews.author_slug}">{$aNews.author_name}</a> - <time>{$aNews.creation_date|date_format:"%d %B %Y, %H:%M"|localize_date}</time>
-                    {include file='partials/comments-counter.tpl'}
+                    {include file='common/comments-counter.tpl'}
                 </div>
                 <section class="center text">
                     <div class="social-media">
-                        {include file='partials/fb-like.tpl'}
+                        {include file='common/fb-like.tpl'}
                     </div>
                     {if isset($aFirstImage)}
                     <div class="figure-wrapper width-medium" data-id="{$aNews.id_news}">
@@ -49,4 +49,4 @@
                     {/if}
                 </section>
         </article>{/if}
-        {include file='partials/comments.tpl' commentPrimaryKey='id_news_comment'}
+        {include file='common/comments.tpl' commentPrimaryKey='id_news_comment'}

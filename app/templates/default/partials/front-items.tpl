@@ -3,10 +3,10 @@
         <a href="{$base}/{$object.url}" class="front-item-content">
             {if $object@first}
             <!-- size=640x320 -->
-            {image file=$object.fragment size=624x312}
+            {image file=$object.fragment sizes='344x172,496x248,704x396'}
             {else}
             <!-- size=320x180 -->
-            {image file=$object.fragment size=304x171}
+            {image file=$object.fragment sizes='164x92,240x135,344x172'}
             {/if}
             <header>
                 <h3 class="front-item-title">
@@ -17,7 +17,7 @@
         </a>
         <footer>
             <time datetime="{$object.creation_date|date_format:$datetimeFormat}" class="meta-time">{$object.creation_date|humanize_date}</time>
-            <a href="{$base}/{$object.url}#comments" class="meta-comments">{$object.comments|pluralize:'komentarz':'komentarze':'komentarzy'}</a>
+            <a href="{$base}/{$object.url}#komentarze" class="meta-comments">{$object.comments|pluralize:'komentarz':'komentarze':'komentarzy'}</a>
         </footer>
     </article>{/foreach}
 </div>

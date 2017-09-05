@@ -9,6 +9,9 @@
             <div>
                 <span><b>time-stats:</b> {$debugPanel.vars['time-stats'].0}</span>
             </div>
+            <div>
+                <span><b>Body width:</b> <span id="body-width">???</span></span>
+            </div>
         </div>
         <style>
             #toggle-debug-flow + label + .debug {

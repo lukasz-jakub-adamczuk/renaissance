@@ -12,7 +12,7 @@
                 <img src="{$base}/assets/cup/{$cupBattle.cup_slug}/{$cupBattle.player1}.jpg" width="" height="" alt="{$cupBattle.player1_slug}" class="large-visible">
                 <img src="{$base}/assets/cup/{$cupBattle.cup_slug}/{$cupBattle.player1}m.jpg" width="" height="" alt="{$cupBattle.player1_slug}" class="small-visible">
             </a>
-            {if isset($user)}
+            {if $usr::set()}
             {if $canVote}
             <button type="submit" name="match[vote]" value="{$cupBattle.player1}" class="button mtb" data-player="1">Głosuj</button>
             {/if}
@@ -26,14 +26,14 @@
                 <img src="{$base}/assets/cup/{$cupBattle.cup_slug}/{$cupBattle.player2}.jpg" width="" height="" alt="{$cupBattle.player2_slug}" class="large-visible">
                 <img src="{$base}/assets/cup/{$cupBattle.cup_slug}/{$cupBattle.player2}m.jpg" width="" height="" alt="{$cupBattle.player2_slug}" class="small-visible">
             </a>
-            {if isset($user)}
+            {if $usr::set()}
             {if $canVote}
             <button type="submit" name="match[vote]" value="{$cupBattle.player2}" class="button mtb" data-player="2">Głosuj</button>
             {/if}
             {/if}
         </span>
     </form>
-    {if isset($user)}
+    {if $usr::set()}
         {if $canVote eq false}
         <p>
             <span class="info" style="padding: .5em;">Głos został już oddany!</span>

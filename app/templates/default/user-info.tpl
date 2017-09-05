@@ -16,7 +16,7 @@
                         <li>Grupa: <span>{$siteUser.group_name|default:"brak danych"}</span></li>
                         <li>Data rejestracji: <span>{$siteUser.register_date|default:"brak danych"}</span></li>
                         <li>Ostatnia wizyta: <span>{$siteUser.last_visit|default:"brak danych"}</span></li>
-                        <li>Adres email: {if isset($user)}<span>{$siteUser.email|default:"brak danych"}</span>{else}<span>Tylko dla zalogowanych</span>{/if}</li>
+                        <li>Adres email: {if $usr::set()}<span>{$siteUser.email|default:"brak danych"}</span>{else}<span>Tylko dla zalogowanych</span>{/if}</li>
                     </ul>
                 </div><div class="column">
                     <h3>Treść</h3>

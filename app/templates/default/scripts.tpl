@@ -6,10 +6,10 @@ var conf = {ldelim}
     act: '{$act}',
     func: 'run{$ctrl|replace:"-":" "|capitalize|replace:" ":""}{$act|replace:"-":" "|capitalize|replace:" ":""}'
 {rdelim};
-{if isset($user)}conf.user = {ldelim}
-    id: '{$user.id|default:0}',
-    name: '{$user.name}',
-    slug: '{$user.slug}'
+{if $usr::set()}conf.user = {ldelim}
+    id: '{$usr::getId()|default:0}',
+    name: '{$usr::getName()}',
+    slug: '{$usr::getSlug()}'
 {rdelim};{/if}
 </script>
 {if $smarty.const.APP_ENV eq 'prod'}
@@ -24,9 +24,7 @@ var conf = {ldelim}
     </script>{/literal}
     <script type="text/javascript" src="{$base}/js/all.min.js?v={$smarty.const.VERSION}" async></script>
 {else}
-    {if isset($aResources.js)}
-        {foreach from=$aResources.js item=script}
-            <script type="text/javascript" src="{$base}/{$script}"></script>
-        {/foreach}
-    {/if}
+    <script type="text/javascript" src="{$base}/js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="{$base}/js/imagelightbox/imagelightbox.js"></script>
+    <script type="text/javascript" src="{$base}/js/magic.jquery.js"></script>    
 {/if}

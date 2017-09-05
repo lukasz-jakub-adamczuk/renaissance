@@ -5,7 +5,7 @@
             <!-- <input type="button" class="worker-8" value="Run Worker8"> -->
             <!-- <input type="button" class="get-shouts" value="get Shoits"> -->
             <div class="inner shoutbox">
-                {if isset($user)}
+                {if $usr::set()}
                 <form id="shout-post" method="post" action="{$base}/shoutbox/insert">
                     <textarea id="shout-input" name="shout" rows="3" cols="20" class="shout-input" placeholder="Napisz coś..."></textarea>
                     <div class="buttons">
