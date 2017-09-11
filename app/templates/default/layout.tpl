@@ -1,6 +1,6 @@
 {config_load file='variables.conf' section='controllers'}
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 {include file='head.tpl'}
 <body>
     {if $smarty.const.DEBUG_MODE}{include file='debug.tpl'}{/if}

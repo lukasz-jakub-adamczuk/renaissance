@@ -15,17 +15,18 @@ class HomeIndexView extends View {
             $entries = unserialize(file_get_contents($sStreamFile));
         } else {
             // echo 'from db';
+            $frontItems = 7;
             // news
             $oNewsCollection = Dao::collection('news');
-            $entries['news'] = $oNewsCollection->getNewsForStream(5);
+            $entries['news'] = $oNewsCollection->getNewsForStream($frontItems);
 
             // articles
             $oArticleCollection = Dao::collection('article');
-            $entries['article'] = $oArticleCollection->getArticlesForStream(5);
+            $entries['article'] = $oArticleCollection->getArticlesForStream($frontItems);
 
             // stories
             $oStoryCollection = Dao::collection('story');
-            $entries['story'] = $oStoryCollection->getStoriesForStream(5);
+            $entries['story'] = $oStoryCollection->getStoriesForStream($frontItems);
 
             $oNewsImageEntity = Dao::entity('news-image');
 

@@ -1,4 +1,4 @@
-<img src="" id="imagelightbox" />
+<img id="imagelightbox" src="" alt="placeholder" />
 
 <script>
 var conf = {ldelim}
@@ -26,5 +26,7 @@ var conf = {ldelim}
 {else}
     <script type="text/javascript" src="{$base}/js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="{$base}/js/imagelightbox/imagelightbox.js"></script>
-    <script type="text/javascript" src="{$base}/js/magic.jquery.js"></script>    
+    <!-- <script type="text/javascript" src="{$base}/js/magic.jquery.js"></script> -->
+    <script type="text/javascript" src="{$base}/js/lazyload/lazyload.js"></script>
+    <script type="text/javascript" src="{$base}/js/main.js"></script>
 {/if}

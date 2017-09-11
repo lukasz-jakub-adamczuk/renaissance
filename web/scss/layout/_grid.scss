@@ -1,29 +1,4 @@
 
-@mixin col-mobile-width($col) {
-  width: ($grid-mobile-base-width / $grid-columns * $col) - $grid-column-gap;
-}
-@mixin col-tablet-width($col) {
-  width: ($grid-tablet-base-width / $grid-columns * $col) - $grid-column-gap;
-}
-@mixin col-desktop-width($col) {
-  width: ($grid-desktop-base-width / $grid-columns * $col) - $grid-column-gap;
-}
-
-
-@mixin col-mobile-width-with-gap($col) {
-  width: ($grid-mobile-base-width / $grid-columns * $col);
-}
-@mixin col-tablet-width-with-gap($col) {
-  width: ($grid-tablet-base-width / $grid-columns * $col);
-}
-@mixin col-desktop-width-with-gap($col) {
-  width: ($grid-desktop-base-width / $grid-columns * $col);
-}
-
-
-@mixin gallery-width($col) {
-  width: (($gallery-item-width + ($gallery-item-border-width*2) + ($gallery-item-margin-width*2)) * $col);
-}
 
 [class*="col-"] {
   margin: 0 ($grid-column-gap/2);

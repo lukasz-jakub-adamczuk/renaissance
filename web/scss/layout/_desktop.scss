@@ -1,16 +1,64 @@
 
+
+body {
+  border-top: 4px solid #17f;
+}
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 111111;
+  height: 4px; 
+  background: blue;
+}
+
+.copyright-item {
+  @include col-desktop-width(4);
+}
+
 @media (min-width: $min-desktop) {
+  body::before {
+    width: 33%;
+  }
+
   body {
     font-size: 100%;
+  }
+
+  .main-items {
+    width: $max-tablet;
+    margin: 0 auto;
   }
 
   p {
     width: auto;
   }
+
+  .normal-size {
+    @include col-tablet-max-width(8);
+    background: #f00;
+    margin: 0 16px 32px;
+  }
+  .small-size {
+    @include col-tablet-max-width(4);
+    background: #0f0;
+    margin: 0 16px 32px;
+  }
+
+
+
 }
 
 @media (min-width: $desktop) {
+  body::before {
+    width: 66%;
+  }
   
+  .main-items {
+    width: $desktop;
+    margin: 0 auto;
+  }
 
   @for $i from 1 through $grid-columns {
     .col-#{$i} {
@@ -29,11 +77,15 @@
 
   .normal-size {
     @include col-desktop-width(8);
-    // background: #f00;
+    background: #fcc;
+
+    margin: 0 16px 32px;
   }
   .small-size {
     @include col-desktop-width(4);
-    // background: #0f0;
+    background: #cfc;
+
+    margin: 0 16px 32px;
   }
 
   .footer-gallery-item {
@@ -53,10 +105,10 @@
     @include col-desktop-width(1);
   }
 
+}
 
-  body {
-    border-top: 4px solid #88f;
+@media (min-width: $max-desktop) {
+  body::before {
+    width: 100%;
   }
-
-
 }

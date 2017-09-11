@@ -9,6 +9,8 @@
     <meta name="Revisit-After" content="1 days">
     <meta name="author" content="Ash">
 
+    <meta name="theme-color" content="#aa0000"/>
+
     {if $ctrl eq 'news' and $act eq 'info'}
     <meta property="og:url" content="{$base}{$self}" />
         {if isset($aFirstImage)}
@@ -30,7 +32,8 @@
     <meta property="og:description" content="Serwis dla fanów Square Enix, Final Fantasy i ciekawych opinii o grach." />
     {/if}
 
-    <link rel="shortcut icon" type="image/x-icon" href="{$base}/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="{$base}/favicon-512x512.png" />
+    <link rel="manifest" href="{$base}/manifest.json">
 
     {if $smarty.const.APP_ENV eq 'prod'}
         <link rel="stylesheet" href="{$base}/css/main.min.css?v={$smarty.const.VERSION}">

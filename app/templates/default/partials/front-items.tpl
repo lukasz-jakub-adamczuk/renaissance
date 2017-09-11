@@ -2,11 +2,11 @@
     {foreach from=$items item=object}<article class="{if $object@first}normal-size full-image-item{else}small-size{/if} front-item large-item" data-id="{$object[$object.key]}">
         <a href="{$base}/{$object.url}" class="front-item-content">
             {if $object@first}
-            <!-- size=640x320 -->
-            {image file=$object.fragment sizes='344x172,496x248,704x396'}
+                <!-- size=640x320 -->
+                {image file=$object.fragment sizes='344x172,496x248,704x396'}
             {else}
-            <!-- size=320x180 -->
-            {image file=$object.fragment sizes='164x92,240x135,344x172'}
+                <!-- size=320x180 -->
+                {image file=$object.fragment sizes='164x92,240x135,344x172'}
             {/if}
             <header>
                 <h3 class="front-item-title">

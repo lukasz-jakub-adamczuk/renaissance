@@ -1,14 +1,73 @@
 
+body {
+  border-top: 4px solid #f88;
+}
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 111111;
+  height: 4px; 
+  background: red;
+}
 
-@media (min-width: 320px) {
-  body {
-    border-top: 4px solid red;
+
+.icon-html,
+.icon-github,
+.icon-css {
+  line-height: 0;
+  .icon-html > svg,
+  .icon-github > svg,
+  .icon-css > svg{
+    width: 16px;
+    height: 16px;
+    opacity: .5;
+  }
+}
+
+
+
+.copyright-item {
+  @include col-mobile-width(12);
+  display: inline-block;
+  text-align: center;
+}
+
+@media (min-width: $min-mobile) {
+  body::before {
+    width: 33%;
+  }
+
+  .main-items {
+    width: $min-mobile;
+    margin: 0 auto;
+  }
+
+  .front-item img {
+    max-width: 100%;
+  }
+
+  .footer-item {
+    width: 74px;
+    margin: 0 3px;
+    display: inline-block;
   }
 }
 
 @media (min-width: $mobile) {
-  body {
-    // font-size: 75%;
+  body::before {
+    width: 66%;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+
+  .main-items {
+    width: $mobile;
+    margin: 0 auto;
   }
 
 
@@ -65,6 +124,14 @@
   body {
     border-top: 4px solid #f88;
   }
+}
 
 
+@media (min-width: $max-mobile) {
+  body::before {
+    width: 100%;
+  }
+  body {
+    // border-top: 4px solid red;
+  }
 }

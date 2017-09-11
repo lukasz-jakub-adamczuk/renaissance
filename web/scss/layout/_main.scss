@@ -29,7 +29,7 @@ a {
 
 /* layout */
 main {
-  background-color: #fafafa;
+  // background-color: #fafafa;
 }
 .inner {
   // max-width: 960px;
@@ -60,10 +60,14 @@ main {
 
 .inner > h2,
 .inner > h3 {
-  padding: 0 .5rem;
+  // padding: 0 .5rem;
 }
 
 
+.inner > h2 {
+  font-size: 2rem;
+  padding: 2rem .5rem 0;
+}
 
 
 
@@ -366,20 +370,6 @@ section:hover .visible-on-hover {
   background-attachment: inherit;
 }
 
-.cover-header {
-  padding-top: calc(320px * 1.5);
-}
-.cover-header > h2,
-.cover-header > h3 {
-  background: #fff;
-  padding: 2rem;
-  margin: 0;
-}
-.cover-header > h3 {
-  font-size: 1em;
-  color: #222;
-  padding: 0 2rem 2rem;
-}
 
 .wrapper {
   background: #fff;

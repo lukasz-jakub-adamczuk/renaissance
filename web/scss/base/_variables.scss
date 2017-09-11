@@ -1,46 +1,45 @@
 
-$container-width:            1080px;
+$container-width:                  1080px;
 
-$grid-columns:                12;
-$grid-column-gap:             16px;
-// $grid-column-width:           ($grid-base-width / $grid-columns);
+$grid-columns:                     12;
+$grid-column-gap:                  16px;
 
-$grid-mobile-min-width:             320px;
-$grid-mobile-base-width:             360px;
-$grid-mobile-max-width:             480px;
+$grid-mobile-min-width:            320px;
+$grid-mobile-base-width:           360px;
+$grid-mobile-max-width:            480px;
 
-$grid-tablet-min-width:             640px;
-$grid-tablet-base-width:             768px;
-$grid-tablet-max-width:             960px;
+$grid-tablet-min-width:            640px;
+$grid-tablet-base-width:           768px;
+$grid-tablet-max-width:            960px;
 
-$grid-desktop-min-width:            1024px;
-$grid-desktop-base-width:            1080px;
-$grid-desktop-max-width:            1440px;
+$grid-desktop-min-width:           1024px;
+$grid-desktop-base-width:          1080px;
+$grid-desktop-max-width:           1440px;
 
-$grid-fullhd-width:            1920px;
+$grid-fullhd-width:                1920px;
 
 // helper variables
-$min-mobile:              $grid-mobile-min-width;
-$mobile:              $grid-mobile-base-width;
-$max-mobile:              $grid-mobile-max-width;
+$min-mobile:                       $grid-mobile-min-width;
+$mobile:                           $grid-mobile-base-width;
+$max-mobile:                       $grid-mobile-max-width;
 
-$min-tablet:              $grid-tablet-min-width;
-$tablet:              $grid-tablet-base-width;
-$max-tablet:              $grid-tablet-max-width;
+$min-tablet:                       $grid-tablet-min-width;
+$tablet:                           $grid-tablet-base-width;
+$max-tablet:                       $grid-tablet-max-width;
 
-$min-desktop:             $grid-desktop-min-width;
-$desktop:             $grid-desktop-base-width;
-$max-desktop:             $grid-desktop-max-width;
+$min-desktop:                      $grid-desktop-min-width;
+$desktop:                          $grid-desktop-base-width;
+$max-desktop:                      $grid-desktop-max-width;
+
+                                   
+$gallery-item-width:               128px;
+$gallery-item-border-width:        8px;
+$gallery-item-margin-width:        8px;
 
 
-$gallery-item-width:             128px;
-$gallery-item-border-width:      8px;
-$gallery-item-margin-width:      8px;
-
-
-$news-primary-color:        #17b;
-$article-primary-color:     #080;
-$story-primary-color:       orange;
+$news-primary-color:             #17b;
+$article-primary-color:          #080;
+$story-primary-color:            orange;
 
 
 
