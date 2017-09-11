@@ -1,0 +1,99 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "lazyload",
+        "scope": null,
+        "escapedName": "lazyload",
+        "name": "lazyload",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/ash/Sites/renaissance"
+    ]
+  ],
+  "_from": "lazyload@latest",
+  "_id": "lazyload@2.0.0-beta.1",
+  "_inCache": true,
+  "_location": "/lazyload",
+  "_nodeVersion": "8.4.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/lazyload-2.0.0-beta.1.tgz_1503916266545_0.8122221191879362"
+  },
+  "_npmUser": {
+    "name": "tuupola",
+    "email": "tuupola@appelsiini.net"
+  },
+  "_npmVersion": "5.3.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "lazyload",
+    "scope": null,
+    "escapedName": "lazyload",
+    "name": "lazyload",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/lazyload/-/lazyload-2.0.0-beta.1.tgz",
+  "_shasum": "9a0f1f2848cdd56636b056ca41b40d2ec61dfb3f",
+  "_shrinkwrap": null,
+  "_spec": "lazyload",
+  "_where": "/home/ash/Sites/renaissance",
+  "author": {
+    "name": "Mika Tuupola",
+    "email": "tuupola@appelsiini.net"
+  },
+  "bugs": {
+    "url": "https://github.com/tuupola/jquery_lazyload/issues"
+  },
+  "dependencies": {},
+  "description": "Vanilla JavaScript plugin for lazyloading images",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^7.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^3.0.1"
+  },
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-hcJm8v0oeONVBtTKwq5btHQeyMmnO58M/fNUouy+C+D4FvwDlo3KEVwglrGwYp/DDVoaKg/kYXustbdPQ4zesg==",
+    "shasum": "9a0f1f2848cdd56636b056ca41b40d2ec61dfb3f",
+    "tarball": "https://registry.npmjs.org/lazyload/-/lazyload-2.0.0-beta.1.tgz"
+  },
+  "files": [
+    "lazyload.js"
+  ],
+  "gitHead": "07d121f8dfa7c83c8a2bb0767f5c77eaf60be54e",
+  "homepage": "https://github.com/tuupola/jquery_lazyload#readme",
+  "keywords": [
+    "lazyload"
+  ],
+  "license": "MIT",
+  "main": "lazyload.js",
+  "maintainers": [
+    {
+      "name": "digitalkaoz",
+      "email": "seroscho@gmail.com"
+    },
+    {
+      "name": "tuupola",
+      "email": "tuupola@appelsiini.net"
+    }
+  ],
+  "name": "lazyload",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuupola/jquery_lazyload.git"
+  },
+  "version": "2.0.0-beta.1"
+}
