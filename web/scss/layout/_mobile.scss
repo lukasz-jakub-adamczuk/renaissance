@@ -70,17 +70,6 @@ body::before {
     margin: 0 auto;
   }
 
-
-  @for $i from 1 through $grid-columns {
-    .col-#{$i} {
-      width: ($mobile / $grid-columns * $i) - $grid-column-gap;
-    }
-    .col-#{$i}-with-gap {
-      width: ($mobile / $grid-columns * $i);
-    }
-  }
-
-
   // height
   .large-item {
     height: 14rem;
@@ -89,13 +78,13 @@ body::before {
   }
 
   .normal-size {
-    margin: 0 ($grid-column-gap/2) $grid-column-gap;
+    margin: 0 ($grid-mobile-column-gap/2) $grid-mobile-column-gap;
     box-sizing: border-box;
     
     @include col-mobile-width(12);
   }
   .small-size {
-    margin: 0 ($grid-column-gap/2) $grid-column-gap;
+    margin: 0 ($grid-mobile-column-gap/2) $grid-mobile-column-gap;
     box-sizing: border-box;
     height: 15rem;
     
@@ -106,7 +95,7 @@ body::before {
     @include col-mobile-width-with-gap(12);
   }
   .footer-item {
-    margin: 0 ($grid-column-gap/2) $grid-column-gap;
+    margin: 0 ($grid-mobile-column-gap/2) $grid-mobile-column-gap;
     box-sizing: border-box;
     display: inline-block;
     line-height: 0;

@@ -2,8 +2,13 @@
 $container-width:                  1080px;
 
 $grid-columns:                     12;
-$grid-column-gap:                  16px;
 
+// gaps
+$grid-mobile-column-gap:           16px;
+$grid-tablet-column-gap:           16px;
+$grid-desktop-column-gap:          16px;
+
+// widths
 $grid-mobile-min-width:            320px;
 $grid-mobile-base-width:           360px;
 $grid-mobile-max-width:            480px;
@@ -39,7 +44,7 @@ $gallery-item-margin-width:        8px;
 
 $news-primary-color:             #17b;
 $article-primary-color:          #080;
-$story-primary-color:            orange;
+$story-primary-color:            crimson;
 
 
 

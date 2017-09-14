@@ -22,11 +22,12 @@ var conf = {ldelim}
         ga('create', 'UA-16220396-1', 'auto');
         ga('send', 'pageview');
     </script>{/literal}
+{/if}
+{if $smarty.const.APP_ENV eq 'prod'}
     <script type="text/javascript" src="{$base}/js/all.min.js?v={$smarty.const.VERSION}" async></script>
 {else}
     <script type="text/javascript" src="{$base}/js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="{$base}/js/imagelightbox/imagelightbox.js"></script>
-    <!-- <script type="text/javascript" src="{$base}/js/magic.jquery.js"></script> -->
     <script type="text/javascript" src="{$base}/js/lazyload/lazyload.js"></script>
     <script type="text/javascript" src="{$base}/js/main.js"></script>
 {/if}

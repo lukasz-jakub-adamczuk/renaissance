@@ -32,7 +32,6 @@ for (var i = 0, j = imgNodes.length; i<j; ++i) {
 	if (src) {
 		fetchImageAsync(imgNodes[i], imgNodes[i].getAttribute('data-src'));
 	}
-}
-*/
+}*/
 
 lazyload();

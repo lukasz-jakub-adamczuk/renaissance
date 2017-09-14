@@ -1,9 +1,30 @@
 [class^="icon"] {
-    background-size: 100%;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
+  background-size: 100%;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
 }
 
 @import 'icons-google';
 @import 'icons-icomoon';
+
+// footer icons
+.icon-html,
+.icon-github,
+.icon-css {
+  width: 32px;
+  height: 32px;
+  line-height: 0;
+  opacity: .5;
+  &:hover {
+    opacity: 1;
+  }
+  // .icon-html > svg,
+  // .icon-github > svg,
+  // .icon-css > svg{
+  //   width: 16px;
+  //   height: 16px;
+    
+  // }
+}
+

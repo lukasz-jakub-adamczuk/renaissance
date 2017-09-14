@@ -88,16 +88,16 @@
                         self.observer.unobserve(entry.target);
                         let src = entry.target.getAttribute(self.settings.src);
                         let srcset = entry.target.getAttribute(self.settings.srcset);
-                        if ("img" === entry.target.tagName.toLowerCase()) {
+                        // if ("img" === entry.target.tagName.toLowerCase()) {
                             if (src) {
                                 entry.target.src = src;
                             }
                             if (srcset) {
                                 entry.target.srcset = srcset;
                             }
-                        } else {
-                            entry.target.style.backgroundImage = "url(" + src + ")";
-                        }
+                        // } else {
+                            // entry.target.style.backgroundImage = "url(" + src + ")";
+                        // }
                     }
                 });
             }, observerConfig);

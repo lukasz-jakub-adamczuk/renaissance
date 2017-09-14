@@ -1,7 +1,7 @@
 <head>
     <title>{$title|default:'Squarezone'}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Content-Language" content="pl">
+    {*<meta http-equiv="Content-Language" content="pl">*}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="Description" content="{$sDescription|default:'Serwis dla fanów Square Enix, Final Fantasy i ciekawych opinii o grach.'}">
     <meta name="Keywords" content="{$sKeywords|default:'final fantasy, vagrant story, final, fantasy, chrono cross, kingdom hearts, suikoden'}">
@@ -9,7 +9,7 @@
     <meta name="Revisit-After" content="1 days">
     <meta name="author" content="Ash">
 
-    <meta name="theme-color" content="#aa0000"/>
+    <meta name="theme-color" content="#ffffff"/>
 
     {if $ctrl eq 'news' and $act eq 'info'}
     <meta property="og:url" content="{$base}{$self}" />
@@ -36,9 +36,16 @@
     <link rel="manifest" href="{$base}/manifest.json">
 
     {if $smarty.const.APP_ENV eq 'prod'}
-        <link rel="stylesheet" href="{$base}/css/main.min.css?v={$smarty.const.VERSION}">
+        {*<link rel="stylesheet" href="{$base}/css/main.min.css?v={$smarty.const.VERSION}">*}
+        <link rel="stylesheet" href="{$base}/css/core-header.min.css?v={$smarty.const.VERSION}">
+        <link rel="stylesheet" href="{$base}/css/360.min.css?v={$smarty.const.VERSION}" media="min-width: 360px">
+        <link rel="stylesheet" href="{$base}/css/768.min.css?v={$smarty.const.VERSION}" media="min-width: 768px">
+        <link rel="stylesheet" href="{$base}/css/1080.min.css?v={$smarty.const.VERSION}" media="min-width: 1080px">
     {else}
-        <link rel="stylesheet" href="{$base}/css/main.css">
+        <link rel="stylesheet" href="{$base}/css/core-header.css">
+        <link rel="stylesheet" href="{$base}/css/min-width-360px.css" media="(min-width: 360px) and (max-width: 767px)">
+        <link rel="stylesheet" href="{$base}/css/min-width-768px.css" media="(min-width: 768px) and (max-width: 1079px)">
+        <link rel="stylesheet" href="{$base}/css/min-width-1080px.css" media="(min-width: 1080px)">
     {/if}
 
     <base href="{$base}/">

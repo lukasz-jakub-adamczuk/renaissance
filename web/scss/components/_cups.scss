@@ -18,6 +18,20 @@
 .cup {
 
 }
+
+
+.player-item {
+  background: #eee;
+  border-top: 4px solid #444;
+  img {
+    float: left;
+  }
+  h3 {
+    float: left;
+    margin-left: .5rem;
+  }
+}
+
 .cup-item {
   display: block;
   margin: 1em auto;
@@ -262,3 +276,15 @@
 }
 
 
+
+.player-item {
+  background: #eee;
+  border-top: 4px solid #444;
+  img {
+    float: left;
+  }
+  h3 {
+    float: left;
+    margin-left: .5rem;
+  }
+}

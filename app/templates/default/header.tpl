@@ -36,7 +36,7 @@
                     <a class="ch-user-name" href="{$base}/{#user#}/{$usr::getSlug()}">{$usr::getName()}</a>
                 </div>
                 {/if}
-                <div class="ch-menu-trigger" role="button" aria-controls="navigation" tabindex="0" aria-label="Meny">
+                <div class="ch-menu-trigger" role="button" {*aria-controls="navigation"*} tabindex="0" aria-label="Menu">
                     <span class="ch-menu-label ch-menu-label-open">Menu</span>
                     <span class="ch-menu-label ch-menu-label-close">Zamknij</span>
 

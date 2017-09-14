@@ -15,7 +15,7 @@ class HomeIndexView extends View {
             $entries = unserialize(file_get_contents($sStreamFile));
         } else {
             // echo 'from db';
-            $frontItems = 7;
+            $frontItems = 5;
             // news
             $oNewsCollection = Dao::collection('news');
             $entries['news'] = $oNewsCollection->getNewsForStream($frontItems);

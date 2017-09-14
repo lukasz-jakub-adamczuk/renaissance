@@ -64,7 +64,7 @@ gulp.task('new-minify-css', function() {
 });
 
 gulp.task('concat-js', function() {
-    return gulp.src(['./web/js/jquery-2.1.0.min.js', './web/js/imagelightbox/imagelightbox.js', './web/js/magic.jquery.js'])
+    return gulp.src(['./web/js/jquery-2.1.0.min.js', './web/js/imagelightbox/imagelightbox.min.js', './web/js/lazyload/lazyload.js', './web/js/main.js'])
         .pipe(concat('all.js'))
         .pipe(gulp.dest('./web/js'));
 });

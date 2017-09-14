@@ -63,7 +63,7 @@ class FrontController extends CrudController {
         // }
         
         $sWallpapersFile = CACHE_DIR . '/wallpapers';
-        if (file_exists($sWallpapersFile)) {
+        if (!file_exists($sWallpapersFile)) {
             $aWallpapers = unserialize(file_get_contents($sWallpapersFile));
         } else {
             // echo 'wallpapers from db';
@@ -78,7 +78,7 @@ class FrontController extends CrudController {
 
         // fanarts
         $sFanartsFile = CACHE_DIR . '/fanarts';
-        if (file_exists($sFanartsFile)) {
+        if (!file_exists($sFanartsFile)) {
             // echo 'fanarts from cache';
             $aFanarts = unserialize(file_get_contents($sFanartsFile));
         } else {

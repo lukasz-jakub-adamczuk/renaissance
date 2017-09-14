@@ -1,13 +1,16 @@
 
 
 [class*="col-"] {
-  margin: 0 ($grid-column-gap/2);
+  margin: 0 ($grid-mobile-column-gap/2);
   box-sizing: border-box;
 }
 [class*="-with-gap"] {
   margin: 0;
 }
 
+.padding {
+  padding: $grid-tablet-column-gap / 2;
+}
 
 .miniature {
   line-height: 0;
@@ -20,12 +23,9 @@ picture {
 
 
 
-
 main > section,
 footer > .footer-items,
 .copyright-items {
-  // width: 960px;
-  // height: 2800px;
   background-image: 
     repeating-linear-gradient(
       90deg,
