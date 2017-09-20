@@ -1,0 +1,21 @@
+body {
+  font-size: 100%;
+}
+
+.main-items {
+  width: $max-tablet;
+  margin: 0 auto;
+}
+
+p {
+  width: auto;
+}
+
+.normal-size {
+  @include col-tablet-max-width(8);
+  margin: 0 ($grid-desktop-column-gap/2) $grid-desktop-column-gap;
+}
+.small-size {
+  @include col-tablet-max-width(4);
+  margin: 0 ($grid-desktop-column-gap/2) $grid-desktop-column-gap;
+}

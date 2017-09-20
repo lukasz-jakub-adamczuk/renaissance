@@ -1,0 +1,41 @@
+
+.main-items {
+  width: $desktop;
+}
+
+
+.front-item {
+  height: (($desktop / $grid-columns * 8) - $grid-desktop-column-gap) / 2;
+}
+
+
+.recent-item {
+  @include col-desktop-width(8);
+}
+.regular-item {
+  @include col-desktop-width(4);
+}
+
+
+.footer-items,
+.copyright-items {
+  width: $desktop;
+}
+
+
+
+.footer-galleries {
+  @include col-desktop-width-with-gap(4);
+}
+.footer-gallery {
+  @include col-desktop-width(1);
+}
+
+.footer-links {
+  @include col-desktop-width(4);
+}
+
+.copyright-details {
+  @include col-desktop-width(4);
+}
+

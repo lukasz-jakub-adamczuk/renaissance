@@ -1,0 +1,19 @@
+
+
+.large-item {
+  height: 18rem;
+  height: 15.5rem;
+}
+
+.normal-size {
+  margin: 0 ($grid-tablet-column-gap/2) $grid-tablet-column-gap;
+  box-sizing: border-box;
+
+  @include col-tablet-max-width(8);
+}
+.small-size {
+  margin: 0 ($grid-tablet-column-gap/2) $grid-tablet-column-gap;
+  box-sizing: border-box;
+
+  @include col-tablet-max-width(4);
+}

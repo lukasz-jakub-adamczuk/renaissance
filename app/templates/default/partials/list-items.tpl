@@ -1,8 +1,8 @@
-{foreach from=$list item=art}<article class="front-item col-4">
+{foreach from=$list item=art}<article class="front-item regular-item">
     {if isset($entity)}
-    <a href="{$base}/{$entity}/{$art.$url}" class="front-item-content m-item">
+    <a href="{$base}/{$entity}/{$art.$url}" class="front-item-content">
     {else}
-    <a href="{$base}{$smarty.server.REQUEST_URI}/{$art.$url}" class="front-item-content m-item">
+    <a href="{$base}{$smarty.server.REQUEST_URI}/{$art.$url}" class="front-item-content">
     {/if}
         {*if isset($art.fragment)}
         {image file=$art.fragment size=320x180}

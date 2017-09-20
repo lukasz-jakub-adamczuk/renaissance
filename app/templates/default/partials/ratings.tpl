@@ -1,6 +1,6 @@
-{if isset($ratings) and count($ratings) gt 0}<div id="ratings" class="theme-light">
-    <div class="inner theme">
-        <h2 class="padding">Oceny redaktorów</h2>
+{if isset($ratings) and count($ratings) gt 0}<div id="ratings" class="article-ratings-wrapper">
+    <div class="article-ratings">
+        <h2>Oceny redaktorów</h2>
         {foreach from=$ratings item=r}
         <div class="verdict">
             <h3>{$r.author_name|default:'Gość'}</h3>

@@ -5,7 +5,7 @@
             <a href="{$base}/{#user#}/{$article.author_slug}">{$article.author_name}</a> - <time>{$article.creation_date|date_format:"%d %B %Y, %H:%M"|localize_date}</time>
             {include file='partials/comments-counter.tpl'}
         </div>
-        <section class="center {$article.template}">
+        <section class="article-content {$article.template}">
             <div class="social-media">
                 {*include file='partials/fb-like.tpl'*}
             </div>
@@ -15,13 +15,13 @@
             {include file='partials/game-info.tpl'}
             {include file='partials/music-info.tpl'}
             
-            {$article.markup|stripslashes|gb_replace|replace:"image/":"../../i/"|picture|mediabox|humanize}
+            {$article.markup|stripslashes|gb_replace|replace:"image/":"../../i/"|picture|figure|mediabox|humanize}
         </section>
         <section>    
             {include file='partials/screens.tpl'}
         </section>
         {if $article.template eq 'intro'}
-        <section class="inner main-items">
+        <section class="main-items">
             {if $articles}
             <h2>Artykuły</h2>
             {include file='partials/list-items.tpl' list=$articles col=title url=url entity=#article# footer='human-date'}
@@ -34,11 +34,9 @@
             <p>Niech SquareZone będzie najlepsze! Popraw tekst i wyślij do weryfikacji.</p>
             <button id="edit-text-tgr" class="button">Edytuj ten tekst</button>
         </section>*}
-        <footer class="theme">
-            <div class="inner theme-dark"{if isset($verdict)} data-verdict="{$verdict.rating}"{/if}>
-                {include file='partials/verdict.tpl'}
-                {include file='partials/statistics.tpl'}
-            </div>
+        <footer class="article-footer">
+            {include file='partials/verdict.tpl'}
+            {include file='partials/statistics.tpl'}
         </footer>
     </div>
 </article>

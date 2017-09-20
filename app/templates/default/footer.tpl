@@ -1,19 +1,19 @@
 <footer id="footer" class="_theme">
     <div class="footer-items">
         <div class="footer-galleries">
-            <h3 class="padding">Cosplay</h3>
+            <h3>Cosplay</h3>
             {foreach from=$aCosplays item=img}<a href="{$base}/{#gallery#}/cosplay/cosplay" class="footer-gallery">
                 {image file=$img.name sizes='74x74,48x48,74x74' margin=0 y=top}
                 <span class="visually-hidden">Cosplaye</span>
             </a>{/foreach}
         </div><div class="footer-galleries">
-            <h3 class="padding">Tapety</h3>
+            <h3>Tapety</h3>
             {foreach from=$aWallpapers item=img}<a href="{$base}/{#gallery#}/{$img.category_slug}/{$img.slug}" class="footer-gallery">
                 {image file=$img.name sizes='74x74,48x48,74x74' margin=0 y=top}
                 <span class="visually-hidden">{$img.gallery_name}</span>
             </a>{/foreach}
         </div><div class="footer-galleries">
-            <h3 class="padding">Fanarty</h3>
+            <h3>Fanarty</h3>
             {foreach from=$aFanarts item=img}<a href="{$base}/{#gallery#}/{$img.category_slug}/{$img.slug}" class="footer-gallery">
             {if $img.name neq ''}
                 {image file=$img.name sizes='74x74,48x48,74x74' margin=0 y=top}
