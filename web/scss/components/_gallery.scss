@@ -36,6 +36,7 @@
 .gallery {
   margin: 0 auto;
 }
+/*
 @media (min-width: $mobile) {
   .gallery {
     @include gallery-width(2);
@@ -55,7 +56,7 @@
   .gallery {
     @include gallery-width(4);
   }
-}
+}*/
 
 .miniature {
   display: inline-block;

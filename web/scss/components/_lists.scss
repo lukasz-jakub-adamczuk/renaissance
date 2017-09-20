@@ -22,11 +22,40 @@ li strong {
   color: #444;
 }
 dl {
-  max-width: 640px;
+  max-width: $container-width;
 }
 dt {
   font-weight: bold;
 }
 dd {
   margin-bottom: 1em;
+}
+
+
+.key-value-list {
+  list-style: none;
+  color: #444;
+  padding-left: 1em;
+  margin: 0 0 1em;
+}
+.key-value-list > li > span {
+  font-weight: bold;
+  color: #000;
+}
+
+.fixed-cols > li {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: .25em;
+}
+.fixed-cols > li > span {
+  width: 50%;
+  float: right;
+}
+
+.short-values > li > span {
+  width: 25%;
+}
+.values-right > li > span {
+  text-align: right;
 }

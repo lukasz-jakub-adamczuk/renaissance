@@ -1,6 +1,12 @@
 body {
-  border-top: 4px solid pink;
+  border-top: 4px solid purple;
 }
+
+
+.front-item {
+  height: (($container-width / 12 * 8) - $grid-column-gap);
+}
+
 
 .front-item img {
   max-width: 100%;
@@ -21,4 +27,14 @@ body {
 
 .visually-hidden {
   display: none;
+}
+
+.game-logo {
+  width: $container-width;
+  picture {
+    width: inherit;
+    img {
+      width: inherit;
+    }
+  }
 }

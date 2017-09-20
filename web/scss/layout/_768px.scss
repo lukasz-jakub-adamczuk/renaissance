@@ -1,32 +1,24 @@
 
-.main-items {
-  width: $tablet;
-}
-
-.front-item {
-  height: (($tablet / $grid-columns * 8) - $grid-tablet-column-gap) / 2;
-}
 
 .recent-item {
-  @include col-tablet-width(8);
+  @include col-width(8);
 }
 .regular-item {
-  @include col-tablet-width(4);
+  @include col-width(4);
 }
-
 
 
 .footer-galleries {
-  @include col-tablet-width-with-gap(4);
+  @include col-width-with-gap(4);
 }
 .footer-gallery {
-  @include col-tablet-width(1);
+  @include col-width(1);
 }
 
 .footer-links {
-  @include col-tablet-width(4);
+  @include col-width(4);
 }
 
 .copyright-details {
-  @include col-tablet-width(4);
+  @include col-width(4);
 }

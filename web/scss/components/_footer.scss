@@ -3,8 +3,7 @@
 #footer {
   background: #eee url(../assets/site/bg/norwegian_rose/norwegian_rose.png) 0 0 repeat;
   border-top: 1px solid #888;
-  color: #888;
-  a {
+    a {
     color: #444;
   }
 }
@@ -15,10 +14,17 @@
 
 .footer-galleries {
   line-height: 0;
+  > h3 {
+    padding: .5rem;
+    color: #222;
+  }
 }
 
 .footer-links {
   vertical-align: top;
+  > h3 {
+
+  }
 }
 
 .copyright-items {
@@ -28,6 +34,7 @@
   > .copyright-details {
     vertical-align: middle;
     text-align: center;
+    color: #444;
     &:first-child {
       text-align: left;
     }

@@ -1,70 +1,13 @@
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-}
-.clearfix {
-  *zoom: 1;
+
+@mixin col-width($col) {
+  width: ($container-width / $grid-columns * $col) - $grid-column-gap;
+  margin: $grid-column-gap / 2;
 }
 
-
-
-@mixin col-mobile-width($col) {
-  width: ($grid-mobile-base-width / $grid-columns * $col) - $grid-mobile-column-gap;
-  margin: $grid-mobile-column-gap / 2;
-}
-@mixin col-mobile-min-width($col) {
-  width: ($grid-mobile-min-width / $grid-columns * $col) - $grid-mobile-column-gap;
-  margin: $grid-mobile-column-gap / 2;
-}
-@mixin col-mobile-max-width($col) {
-  width: ($grid-mobile-max-width / $grid-columns * $col) - $grid-mobile-column-gap;
-  margin: $grid-mobile-column-gap / 2;
-}
-
-@mixin col-tablet-width($col) {
-  width: ($grid-tablet-base-width / $grid-columns * $col) - $grid-tablet-column-gap;
-  margin: $grid-tablet-column-gap / 2;
-}
-@mixin col-tablet-min-width($col) {
-  width: ($grid-tablet-min-width / $grid-columns * $col) - $grid-tablet-column-gap;
-  margin: $grid-tablet-column-gap / 2;
-}
-@mixin col-tablet-max-width($col) {
-  width: ($grid-tablet-max-width / $grid-columns * $col) - $grid-tablet-column-gap;
-  margin: $grid-tablet-column-gap / 2;
-}
-
-@mixin col-desktop-width($col) {
-  width: ($grid-desktop-base-width / $grid-columns * $col) - $grid-desktop-column-gap;
-  margin: $grid-desktop-column-gap / 2;
-}
-@mixin col-desktop-min-width($col) {
-  width: ($grid-desktop-min-width / $grid-columns * $col) - $grid-desktop-column-gap;
-  margin: $grid-desktop-column-gap / 2;
-}
-@mixin col-desktop-max-width($col) {
-  width: ($grid-desktop-max-width / $grid-columns * $col) - $grid-desktop-column-gap;
-  margin: $grid-desktop-column-gap / 2;
-}
-
-
-@mixin col-mobile-width-with-gap($col) {
-  width: ($grid-mobile-base-width / $grid-columns * $col);
+@mixin col-width-with-gap($col) {
+  width: ($container-width / $grid-columns * $col);
   margin: 0;
 }
-@mixin col-tablet-width-with-gap($col) {
-  width: ($grid-tablet-base-width / $grid-columns * $col);
-  margin: 0;
-}
-@mixin col-desktop-width-with-gap($col) {
-  width: ($grid-desktop-base-width / $grid-columns * $col);
-  margin: 0;
-}
-
 
 @mixin gallery-width($col) {
   width: (($gallery-item-width + ($gallery-item-border-width*2) + ($gallery-item-margin-width*2)) * $col);

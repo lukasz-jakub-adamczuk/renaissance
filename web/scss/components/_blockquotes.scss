@@ -1,0 +1,40 @@
+.text blockquote,
+.review blockquote {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.25em;
+  font-style: italic;
+  text-align: center;
+  font-weight: 300;
+  max-width: $container-width;
+}
+.text blockquote:before,
+.review blockquote:before {
+  content: '\201D';
+  display: block;
+  width: .875em;
+  height: .875em;
+  font-size: 3em;
+  color: #fff;
+  border-radius: 50%;
+  margin: .5em auto;
+  // speak: none;
+  background-color: #888;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+}
+
+.solution > blockquote {
+  padding: 1em 1em 0;
+  background: #fcc;
+  border-bottom: .25em solid #500;
+  color: #444;
+}
+
+p,
+blockquote {
+  margin: 0 0 1em;
+}
