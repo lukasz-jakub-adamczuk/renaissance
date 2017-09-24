@@ -1,11 +1,11 @@
 
 
-.article-image {
+.article-main-image {
   width: 100%;
   margin: 4em auto 0;
 }
 
-.article-image + .article-header {
+.article-main-image + .article-header {
   margin-top: -8em;
 }
 
@@ -21,6 +21,10 @@
     font-size: 3em;
     padding: 2rem 3rem;
   }
+}
+
+.article-image {
+  margin-bottom: 1em;
 }
 
 .article {
@@ -42,9 +46,10 @@
 .article-content {
   width: $container-width;
   max-width: 640px;
+  margin: 0 auto;
+  padding: 1em;
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
-  margin: 0 auto;
 }
 .content-meta {
   max-width: $container-width;
@@ -71,10 +76,6 @@
 }
 
 
-.theme-light {
-  background-color: #ffe;
-
-}
 .article-footer,
 .article-ratings {
   background-color: #eec;
@@ -86,7 +87,7 @@
 
 .article-verdict,
 .article-stats {
-  background: #dd8 url(../assets/site/bg/bedge_grunge/bedge_grunge.png) 0 0 repeat;
+  background: $article-verdict-background url(../assets/site/bg/bedge_grunge/bedge_grunge.png) 0 0 repeat;
 }
 
 

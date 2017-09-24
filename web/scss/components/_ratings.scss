@@ -1,9 +1,5 @@
 
 /* ratings */
-#ratings > .inner {
-  /*max-width: 992px;*/
-}
-
 .verdict {
   min-height: 4em;
   padding: 0 1em;
@@ -93,3 +89,29 @@
 }
 
 
+.verdict-features {
+  display: inline-block;
+  vertical-align: top;
+  > h3 {
+    padding: 0 1rem;
+  }
+}
+.verdict-features ul {
+  margin: 0 0 1em;
+  padding-left: 0;
+}
+.verdict-features li {
+  position: relative;
+  list-style: none;
+  padding: .25em 1.5em;
+  vertical-align: middle;
+}
+.verdict-features span {
+  vertical-align: text-bottom;
+}
+.verdict-features .icon-plus-circle,
+.verdict-features .icon-minus-circle {
+  width: 24px;
+  height: 24px;
+  opacity: .8;
+}

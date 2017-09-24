@@ -1,29 +1,19 @@
 
 /* comments */
-#comments {
-
-}
 .comments {
-  margin: 0;
-  padding: 0;
+  width: $container-width;
+  margin: 0 auto;
   background: #eee;
-}
-#comments > .inner {
-  border: 1px solid #aaa;
-  border-width: 0 1px;
+  padding: 1px 0;
 }
 
 .comments > h2 {
-  margin: 0;
-  padding: .75em;
+  padding: 0 1rem;
 }
 .comments > section {
   margin: 0;
   padding: 1rem;
   border-bottom: 1px solid #ccc;
-  /*max-height: 7em;*/
-  /*overflow: hidden;*/
-  /*position: relative;*/
   font-size: .875em;
 }
 .comments > section > div {
@@ -42,29 +32,39 @@
 .comments > section > blockquote {
   width: auto;
   float: none;
-  border-left: 8px solid #AAA;
+  border-left: 8px solid #aaa;
   padding-left: 16px;
 }
-.meta {
+.comment-header {
   color: #888;
   margin-bottom: 1em;
 }
 
 /* comments form */
-#comment-form {
-  padding-bottom: 1em;
+#dodaj-komentarz {
+  background: $comment-form-background;
 }
-.suggests {
+.comment-form {
+  width: $container-width;
+  margin: 0 auto;
+  padding: 1em 0;
+  > h2 {
+    padding: 0 1rem;
+  }
+}
+
+.suggestions {
+  @include col-width-with-gap(4);
   display: inline-block;
   box-sizing: border-box;
-  width: 39%;
   padding: 1em;
   background-color: #ccc;
 }
 #add-comment-form {
+  @include col-width(8);
   display: inline-block;
   box-sizing: border-box;
-  width: 60%;
+  padding: 8px;
 }
 
 #comment-form label {
@@ -72,11 +72,26 @@
 }
 #add-comment-form {
   vertical-align: top;
-  padding: 0 0 0 1em;
+  // padding: 0 0 0 1em;
+}
+
+.form-buttons {
+  padding: 1em 0;
 }
 
 
 
 .blured {
   filter: blur(5px);
+}
+
+
+
+.ng_quote {
+  border-left: 4px solid #888;
+  padding-left: 4px;
+  margin-bottom: 1em;
+  .ng_quote_body {
+    padding-left: 1em;
+  }
 }

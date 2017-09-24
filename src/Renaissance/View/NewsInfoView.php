@@ -25,12 +25,12 @@ class NewsInfoView extends View {
         $newsEntity = Dao::entity('news');
         
         if ($url) {
-            $aNews = $newsEntity->getNewsByOldUrl($url);
+            $news = $newsEntity->getNewsByOldUrl($url);
         } else {
-            $aNews = $newsEntity->getNews($slug, $year, $month, $day);
+            $news = $newsEntity->getNews($slug, $year, $month, $day);
         }
 
-        $this->_renderer->assign('aNews', $aNews);
+        $this->_renderer->assign('news', $news);
 
         // headers
         if ($url) {
@@ -45,12 +45,6 @@ class NewsInfoView extends View {
 
             header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('news').'/'.$year.'/'.$month.'/'.$day.'/'.$slug.'', TRUE, 301);
         }
-
-        
-        // check markup for validity
-        $sMarkup = $newsEntity->getField('markup');
-
-        $html = stripslashes($sMarkup);
 
         // breadcrumbs
         $item = array(
@@ -70,58 +64,39 @@ class NewsInfoView extends View {
         $selfUrl = BASE_URL . '/' . $item['url'] . '/' . $slug;
         $this->_renderer->assign('encodedSelfUrl', urlencode($selfUrl));
 
-        // news details
-        $id = $aNews['id_news'];
-
         // title
         $this->_renderer->assign('title', 'Squarezone - Aktualności - '.$newsEntity->getField('title'));
 
         // images
-        $oImagesCollection = Dao::collection('news-image');
-        $aImages = $oImagesCollection->getNewsImagesById($newsEntity->getField('id_news'));
+        $imagesCollection = Dao::collection('news-image');
+        $images = $imagesCollection->getNewsImagesById($newsEntity->getField('id_news'));
 
-        if ($aImages) {
-            // print_r($aImages);
-            if (count($aImages) > 1)  {
-                $this->_renderer->assign('aFirstImage', current($aImages));
-                $this->_renderer->assign('aImages', array_slice($aImages, 1));
-
-                // gallery
-                $this->_renderer->assign('aScreens', array_slice($aImages, 1));
-
-                $aGallery['class'] = 'full';
-                $aGallery['show_link'] = false;
-                $aGallery['category_abbr'] = $newsEntity->getField('abbr');
-
-                $this->_renderer->assign('aGallery', $aGallery);
-            } else {
-                $this->_renderer->assign('aFirstImage', current($aImages));
-                
+        if ($images) {
+            $this->_renderer->assign('firstImage', current($images));
+            if (count($images) > 1)  {
+                $this->_renderer->assign('images', array_slice($images, 1));
             }
         }
 
         // previous and next entry
-        $oNewsCollection = Dao::collection('news');
-        $aSiblings = $oNewsCollection->getNewsSiblings($newsEntity->getField('id_news'));
+        $newsCollection = Dao::collection('news');
+        $siblings = $newsCollection->getNewsSiblings($newsEntity->getField('id_news'));
 
-        $aRelatedNews = [];
-
-        if (is_array($aSiblings)) {
-            foreach ($aSiblings as $nk => $news) {
-                // $aSiblings
-                if ($nk > $id) {
-                    $aRelatedNews['newer'] = $news;
-                    $aRelatedNews['newer']['date'] = str_replace('-', '/', substr($news['creation_date'], 0, 10));
+        $pagination = [];
+        if (is_array($siblings)) {
+            foreach ($siblings as $nk => $news) {
+                if ($nk > $news['id_news']) {
+                    $pagination['newer'] = $news;
+                    $pagination['newer']['date'] = str_replace('-', '/', substr($news['creation_date'], 0, 10));
                 }
-                if ($nk < $id) {
-                    $aRelatedNews['older'] = $news;
-                    $aRelatedNews['older']['date'] = str_replace('-', '/', substr($news['creation_date'], 0, 10));
+                if ($nk < $news['id_news']) {
+                    $pagination['older'] = $news;
+                    $pagination['older']['date'] = str_replace('-', '/', substr($news['creation_date'], 0, 10));
                     break;
                 }
             }
         }
-
-        $this->_renderer->assign('aRelatedNews', $aRelatedNews);
+        $this->_renderer->assign('pagination', $pagination);
 
         $this->_renderer->assign('commentsForm', Comments::getFormParams('news', $newsEntity));
 

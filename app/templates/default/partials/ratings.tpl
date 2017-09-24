@@ -2,11 +2,7 @@
     <div class="article-ratings">
         <h2>Oceny redaktorów</h2>
         {foreach from=$ratings item=r}
-        <div class="verdict">
-            <h3>{$r.author_name|default:'Gość'}</h3>
-            <img src="assets/site/redaction/{$r.author_slug}.png" alt="{$r.author_name|default:'Gość'}"><span class="score">{$r.rating}</span>
-            <p>{$r.verdict|stripslashes|humanize}</p>
-        </div>
+            {include file='partials/verdict.tpl' item=$r output=verdict}
         {/foreach}
     </div>
 </div>{/if}

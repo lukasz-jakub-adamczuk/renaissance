@@ -14,18 +14,18 @@
     {if $ctrl eq 'news' and $act eq 'info'}
     <meta property="og:url" content="{$base}{$self}" />
         {if isset($aFirstImage)}
-        <meta property="og:image" content="{$base}/image.php?img={$aFirstImage.name}&size=640x360&margin=0" />
+        <meta property="og:image" content="{image file=$aFirstImage.name size=640x360 output=url}" />
         {/if}
     <meta property="og:title" content="{$aNews.title|stripslashes}" />
-    <meta property="og:description" content="{$aNews.markup|stripslashes|strip_tags|replace:'"':''|truncate:256}" />
+    <meta property="og:description" content="{$aNews.markup|stripslashes|strip_tags|escape|truncate:256}" />
     {/if}
     {if ($ctrl eq 'article' or $ctrl eq 'story') and $act eq 'info'}
     <meta property="og:url" content="{$base}{$self}" />
         {if isset($mainImage)}
-        <meta property="og:image" content="{$base}/image.php?img={$mainImage.0.fragment}&size=640x360&margin=0" />
+        <meta property="og:image" content="{image file=$mainImage.0.fragment size=640x360 output=url}" />
         {/if}
     <meta property="og:title" content="{$article.title|stripslashes}" />
-    <meta property="og:description" content="{$article.markup|stripslashes|strip_tags|replace:'"':''|truncate:256}" />
+    <meta property="og:description" content="{$article.markup|stripslashes|strip_tags|escape|truncate:256}" />
     {/if}
     {if $ctrl eq 'home'}
     <meta property="og:title" content="Squarezone" />

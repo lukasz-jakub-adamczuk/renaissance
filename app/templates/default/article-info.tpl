@@ -1,14 +1,15 @@
 <article id="main-text"{if $article.template eq 'review'} itemtype="http://schema.org/Product"{/if}>
     {include file='partials/article-header.tpl'}
-    <div class="wrapper inside">
+    <!-- <div class="wrapper inside"> -->
         <div class="content-meta">
             <a href="{$base}/{#user#}/{$article.author_slug}">{$article.author_name}</a> - <time>{$article.creation_date|date_format:"%d %B %Y, %H:%M"|localize_date}</time>
             {include file='partials/comments-counter.tpl'}
         </div>
+        
+        <div class="social-media">
+            {*include file='partials/fb-like.tpl'*}
+        </div>
         <section class="article-content {$article.template}">
-            <div class="social-media">
-                {*include file='partials/fb-like.tpl'*}
-            </div>
             {include file='partials/standard-notice.tpl'}
 
             {include file='partials/game-logo.tpl'}
@@ -35,10 +36,10 @@
             <button id="edit-text-tgr" class="button">Edytuj ten tekst</button>
         </section>*}
         <footer class="article-footer">
-            {include file='partials/verdict.tpl'}
+            {include file='partials/rating.tpl'}
             {include file='partials/statistics.tpl'}
         </footer>
-    </div>
+    <!-- </div> -->
 </article>
 {include file='partials/ratings.tpl'}
 

@@ -1,14 +1,18 @@
 /* newer and older item */
 .pagination {
-  margin-top: 4em;
+  margin: 4em auto 0;
   background: #eee;
+  max-width: 640px;
+
+  // display: flex;
+  clear: both;
 }
 .newer-item,
 .older-item {
-  width: 320px;
+  width: 50%;
   box-sizing: border-box;
   padding: 1em;
-  // display: block;
+  display: block;
   background: #ddd;
   min-height: 6em;
   position: relative;
@@ -22,6 +26,10 @@
 .older-item:hover::after {
   // color: #aaa;
 }
+.older-item:only-child {
+  float: right;
+}
+
 .newer-item {
   // float: left;
   padding-left: 6rem;
@@ -37,11 +45,6 @@
   display: block;
   position: absolute;
   vertical-align: middle;
-  // color: #ccc;
-  // font-size: 1.25em;
-  // text-align: center;
-  /*margin: .5em auto;*/
-  // text-transform: uppercase;
 }
 .newer-item::before {
   // content: 'Nowsze';

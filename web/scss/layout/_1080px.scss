@@ -8,6 +8,11 @@
 }
 
 
+.verdict-features {
+  @include col-width-with-gap(6);
+}
+
+
 .footer-items,
 .copyright-items {
   width: $container-width;

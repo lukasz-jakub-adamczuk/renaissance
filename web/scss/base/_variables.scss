@@ -1,20 +1,23 @@
 
-$container-width:                  960px !default;
+$container-width:                   960px !default;
 
-$grid-columns:                     12 !default;
+$grid-columns:                      12 !default;
 
 // gaps
-$grid-column-gap:                  16px !default;
+$grid-column-gap:                   16px !default;
 
                  
-$gallery-item-width:               128px !default;
-$gallery-item-border-width:        8px !default;
-$gallery-item-margin-width:        8px !default;
+$gallery-item-width:                128px !default;
+$gallery-item-border-width:         8px !default;
+$gallery-item-margin-width:         8px !default;
 
 
-$news-primary-color:               #17b !default;
-$article-primary-color:            #080 !default;
-$story-primary-color:              crimson !default;
+$news-primary-color:                #17b !default;
+$article-primary-color:             #080 !default;
+$story-primary-color:               crimson !default;
 
 
+$article-verdict-background:        #dd8;
+
+$comment-form-background:           #eec;
 

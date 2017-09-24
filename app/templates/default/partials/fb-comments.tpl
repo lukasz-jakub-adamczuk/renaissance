@@ -6,4 +6,4 @@
   js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.5";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<div class="fb-comments" data-href="{$base}/{$self}" data-width="100%" data-numposts="5"></div>
+<div class="fb-comments" data-href="{$base}/{$encodedSelfUrl}" data-width="100%" data-numposts="5"></div>
