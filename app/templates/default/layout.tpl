@@ -11,8 +11,9 @@
         {include file='breadcrumbs.tpl'}
 
         {include file='messages.tpl'}
-
-        {include file="$content.tpl"}
+        <div class="main-content">
+            {include file="$content.tpl"}
+        </div>
     </main>
     {include file='footer.tpl'}
     {include file='scripts.tpl'}

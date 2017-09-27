@@ -3,10 +3,10 @@
         <a href="{$base}/{$object.url}" class="front-item-content">
             {if $object@first}
                 <!-- size=640x320 -->
-                {image file=$object.fragment sizes='344x172,496x248,704x396'}
+                {image file=$object.fragment sizes='344x172,496x248,704x396,704x396'}
             {else}
                 <!-- size=320x180 -->
-                {image file=$object.fragment sizes='164x92,240x135,344x172'}
+                {image file=$object.fragment sizes='164x92,240x135,344x172,344x172'}
             {/if}
             <header>
                 <h3 class="front-item-title">

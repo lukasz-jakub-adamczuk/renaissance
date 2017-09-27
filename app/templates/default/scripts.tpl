@@ -1,4 +1,4 @@
-<img id="imagelightbox" src="" alt="placeholder" />
+<img id="imagelightbox" src="" alt="" />
 
 <script>
 var conf = {ldelim}

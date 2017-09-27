@@ -1,7 +1,7 @@
 <!-- TODO schema ImageObject -->
 {if isset($mainImage)}
 <div class="article-main-image">
-    {image file=$mainImage.0.fragment sizes='640x360,1280x720,1920x1080'}
+    {image file=$mainImage.0.fragment sizes='360x180,768x432,1280x720,1920x1080'}
 </div>
 {/if}
 <header class="article-header">

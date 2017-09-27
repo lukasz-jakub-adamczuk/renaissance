@@ -15,11 +15,9 @@
     <!-- <div class="wrapper"> -->
         <section class="inner">
             <!-- {include file='partials/screens.tpl'} -->
-            <div class="gallery">
-            {foreach from=$images item=img}<a href="{$base}{$img.name}" class="miniature">
-                {image file=$img.name size=128x128}
-            </a>{/foreach}
-            </div>
+            {if isset($images)}
+                {include file='partials/gallery.tpl' images=$images}
+            {/if}
         </section>
         <footer class="theme">
             <div class="inner theme-dark"{if isset($verdict)} data-verdict="{$verdict.rating}"{/if}>
