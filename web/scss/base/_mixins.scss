@@ -1,4 +1,9 @@
 
+@mixin inner-box() {
+  width: $container-width;
+  margin: 0 auto;
+}
+
 @mixin col-width($col) {
   width: ($container-width / $grid-columns * $col) - $grid-column-gap;
   margin: $grid-column-gap / 2;

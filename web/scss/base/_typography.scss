@@ -11,3 +11,8 @@ body {
 #comments {
   font-family: 'LucidaGrande', 'HelveticaNeue', Tahoma, Verdana, Arial, sans-serif;
 }
+
+
+h2 {
+  padding: 0 $grid-column-gap/2;
+}

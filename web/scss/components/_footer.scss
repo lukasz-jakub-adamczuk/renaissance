@@ -3,13 +3,13 @@
 #footer {
   background: #eee url(../assets/site/bg/norwegian_rose/norwegian_rose.png) 0 0 repeat;
   border-top: 1px solid #888;
-    a {
+  a {
     color: #444;
   }
 }
 .footer-items,
 .copyright-items {
-  margin: 0 auto;
+  @include inner-box();
 }
 
 .footer-galleries {

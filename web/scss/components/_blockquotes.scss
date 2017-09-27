@@ -1,3 +1,10 @@
+q {
+  font: italic 100% Georgia, sans-serif;
+  font: italic 1.3em Georgia, Arial, Tahoma, Verdana, sans-serif;
+  display: block;
+  text-align: right;
+}
+
 .text blockquote,
 .review blockquote {
   font-family: Georgia, serif;
@@ -7,7 +14,7 @@
   font-style: italic;
   text-align: center;
   font-weight: 300;
-  max-width: $container-width;
+  // max-width: $container-width;
 }
 .text blockquote:before,
 .review blockquote:before {

@@ -107,9 +107,38 @@
   }
 }
 
+.story-item {
+  margin-bottom: $grid-column-gap / 2;
+}
 
 .front-item {
   // height: (($container-width) - $grid-column-gap) * 9 / 16;
+}
+
+.front-item {
+  height: (($container-width / $grid-columns * 8) - $grid-column-gap) / 2;
+}
+
+.regular-item {
+  display: inline-block;
+  // margin: $grid-column-gap /2 ;
+
+  @include col-width(4);
+  .regular-grid > & {
+    height: (($container-width / $grid-columns * 4) - $grid-column-gap) / 2;
+  }
+  .archive-grid > & {
+    @include col-width(2);
+    height: (($container-width / $grid-columns * 4) - $grid-column-gap);
+  }
+  .year-grid > & {
+    @include col-width(3);
+    height: (($container-width / $grid-columns * 3) - $grid-column-gap);
+  }
+  .articles-grid > & {
+    @include col-width(3);
+    height: (($container-width / $grid-columns * 3) - $grid-column-gap) / 2;
+  }
 }
 
 

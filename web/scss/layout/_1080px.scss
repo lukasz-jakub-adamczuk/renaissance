@@ -12,14 +12,6 @@
   @include col-width-with-gap(6);
 }
 
-
-.footer-items,
-.copyright-items {
-  width: $container-width;
-}
-
-
-
 .footer-galleries {
   @include col-width-with-gap(4);
 }

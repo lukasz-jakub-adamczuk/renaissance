@@ -20,16 +20,13 @@
   max-width: $container-width;
 }
 
-.inner,
-.main-items,
-.footer-items,
-.copyright-items {
-  width: $container-width;
-  margin: 0 auto;
+
+.main-items {
+  margin-bottom: $grid-column-gap / 2;
 }
 
-.front-item {
-  height: (($container-width / $grid-columns * 8) - $grid-column-gap) / 2;
+.main-content {
+  @include inner-box();
 }
 
 
@@ -38,13 +35,6 @@
 }
 
 
-
-q {
-  font: italic 100% Georgia, sans-serif;
-  font: italic 1.3em Georgia, Arial, Tahoma, Verdana, sans-serif;
-  display: block;
-  text-align: right;
-}
 
 a {
   color: #c30;
@@ -77,6 +67,23 @@ a {
 picture {
   display: block;
   line-height: 0;
+}
+
+#imagelightbox {
+  position: fixed;
+  z-index: 9999;
+
+  -ms-touch-action: none;
+  touch-action: none;
+
+  box-shadow: 0 0 2em rgba(0, 0, 0, 0.5);
+}
+
+
+picture {
+  img {
+    width: 100%;
+  }
 }
 
 

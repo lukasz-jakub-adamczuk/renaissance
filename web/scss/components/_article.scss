@@ -1,7 +1,8 @@
 
 
 .article-main-image {
-  width: 100%;
+  // width: 100%;
+  width: 1280px;
   margin: 4em auto 0;
 }
 
@@ -14,12 +15,11 @@
   margin: 0 auto;
   position: relative;
   box-sizing: border-box;
-  background: #fff;
-  // border-left: 1px solid #eee;
-  // border-right: 1px solid #eee;
   h1 {
     font-size: 3em;
+    // margin-right: ($container-width - 640px) / 2;
     padding: 2rem 3rem;
+    background: #fff;
   }
 }
 
@@ -99,9 +99,11 @@
 }
 
 
-picture {
-  max-width: $container-width;
-  > img {
-    max-width: inherit;
+.article-content {
+  picture {
+    width: 100%;
+    > img {
+      width: inherit;
+    }
   }
 }
