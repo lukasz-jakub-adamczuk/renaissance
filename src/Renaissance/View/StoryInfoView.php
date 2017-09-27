@@ -54,7 +54,7 @@ class StoryInfoView extends View {
         $this->_renderer->assign('title', 'Squarezone - Publicystyka - '.$storyEntity->getField('category_name').' - '.$storyEntity->getField('title'));
 
         $article['id'] = $article['id_story'];
-        $article['template'] = null;
+        $article['template'] = 'text';
 
         $this->_renderer->assign('article', $article);
 

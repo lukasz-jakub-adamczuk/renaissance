@@ -41,7 +41,7 @@ class UserInfoView extends View {
 
         // fetch other stats
         // TODO move to entities;
-        $db = Db::getInstance();
+        // $db = Db::getInstance();
 
         $newsCollection = Dao::collection('news');
         
