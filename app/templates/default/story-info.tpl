@@ -12,6 +12,8 @@
                     </div>
                     {include file='partials/standard-notice.tpl'}
 
+                    STORY TEMPLATE
+
                     <!-- {include file='partials/review-description.tpl'} -->
                 <!-- </section> -->
                 <!-- <section class="inner center _padding" data-id-article="{$article.id_article}"> -->
