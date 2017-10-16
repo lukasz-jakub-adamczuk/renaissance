@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 {include file='head.tpl'}
-<body>
+<body{if $smarty.const.APP_ENV neq 'prod'} class="dev"{/if}>
     {if $smarty.const.DEBUG_MODE}{include file='debug.tpl'}{/if}
     {include file='header.tpl'}
     <main>

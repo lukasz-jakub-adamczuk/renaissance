@@ -139,6 +139,10 @@
     @include col-width(3);
     height: (($container-width / $grid-columns * 3) - $grid-column-gap) / 2;
   }
+  .cup-grid > & {
+    @include col-width(3);
+    height: (($container-width / $grid-columns * 3) - $grid-column-gap) / 2;
+  }
 }
 
 

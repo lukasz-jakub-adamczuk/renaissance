@@ -11,61 +11,42 @@ class CupInfoView extends View {
 
     public function fill() {
         // old page urls
-        $sId = isset($_GET['id']) ? $_GET['id'] : null;
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
 
         // old page urls
         $categorySlug = isset($_GET['category']) ? $_GET['category'] : null;
         $categoryName = ucwords(str_replace('-', ' ', $categorySlug));
         $nameSlug = isset($_GET['slug']) ? $_GET['slug'] : null;
 
-        if ($sId) {
-            $sql = 'SELECT cp.*, c.name category_name, c.slug category_slug
-                    FROM cup_player cp
-                    LEFT JOIN cup c ON (c.id_cup=cp.id_cup)
-                    WHERE cp.id_cup_player="'.$sId.'"';
+        $cupPlayerEntity = Dao::entity('cup-player');
+
+        if ($id) {
+            $cupPlayer = $cupPlayerEntity->getCupPlayerByOldUrl($id);
         } else {
-            $sql = 'SELECT cp.*
-                    FROM cup_player cp
-                    LEFT JOIN cup c ON (c.id_cup=cp.id_cup)
-                    WHERE c.slug="'.$categorySlug.'" AND cp.slug="'.$nameSlug.'"';
+            $cupPlayer = $cupPlayerEntity->getCupPlayer($categorySlug, $nameSlug);
         }
-
-
-        $oEntity = Dao::entity('cup-player');
-        $oEntity->query($sql);
-
-        $aObject = $oEntity->getFields();
 
         // headers
-        if ($sId) {
-            $categorySlug = $oEntity->getField('category_slug');
+        if ($id) {
+            $categorySlug = $cupPlayerEntity->getField('category_slug');
 
-            $sLogFile = LOG_DIR.'/redirects/'.date('Y-m-d').'.log';
-            Logger::logStandardRequest($sLogFile);
-
-            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('cup').'/'.$categorySlug.'/'.$oEntity->getField('slug'), TRUE, 301);
+            $this->redirect(BASE_URL.'/'.ValueMapper::getUrl('cup').'/'.$categorySlug.'/'.$cupPlayerEntity->getField('slug'));
         }
 
-        if ($aObject) {
-            // category name
-            $this->_renderer->assign('categoryName', $categoryName);
+        // category name
+        $this->_renderer->assign('categoryName', $categoryName);
 
-            // title
-            $this->_renderer->assign('title', 'Squarezone - Mistrzostwa - '.$categoryName.' - '.$oEntity->getField('name'));
+        // title
+        $this->_renderer->assign('title', 'Squarezone - Mistrzostwa - '.$categoryName.' - '.$cupPlayerEntity->getField('name'));
 
-            // breadcrumbs
-            $item = array(
-                'url' => ValueMapper::getUrl('cup').'/'.$categorySlug,
-                'text' => $categoryName
-            );
-            Breadcrumbs::add($item);
+        // breadcrumbs
+        $item = array(
+            'url' => ValueMapper::getUrl('cup').'/'.$categorySlug,
+            'text' => $categoryName
+        );
+        Breadcrumbs::add($item);
 
-            $this->_renderer->assign('aPlayer', $aObject);
-            // $this->_renderer->assign('navigator', $oEntity->getNavigator());
-        } else {
-            // log 404
-            $sLogFile = LOG_DIR.'/404/'.date('Y-m-d').'.log';
-            Logger::logStandardRequest($sLogFile);
-        }
+        $this->_renderer->assign('aPlayer', $cupPlayer);
+        // $this->_renderer->assign('navigator', $cupPlayerEntity->getNavigator());
     }
 }

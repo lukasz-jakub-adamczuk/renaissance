@@ -39,11 +39,8 @@ class NewsInfoView extends View {
             $year = substr($date, 0, 4);
             $month = substr($date, 5, 2);
             $day = substr($date, 8, 2);
-            // refactor
-            $sLogFile = LOG_DIR.'/redirects/'.date('Y-m-d').'.log';
-            Logger::logStandardRequest($sLogFile);
-
-            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('news').'/'.$year.'/'.$month.'/'.$day.'/'.$slug.'', TRUE, 301);
+            
+            $this->redirect(BASE_URL.'/'.ValueMapper::getUrl('news').'/'.$year.'/'.$month.'/'.$day.'/'.$slug);
         }
 
         // breadcrumbs

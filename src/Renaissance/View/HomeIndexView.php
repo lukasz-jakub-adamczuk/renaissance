@@ -12,10 +12,8 @@ class HomeIndexView extends View {
         $streamFile = CACHE_DIR . '/stream';
         // if (CACHE_OUTPUT && file_exists($streamFile)) {
         if (file_exists($streamFile)) {
-            // echo 'from cache';
             $entries = unserialize(file_get_contents($streamFile));
         } else {
-            // echo 'from db';
             $newsStreamFile = CACHE_DIR . '/stream-news';
             $articleStreamFile = CACHE_DIR . '/stream-article';
             $storyStreamFile = CACHE_DIR . '/stream-story';
@@ -57,7 +55,7 @@ class HomeIndexView extends View {
                 $entries['story'] = unserialize(file_get_contents($storyStreamFile));
             } else {
                 $oStoryCollection = Dao::collection('story');
-                $entries['story'] = $oStoryCollection->getStoriesForStream($frontItems);
+                $entries['story'] = $oStoryCollection->getArticlesForStream($frontItems);
 
                 file_put_contents($storyStreamFile, serialize($entries['story']));
             }

@@ -2,23 +2,21 @@
     <div class="footer-items">
         <div class="footer-galleries">
             <h3>Cosplay</h3>
-            {foreach from=$aCosplays item=img}<a href="{$base}/{#gallery#}/cosplay/cosplay" class="footer-gallery">
+            {foreach from=$cosplays item=img}<a href="{$base}/{#gallery#}/cosplay/cosplay" class="footer-gallery">
                 {image file=$img.name sizes='74x74,48x48,74x74,74x74' margin=0 y=top}
                 <span class="visually-hidden">Cosplaye</span>
             </a>{/foreach}
         </div><div class="footer-galleries">
             <h3>Tapety</h3>
-            {foreach from=$aWallpapers item=img}<a href="{$base}/{#gallery#}/{$img.category_slug}/{$img.slug}" class="footer-gallery">
+            {foreach from=$wallpapers item=img}<a href="{$base}/{#gallery#}/{$img.category_slug}/{$img.gallery_name}" class="footer-gallery">
                 {image file=$img.name sizes='74x74,48x48,74x74,74x74' margin=0 y=top}
                 <span class="visually-hidden">{$img.gallery_name}</span>
             </a>{/foreach}
         </div><div class="footer-galleries">
             <h3>Fanarty</h3>
-            {foreach from=$aFanarts item=img}<a href="{$base}/{#gallery#}/{$img.category_slug}/{$img.slug}" class="footer-gallery">
-            {if $img.name neq ''}
+            {foreach from=$fanarts item=img}<a href="{$base}/{#gallery#}/{$img.category_slug}/{$img.gallery_name}" class="footer-gallery">
                 {image file=$img.name sizes='74x74,48x48,74x74,74x74' margin=0 y=top}
                 <span class="visually-hidden">{$img.gallery_name}</span>
-            {/if}
             </a>{/foreach}
         </div>
     </div>
@@ -54,7 +52,9 @@
     <div class="copyright-items">
         <div class="copyright-details">
             <span>Squarezone &copy; 2003-{$smarty.now|date_format:'%Y'}</span>
-            &middot; <span>ver {$smarty.CONST.VERSION}</span>, <span id="body-width"></span>px
+            <span>ver {$smarty.CONST.VERSION}</span>
+            <span id="body-width"></span>px
+            <span>sql: {$debugPanel.vars.sql.0}</span>
         </div><div class="copyright-details">
             <a href="https://validator.w3.org/nu/?doc=http%3A%2F%2Fsquarezone.pl%2F" class="icon-html" title="Nu Html Checker">
                 {svg file='icons/icomoon/SVG/html-five.svg'}

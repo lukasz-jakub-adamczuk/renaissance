@@ -33,9 +33,7 @@ class GalleryInfoView extends View {
             $gallerySlug = $galleryEntity->getField('slug');
             $categorySlug = $galleryEntity->getField('category_slug');
             
-            Logger::logStandardRequest('redirects');
-
-            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('gallery').'/'.$categorySlug.'/'.$gallerySlug, TRUE, 301);
+            $this->redirect(BASE_URL.'/'.ValueMapper::getUrl('gallery').'/'.$categorySlug.'/'.$gallerySlug);
         }
 
         // title

@@ -1,10 +1,3 @@
-        <header class="inner center">
-            <h2>Konkurs Cenega - Final Fantasy XIII</h2>
-        </header>
-        <article class="inside">
-            <section class="center">
-<div class="ent">
-
 <h3>1. Ogólne informacje</h3>
 
 <p>
@@ -27,6 +20,3 @@
 <p>Finaliści konkursu, czyli 3 osoby, które zbiorą największą ilość punktów, zmierzą się w decydującej konkurencji, której szczegółów na tą chwilę nie zdradzamy. Wszyscy dostaną rysunki od naszych artystów, ale tylko zwycięzca dostanie egzemplarz Final Fantasy XIII, sponsorowany przez Cenega Poland.</p>
 
 <p>Wszelkie ewentualne wątpliwości proszę kierować do Ashleya Riota lub Tantalusa, drogą mailową lub poprzez Gadu-Gadu.</p> 
-
-            </section>
-        </article>

@@ -25,7 +25,7 @@ class PageIndexView extends View {
                 'slug' => 'kontakt',
                 'name' => 'Kontakt'
             ]
-            ];
+        ];
         
         $this->_renderer->assign('items', $items);
     }

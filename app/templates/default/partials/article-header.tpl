@@ -5,5 +5,5 @@
 </div>
 {/if}
 <header class="article-header">
-    <h1 id="article-title" itemprop="name">{$article.title|stripslashes}</h1>
+    <h1 id="article-title" itemprop="name">{$title|stripslashes|humanize}</h1>
 </header>

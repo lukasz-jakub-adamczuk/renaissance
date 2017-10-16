@@ -39,17 +39,13 @@ class UserInfoView extends View {
 
         $user['avatar'] = AvatarManager::getAvatar($userSlug);
 
-        // fetch other stats
-        // TODO move to entities;
-        // $db = Db::getInstance();
-
         $newsCollection = Dao::collection('news');
         
         // $aStats = [];
         $counters = [];
         $counters['news']       = Dao::collection('news')->howManyNewsWroteUser($id);
         $counters['article']    = Dao::collection('article')->howManyArticlesWroteUser($id);
-        $counters['story']      = Dao::collection('story')->howManyStoriesWroteUser($id);
+        $counters['story']      = Dao::collection('story')->howManyArticlesWroteUser($id);
         $counters['shout']      = Dao::collection('shout')->howManyShoutsWroteUser($id);
 
         // comments

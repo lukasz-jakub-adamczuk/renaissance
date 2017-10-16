@@ -37,9 +37,7 @@ class ArticleInfoView extends View {
             $articleSlug = $articleEntity->getField('slug');
             $categorySlug = $articleEntity->getField('category_slug');
             
-            Logger::logStandardRequest('redirects');
-
-            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('article').'/'.$categorySlug.'/'.$articleSlug, TRUE, 301);
+            $this->redirect(BASE_URL.'/'.ValueMapper::getUrl('article').'/'.$categorySlug.'/'.$articleSlug);
         }
 
         // title

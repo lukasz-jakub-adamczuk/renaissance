@@ -1,4 +1,10 @@
 
+// login
+#auth-form > input,
+#auth-form > .button {
+  width: 100%;
+}
+
 
 .recent-item {
   @include col-width(8);
@@ -27,3 +33,42 @@
   @include col-width(4);
 }
 
+
+// article
+
+$container-max: 1280px;
+
+.article-main-image {
+  // width: 100%;
+  width: $container-max;
+  margin: 4em (-(($container-max - $container-width) / 2)) 0;
+}
+.article-main-image + .article-header {
+  margin-top: -7em;
+}
+
+// comments
+.suggestions {
+  @include col-width-with-gap(4);
+}
+#add-comment-form {
+  @include col-width(8);
+}
+
+// footer
+.copyright-items {
+  // border-top: 1px solid #aaa;
+  // padding: 1rem 0;
+  // font-size: .875rem;
+  > .copyright-details {
+    // vertical-align: middle;
+    // text-align: center;
+    // color: #444;
+    &:first-child {
+      text-align: left;
+    }
+    &:last-child {
+      text-align: right;
+    }
+  }
+}

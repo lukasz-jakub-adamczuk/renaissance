@@ -1,10 +1,6 @@
-        <article>
-            <header class="inner">
-                <h2>Przykro nam! Podana strona nie istnieje.</h2>
-            </header>
-            <div class="wrapper">
-                <section>
-                    <img src="{$base}/assets/site/bg/404.jpg" alt="">
-                </section>
-            </div>
-        </article>
+<article>
+    {include file='partials/article-header.tpl' title='Przykro nam! Podana strona nie istnieje.'}
+    <section class="article-content text">
+        <img src="{$base}/assets/site/bg/404.jpg" alt="">
+    </section>
+</article>

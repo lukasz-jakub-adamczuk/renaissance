@@ -1,11 +1,3 @@
-        <header class="inner center">
-            <h2>Konkurs Cenega - The Last Remnant</h2>
-        </header>
-        <article class="inside">
-            <section class="center">
-                
-<div class="ent">
-
 <h3> 1. Ogólne informacje</h3>
 
 <p><ul><li>Konkurs artystyczny z medium mieszanym.</li>
@@ -50,7 +42,3 @@
 <ul><li>Serwis SquareZone informuje, że dane osobowe pozyskane dla potrzeby konkursu, przetwarzane będą jedynie w celach związanych z niniejszym konkursem. Wszelkie dalsze regulacje z nimi związane, podlegają ustawie o ochronie danych osobowych (ustawa z 29 sierpnia 1997 r. Dz. U. Nr. 133, poz. 883 wraz z późniejszymi zmianami)</li>
 <li>Serwis SquareZone zobowiązuje się przestrzegać praw autorskich dotyczących prac zamieszczanych na potrzeby konkursu. Prace te nie będą wykorzystowane w żadnych celu niezwiązanym z konkursem, a o ewentualnej chęci opublikowania wzmiankowanych prac, autorzy będą informowani i dziać się to będzie wyłącznie za ich zgodą.</li>
 <li>Prace publikowane w konkursie muszą być pracami oryginalnymi. Prace, które zostały wcześniej opublikowane w Internecie, nie będą dopuszczane do konkursu. Naturalnie, plagiaty również nie będą dopuszczane do konkursu.</li></ul> 
-
-
-            </section>
-        </article>

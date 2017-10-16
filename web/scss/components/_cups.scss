@@ -186,49 +186,29 @@
 #cup-form {
   padding: 1em 0;
 }
+
+
 .battle {
   padding: 1em 0;
   text-align: center;
+  .battle-player {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    &:last-child .battle-person {
+      text-align: right;
+    }
+  }
+  .battle-person {
+    display: block;
+    margin: 0 auto;
+    padding: .5em;
+    width: 10em;
+    box-sizing: border-box;
+    background: #f8f8f8;
+  }
 }
-.battle-player {
-  display: inline-block;
-  vertical-align: middle;
-}
-.battle-player-1,
-.battle-player-2 {
-  display: inline-block;
-  /*width: 32%;*/
-  vertical-align: middle;
-}
-.battle-player-1 {
-  /*padding-left: 10%;*/
-  /*width: 22%;*/
-  text-align: left;
-  /*background-color: #aaa;*/
-}
-.battle-player-2 {
-  /*padding-right: 10%;*/
-  /*width: 22%;*/
-  text-align: right;
-  /*background-color: #8af;*/
-}
-.battle-person {
-  display: block;
-  margin: 0 auto;
-  padding: .5em;
-  /*max-width: 240px;*/
-  width: 10em;
-  /*width: */
-  box-sizing: border-box;
-  background: #eee;
-  background: #f8f8f8;
-}
-.battle-player-1 .battle-person:after,
-.battle-player-2 .battle-person:before {
-  content: attr(data-person);
-  vertical-align: middle;
-}
-._battle-person img,
+
 .battle-person span {
   display: inline-block;
   vertical-align: middle;
@@ -241,9 +221,10 @@
   background: #eee;
 }
 
-.battle .points {
+.battle-score {
   display: inline-block;
-  width: 5em;
+  width: 5rem;
+  font-size: 2rem;
   vertical-align: middle;
   color: #444;
 }

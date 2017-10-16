@@ -1,13 +1,10 @@
 
-
 .article-main-image {
-  // width: 100%;
-  width: 1280px;
-  margin: 4em (-((1280px - $container-width) / 2)) 0;
+  width: $container-width;
 }
 
 .article-main-image + .article-header {
-  margin-top: -8em;
+  // margin-top: -8em;
 }
 
 .article-header {

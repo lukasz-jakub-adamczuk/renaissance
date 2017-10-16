@@ -12,7 +12,7 @@ class StoryShowByCategoryView extends View {
 
         $collection = Dao::collection('story');
         
-        $articles = $collection->getStoriesForCategory($category);
+        $articles = $collection->getArticlesForCategory($category);
 
         $firstItem = current($articles);
 

@@ -13,8 +13,6 @@ use Renaissance\Helper\Comments;
 class StoryInfoView extends View {
 
     public function fill() {
-        $redirected = false;
-
         // old page urls
         $url = isset($_GET['url']) ? $_GET['url'].',articles,pub.html' : null;
 
@@ -24,12 +22,10 @@ class StoryInfoView extends View {
 
         // category redirect
         if ($url === '0,articles,pub.html') {
-            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('story').'/fanfiki', TRUE, 301);
-            $redirected = true;
+            $this->redirect(BASE_URL.'/'.ValueMapper::getUrl('story').'/fanfiki');
         }
         if ($url === '1,articles,pub.html') {
-            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('story').'/artykuly', TRUE, 301);
-            $redirected = true;
+            $this->redirect(BASE_URL.'/'.ValueMapper::getUrl('story').'/artykuly');
         }
 
         $storyEntity = Dao::entity('story');
@@ -41,13 +37,11 @@ class StoryInfoView extends View {
         }
 
         // headers
-        if ($url && !$redirected) {
+        if ($url) {
             $articleSlug = $storyEntity->getField('slug');
             $categorySlug = $storyEntity->getField('category_slug');
-            
-            Logger::logStandardRequest('redirects');
 
-            header('Location: '.BASE_URL.'/'.ValueMapper::getUrl('story').'/'.$categorySlug.'/'.$articleSlug, TRUE, 301);
+            $this->redirect(BASE_URL.'/'.ValueMapper::getUrl('story').'/'.$categorySlug.'/'.$articleSlug);
         }
 
         // title

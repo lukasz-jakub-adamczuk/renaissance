@@ -1,5 +1,5 @@
 <article id="main-text"{if $article.template eq 'review'} itemtype="http://schema.org/Product"{/if}>
-    {include file='partials/article-header.tpl'}
+    {include file='partials/article-header.tpl' title=$article.title}
     <!-- <div class="wrapper inside"> -->
         <div class="content-meta">
             <a href="{$base}/{#user#}/{$article.author_slug}">{$article.author_name}</a> - <time>{$article.creation_date|date_format:"%d %B %Y, %H:%M"|localize_date}</time>
@@ -43,9 +43,9 @@
 </article>
 {include file='partials/ratings.tpl'}
 
-<div>
+{*<div>
     <div class="inner" style="border: 1px solid #aaa;">
         {include file='partials/fb-comments.tpl'}
     </div>
-</div>
+</div>*}
 {include file='partials/comments.tpl' commentPrimaryKey=$commentPrimaryKey}

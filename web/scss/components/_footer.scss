@@ -1,7 +1,7 @@
 
 /* site footer */
 #footer {
-  background: #eee url(../assets/site/bg/norwegian_rose/norwegian_rose.png) 0 0 repeat;
+  background: #eee url(../assets/site/bg/norwegian_rose/norwegian_rose.png) 50% 50% repeat;
   border-top: 1px solid #888;
   a {
     color: #444;
@@ -35,12 +35,12 @@
     vertical-align: middle;
     text-align: center;
     color: #444;
-    &:first-child {
-      text-align: left;
-    }
-    &:last-child {
-      text-align: right;
-    }
+    // &:first-child {
+    //   text-align: left;
+    // }
+    // &:last-child {
+    //   text-align: right;
+    // }
   }
 }
 

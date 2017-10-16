@@ -39,58 +39,15 @@ class FrontController extends CrudController {
         }
         $this->_renderer->assign('self', $selfUrl);
 
-
-        // cosplays
-        $sCosplaysFile = CACHE_DIR . '/cosplays';
-        if (file_exists($sCosplaysFile)) {
-            $aCosplays = unserialize(file_get_contents($sCosplaysFile));
-        } else {
-            $collection = Dao::collection('gallery-image');
-            
-            $aCosplays = $collection->getGalleryCosplays();
-
-            file_put_contents($sCosplaysFile, serialize($aCosplays));
-        }
-        $this->_renderer->assign('aCosplays', $aCosplays);
-
-        // wallpapers
-        // CacheManager::restore('front-wallpapers', Dao::collection('gallery-image')->getGalleryWallpapers());
         
-        // if (CacheManager::has('front-wallpapers')) {
-        //     CacheManager::restore('front-wallpapers');
-        // } else {
-        //     CacheManager::save('front-wallpapers', Dao::collection('gallery-image')->getGalleryWallpapers());
-        // }
-        
-        $sWallpapersFile = CACHE_DIR . '/wallpapers';
-        if (!file_exists($sWallpapersFile)) {
-            $aWallpapers = unserialize(file_get_contents($sWallpapersFile));
-        } else {
-            // echo 'wallpapers from db';
-            // $collection = Dao::collection('gallery-image');
-            
-            // $aWallpapers = $collection->getGalleryWallpapers();
-            $aWallpapers = Dao::collection('gallery-image')->getGalleryWallpapers();
+        $cosplays = Dao::collection('gallery-image')->getGalleryCosplays();
+        $this->_renderer->assign('cosplays', $cosplays);
 
-            file_put_contents($sWallpapersFile, serialize($aWallpapers));
-        }
-        $this->_renderer->assign('aWallpapers', $aWallpapers);
+        $wallpapers = Dao::collection('gallery-image')->getGalleryWallpapers();
+        $this->_renderer->assign('wallpapers', $wallpapers);
 
-        // fanarts
-        $sFanartsFile = CACHE_DIR . '/fanarts';
-        if (!file_exists($sFanartsFile)) {
-            // echo 'fanarts from cache';
-            $aFanarts = unserialize(file_get_contents($sFanartsFile));
-        } else {
-            // echo 'fanarts from db';
-
-            $collection = Dao::collection('gallery-image');
-
-            $aFanarts = $collection->getGalleryFanarts();
-
-            file_put_contents($sFanartsFile, serialize($aFanarts));
-        }
-        $this->_renderer->assign('aFanarts', $aFanarts);
+        $fanarts = Dao::collection('gallery-image')->getGalleryFanarts();
+        $this->_renderer->assign('fanarts', $fanarts);
 
         $this->loginAction();
     }

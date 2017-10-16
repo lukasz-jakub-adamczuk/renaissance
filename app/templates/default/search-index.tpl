@@ -11,7 +11,7 @@
     
     <section class="inner main-items">
         {if $entries}
-        {include file='partials/search-items.tpl' list=$entries col=title url=url footer='human-date'}
+        {include file='partials/list-items.tpl' list=$entries entity=#news# col=title url=url footer='human-date'}
         {else}
         <p>Brak aktualności</p>
         {/if}
