@@ -18,7 +18,7 @@ class FrontController extends CrudController {
     public function beforeAction() {
         parent::beforeAction();
         // decide when to show and hide
-        if ($this->_ctrlName != 'home' ) {
+        if ($this->_ctrlName != 'home') {
             $item = array(
                 'name' => 'ctrl',
                 'url' => ValueMapper::getUrl($this->getCtrlName()),
@@ -26,6 +26,8 @@ class FrontController extends CrudController {
             );
             Breadcrumbs::add($item);
         }
+
+        print_r(ValueMapper::allValues());
 
         $this->_renderer->assign('datetimeFormat', '%Y-%m-%dT%H:%M');
 
