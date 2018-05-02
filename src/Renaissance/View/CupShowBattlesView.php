@@ -10,7 +10,6 @@ use Aya\Helper\ValueMapper;
 use Renaissance\Helper\CupManager;
 
 // terminarz
-
 class CupShowBattlesView extends View {
 
     public function fill() {
@@ -37,12 +36,6 @@ class CupShowBattlesView extends View {
                 mkdir($sCupDirectory, 0777, true);
             }
 
-            // require_once APP_DIR.'/helpers/CupManager.php';
-                
-            // $cupManager = new CupManager(array('slug' => ));
-
-            // $aBattles = $cupManager->getAllBattles();
-
             // all battles
             $sAllBattlesFile = $sCupDirectory . '/all-battles';
             if (file_exists($sAllBattlesFile)) {
@@ -54,20 +47,6 @@ class CupShowBattlesView extends View {
 
                 file_put_contents($sAllBattlesFile, serialize($aBattles));
             }
-
-            // $sAllBattlesKeysFile = $sCupDirectory . '/all-battles-keys';
-            // if (file_exists($sAllBattlesKeysFile)) {
-            //     $aBattlesKeys = unserialize(file_get_contents($sAllBattlesKeysFile));
-            // } else {
-            //     $aBattlesKeys = array_keys($aBattles);
-
-            //     file_put_contents($sAllBattlesKeysFile, serialize($aBattlesKeys));
-            // }
-
-            // echo '<pre>';
-            // print_r($aBattles);
-            // echo '</pre>';
-            // print_r($aBattlesKeys);
 
             // headers
             if ($sId) {
@@ -110,25 +89,6 @@ class CupShowBattlesView extends View {
             //     '63' => array('W61', 'W62')
             // );
 
-            // if ($_SERVER['REMOTE_ADDR'] == '89.64.24.64') {
-            //     echo '<pre>battles';
-            //     echo $sAllBattlesFile;
-            //     print_r($aBattles);
-                
-            //     if (file_exists($sAllBattlesFile)) {
-            //         echo 'file exists';
-            //         $aBattles = unserialize(file_get_contents($sAllBattlesFile));
-            //     }
-            //     echo 'from cache';
-            //     print_r($aBattles);
-                
-            //     print_r($aBattles);
-            //     // print_r($aDefaults);
-            //     // print_r(array_flip($aBattlesKeys));
-            //     echo '</pre>';
-            // }
-
-            // require_once APP_DIR.'/helpers/CupManager.php';
                 
             $cupManager = new CupManager();
 
@@ -138,7 +98,7 @@ class CupShowBattlesView extends View {
             // $this->_renderer->assign('aBattles', array_reverse($aBattles));
             // $this->_renderer->assign('navigator', $collection->getNavigator());
 
-            // $this->_renderer->assign('aDefaults', $aDefaults);
+            // $this->_renderer->assign('aDefaults', $cu);
             // $this->_renderer->assign('aBattlesKeysFlipped', array_flip($aBattlesKeys));
         }
     }

@@ -6,6 +6,8 @@ use Aya\Core\Dao;
 use Aya\Core\View;
 use Aya\Helper\ValueMapper;
 
+use Renaissance\Helper\CupManager;
+
 class HomeIndexView extends View {
 
     public function fill() {
@@ -84,6 +86,14 @@ class HomeIndexView extends View {
         }
 
         $this->_renderer->assign('activities', $entries);
+
+        // cup
+        $cupManager = new CupManager();
+        
+        $cupManager->manageCalculationProcess();
+        
+        $this->_renderer->assign('cupBattle', $cupManager->getCurrentBattle());
+        $this->_renderer->assign('canVote', $cupManager->canUserVote());
     }
 
     protected function _runBeforeFill() {

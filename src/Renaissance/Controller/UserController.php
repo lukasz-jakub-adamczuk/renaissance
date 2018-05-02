@@ -18,13 +18,8 @@ class UserController extends FrontController {
         // think about sanitize data
         $aPost = isset($_POST['register']) ? $_POST['register'] : null;
 
-        die('regisrarion is disabled now...');
-
         if ($aPost) {
-            // MessageList::raiseError('register post data...');
-
             $aErrors = [];
-            // start checking
 
             // name
             if (empty($aPost['name'])) {
@@ -53,40 +48,38 @@ class UserController extends FrontController {
             if (count($aErrors) == 0) {
                 // MessageList::raiseError('valid data...');
 
-                $name = $aPost['name'];
-                $sPass = $aPost['password'];
-                $sEmail = $aPost['email'];
+                $name = strip_tags($aPost['name']);
+                $pass = strip_tags($aPost['password']);
+                $email = strip_tags($aPost['email']);
 
-                $slug = Text::slugify($aPost['name']);
+                $slug = Text::slugify($name);
 
                 // be sure the account can be created
-                $db = Db::getInstance();
+                // $db = Db::getInstance();
 
-                $sql = 'SELECT email
-                        FROM user
-                        WHERE name="'.$name.'" OR slug="'.$slug.'" OR email="'.$sEmail.'"';
+                // $sql = 'SELECT email
+                //         FROM user
+                //         WHERE name="'.$name.'" OR slug="'.$slug.'" OR email="'.$email.'"';
                 
                 // if exists a record then account can not be created
-                $aUser = $db->getRow($sql);
+                // $aUser = $db->getRow($sql);
+
+                $user = Dao::entity('user')->doesUserExists($name, $slug, $email);
 
                 // var_dump($aUser);
-                // MessageList::raiseError(sha1(addslashes(strtolower($name)).addslashes($sPass)));
+                // MessageList::raiseError(sha1(addslashes(strtolower($name)).addslashes($pass)));
 
                 // here we should send a verification email
-                if ($aUser === false) {
+                if ($user === false) {
                     // MessageList::raiseError('can create account...');
 
-                    $oEntity = Dao::entity('user');
+                    $userEntity = Dao::entity('user');
 
-                    $oEntity->setField('name', $name);
-                    $oEntity->setField('slug', $slug);
-                    $oEntity->setField('hash', sha1(addslashes(strtolower($name)).addslashes($sPass)));
-                    $oEntity->setField('email', $sEmail);
-                    $oEntity->setField('register_date', date('Y-m-d H:i:s'));
-
-                    // $oEntity->setField('activation', sha1(strtolower($name)));
-
-                    // print_r($oEntity);
+                    $userEntity->setField('name', $name);
+                    $userEntity->setField('slug', $slug);
+                    $userEntity->setField('hash', sha1(addslashes(strtolower($name)).addslashes($pass)));
+                    $userEntity->setField('email', $email);
+                    $userEntity->setField('register_date', date('Y-m-d H:i:s'));
 
                     if ($oEntity->insert(true)) {
                         MessageList::raiseInfo('Konto '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' zostało utworzone.');
@@ -97,12 +90,11 @@ class UserController extends FrontController {
                     MessageList::raiseError('Istnieje konto dla tego użytkownika.');
                 }
             } else {
-                MessageList::raiseError('Wystąpiły następujące błędy: ' + implode(', ', $aErrors) + '.');
+                // $
+                // MessageList::raiseError('Wystąpiły następujące błędy: ' . implode(', ', $aErrors) . '.');
             }
-
-
         } else {
-            MessageList::raiseError('Błędy... Coś kombinujesz...');
+            // MessageList::raiseError('Błędy... Coś kombinujesz...');
         }
     }
 }

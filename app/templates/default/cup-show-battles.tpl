@@ -1,5 +1,4 @@
 <section>
-    {if $aBattles}
     <header class="inner">
         <h2>Terminarz</h2>
         <h3>{$categoryName}</h3>
@@ -12,7 +11,11 @@
         </div>
     {foreach from=$aBattles item=battle key=bk}
         <div class="battle">
-            <h3 class="center-header">{$battle.id_cup_battle|date_format:'%d-%m-%Y'}</h3>
+            <h3 class="center-header">
+                {*<a id="battle-for-{$battle.id_cup_battle}">*}
+                    {$battle.id_cup_battle|date_format:'%d-%m-%Y'}
+                {*</a>*}
+            </h3>
             
             <span class="battle-player">
                 {if $battle.slug1 neq ''}
@@ -23,6 +26,7 @@
                 {else}
                 <span class="battle-person" data-person="{$aDefaults[$battle@index][0]|default:'???'}">
                     <img src="{$base}/assets/cup/0m.jpg" width="50" height="50" alt="?">
+                    <span name="player-name">{$aDefaults[$battle@index][0]|default:'???'}</span>
                 </span>
                 {/if}
             </span><!--
@@ -35,6 +39,7 @@
                 </a>
                 {else}
                 <span class="battle-person" data-person="{$aDefaults[$battle@index][1]|default:'???'}">
+                    <span name="player-name">{$aDefaults[$battle@index][1]|default:'???'}</span>
                     <img src="{$base}/assets/cup/0m.jpg" width="50" height="50" alt="?">
                 </span>
                 {/if}
@@ -42,7 +47,4 @@
         </div>
     {/foreach}
     </div>
-    {else}
-    {include file='partials/not-found.tpl'}
-    {/if}
 </section>

@@ -7,8 +7,8 @@
         <input type="hidden" name="match[player1]" value="{$cupBattle.player1}">
         <input type="hidden" name="match[player2]" value="{$cupBattle.player2}">
 
-        <span class="battle-player _battle-player-1 dib vam tac">
-            <a href="{$base}/{#cup#}/{$cupBattle.cup_slug}/{$cupBattle.player1_slug}" class="match-item battle-person" data-person="{$cupBattle.player1_name}">
+        <span class="battle-player" style="text-align: center;">
+            <a href="{$base}/{#cup#}/{$cupBattle.cup_slug}/{$cupBattle.player1_slug}" class="match-item battle-person" data-person="{$cupBattle.player1_name}" style="width: auto;">
                 <img src="{$base}/assets/cup/{$cupBattle.cup_slug}/{$cupBattle.player1}.jpg" width="" height="" alt="{$cupBattle.player1_slug}" class="large-visible">
                 <img src="{$base}/assets/cup/{$cupBattle.cup_slug}/{$cupBattle.player1}m.jpg" width="" height="" alt="{$cupBattle.player1_slug}" class="small-visible">
             </a>
@@ -18,11 +18,11 @@
             {/if}
             {/if}
         </span><!--
-        --><span class="points">
-            {$cupBattle.score1}-{$cupBattle.score2}
+        --><span class="points" style="font-size: 2em; padding: .5em;">
+            {$cupBattle.score1} - {$cupBattle.score2}
         </span><!--
-        --><span class="battle-player _battle-player-2 dib vam tac">
-            <a href="{$base}/{#cup#}/{$cupBattle.cup_slug}/{$cupBattle.player2_slug}" class="match-item battle-person" data-person="{$cupBattle.player2_name}">
+        --><span class="battle-player" style="text-align: center;">
+            <a href="{$base}/{#cup#}/{$cupBattle.cup_slug}/{$cupBattle.player2_slug}" class="match-item battle-person" data-person="{$cupBattle.player2_name}" style="width: auto; text-align: center;">
                 <img src="{$base}/assets/cup/{$cupBattle.cup_slug}/{$cupBattle.player2}.jpg" width="" height="" alt="{$cupBattle.player2_slug}" class="large-visible">
                 <img src="{$base}/assets/cup/{$cupBattle.cup_slug}/{$cupBattle.player2}m.jpg" width="" height="" alt="{$cupBattle.player2_slug}" class="small-visible">
             </a>

@@ -133,8 +133,8 @@
                                         <i class="ch-icon ch-icon-chevron-down"></i>
                                     </div>
                                     <ul class="ch-menu-subsections">
+                                        <li><a href="{$base}/mistrzostwa/heroine-cup-2018" class="">Heroine Cup 2018</a></li>
                                         <li><a href="{$base}/mistrzostwa/hero-cup-2017" class="">Hero Cup 2017</a></li>
-                                        <li><a href="{$base}/mistrzostwa/heroine-cup-2016" class="">Heroine Cup 2016</a></li>
                                     </ul>
                                 </li>
                             {*{{#sectionsMenu}}
@@ -206,6 +206,7 @@
                         <ul class="ch-menu-area-pub" aria-label="publication menu">
                             <!-- <li><i class="ch-icon ch-icon-logo-short"></i></li> -->
                             <li><a href="{$base}/uzytkownicy">Użytkownicy</a></li>
+                            <li><a href="{$base}/uzytkownicy/rejestracja">Rejestracja</a></li>
                             <li><a href="http://forum.squarezone.pl">Forum</a></li>
                         </ul>
                         {if !$usr::set()}

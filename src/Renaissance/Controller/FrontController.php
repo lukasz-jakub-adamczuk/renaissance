@@ -27,7 +27,7 @@ class FrontController extends CrudController {
             Breadcrumbs::add($item);
         }
 
-        print_r(ValueMapper::allValues());
+        // print_r(ValueMapper::allValues());
 
         $this->_renderer->assign('datetimeFormat', '%Y-%m-%dT%H:%M');
 
