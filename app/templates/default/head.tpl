@@ -37,10 +37,16 @@
 
     {if $smarty.const.APP_ENV eq 'prod'}
         {*<link rel="stylesheet" href="{$base}/css/main.min.css?v={$smarty.const.VERSION}">*}
-        <link rel="stylesheet" href="{$base}/css/core-header.min.css?v={$smarty.const.VERSION}">
+        {*<link rel="stylesheet" href="{$base}/css/core-header.min.css?v={$smarty.const.VERSION}">
         <link rel="stylesheet" href="{$base}/css/360.min.css?v={$smarty.const.VERSION}" media="min-width: 360px">
         <link rel="stylesheet" href="{$base}/css/768.min.css?v={$smarty.const.VERSION}" media="min-width: 768px">
-        <link rel="stylesheet" href="{$base}/css/1080.min.css?v={$smarty.const.VERSION}" media="min-width: 1080px">
+        <link rel="stylesheet" href="{$base}/css/1080.min.css?v={$smarty.const.VERSION}" media="min-width: 1080px">*}
+        <link rel="stylesheet" href="{$base}/css/core-header.css">
+        <link rel="stylesheet" href="{$base}/css/min-width-320px.css" media="(max-width: 359px)">
+        <link rel="stylesheet" href="{$base}/css/min-width-360px.css" media="(min-width: 360px) and (max-width: 479px)">
+        <link rel="stylesheet" href="{$base}/css/min-width-480px.css" media="(min-width: 480px) and (max-width: 767px)">
+        <link rel="stylesheet" href="{$base}/css/min-width-768px.css" media="(min-width: 768px) and (max-width: 1079px)">
+        <link rel="stylesheet" href="{$base}/css/min-width-1080px.css" media="(min-width: 1080px)">
     {else}
         <link rel="stylesheet" href="{$base}/css/core-header.css">
         <link rel="stylesheet" href="{$base}/css/min-width-320px.css" media="(max-width: 359px)">
