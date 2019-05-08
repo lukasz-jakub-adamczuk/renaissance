@@ -5,7 +5,6 @@ namespace Renaissance\View;
 use Aya\Core\Dao;
 use Aya\Core\View;
 use Aya\Helper\ValueMapper;
-
 use Renaissance\Helper\CupManager;
 
 class HomeIndexView extends View {
@@ -27,8 +26,8 @@ class HomeIndexView extends View {
             if (file_exists($newsStreamFile)) {
                 $entries['news'] = unserialize(file_get_contents($newsStreamFile));
             } else {
-                $oNewsCollection = Dao::collection('news');
-                $entries['news'] = $oNewsCollection->getNewsForStream($frontItems);
+                $newsCollection = Dao::collection('news');
+                $entries['news'] = $newsCollection->getNewsForStream($frontItems);
 
                 $oNewsImageEntity = Dao::entity('news-image');
             
@@ -46,8 +45,8 @@ class HomeIndexView extends View {
             if (file_exists($articleStreamFile)) {
                 $entries['article'] = unserialize(file_get_contents($articleStreamFile));
             } else {
-                $oArticleCollection = Dao::collection('article');
-                $entries['article'] = $oArticleCollection->getArticlesForStream($frontItems);
+                $articleCollection = Dao::collection('article');
+                $entries['article'] = $articleCollection->getArticlesForStream($frontItems);
 
                 file_put_contents($articleStreamFile, serialize($entries['article']));
             }
@@ -56,8 +55,8 @@ class HomeIndexView extends View {
             if (file_exists($storyStreamFile)) {
                 $entries['story'] = unserialize(file_get_contents($storyStreamFile));
             } else {
-                $oStoryCollection = Dao::collection('story');
-                $entries['story'] = $oStoryCollection->getArticlesForStream($frontItems);
+                $storyCollection = Dao::collection('story');
+                $entries['story'] = $storyCollection->getArticlesForStream($frontItems);
 
                 file_put_contents($storyStreamFile, serialize($entries['story']));
             }
@@ -88,9 +87,19 @@ class HomeIndexView extends View {
         $this->_renderer->assign('activities', $entries);
 
         // cup
-        $cupManager = new CupManager();
+       $cupManager = new CupManager();
+        // print_r($cupManager);
+        // methods for debug fixing
+        // $cupManager->clearingAllPlayersStats();
+        // $cupManager->calculateGroupPhaseMatchesStats();
+        // $cupManager->validatePlayersStats();
+        // echo '.';
+        // $cupManager->clearAllBattlesCache();
         
-        $cupManager->manageCalculationProcess();
+       $cupManager->manageGroupPhase();
+       $cupManager->manageCupPhase();
+
+        // var_dump($cupManager->getCurrentBattle());
         
         $this->_renderer->assign('cupBattle', $cupManager->getCurrentBattle());
         $this->_renderer->assign('canVote', $cupManager->canUserVote());

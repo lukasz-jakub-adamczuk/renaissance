@@ -21,6 +21,9 @@ class CupShowByCategoryView extends View {
         $collection->query($sql);
 
         $aRows = $collection->getRows();
+
+        echo $categorySlug;
+        print_r($aRows);
         
         if ($aRows) {
             // cup

@@ -42,7 +42,8 @@ class ArticleInfoView extends View {
 
         // title
         $this->_renderer->assign('title', 'Squarezone - Gry - '.$articleEntity->getField('category_name').' - '.$articleEntity->getField('title'));
-        
+        // print_r($articleEntity);
+        // var_dump($article);
         $article['id'] = $article['id_article'];
 
         if (!isset($article['template'])) {

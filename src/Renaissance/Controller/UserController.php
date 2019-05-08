@@ -8,6 +8,8 @@ use Aya\Helper\MessageList;
 
 use Renaissance\Controller\FrontController;
 
+use Aya\Exception\MissingEntityException;
+
 class UserController extends FrontController {
 
     public function indexAction() {}
@@ -18,9 +20,9 @@ class UserController extends FrontController {
         // think about sanitize data
         $aPost = isset($_POST['register']) ? $_POST['register'] : null;
 
-        if ($aPost) {
-            $aErrors = [];
+        $aErrors = [];
 
+        if ($aPost) {
             // name
             if (empty($aPost['name'])) {
                 $aErrors['name'][] = 'Nazwa jest pusta.';
@@ -42,37 +44,48 @@ class UserController extends FrontController {
             // retype-password
             if ($aPost['password_retype'] !== $aPost['password']) {
                 $aErrors['password_retype'][] = 'Powtórzone hasło jest nieprawidłowe.';
-            } 
+            }
+            // challenge
+            if ($aPost['challenge'] !== date('n')) {
+                $aErrors['challenge'][] = 'Nieprawidłowa odpowiedź.';
+            }
+
+            
 
             // start proccess for right conditions only
             if (count($aErrors) == 0) {
-                // MessageList::raiseError('valid data...');
-
                 $name = strip_tags($aPost['name']);
                 $pass = strip_tags($aPost['password']);
                 $email = strip_tags($aPost['email']);
 
                 $slug = Text::slugify($name);
 
-                // be sure the account can be created
-                // $db = Db::getInstance();
-
-                // $sql = 'SELECT email
-                //         FROM user
-                //         WHERE name="'.$name.'" OR slug="'.$slug.'" OR email="'.$email.'"';
+                try {
+                    $userNameExists = Dao::entity('user')->doesUserNameExists($name);
+                } catch (MissingEntityException $e) {
+                    $userNameExists = false;
+                }
+                try {
+                    $userSlugExists = Dao::entity('user')->doesUserSlugExists($slug);
+                } catch (MissingEntityException $e) {
+                    $userSlugExists = false;
+                }
+                try {
+                    $userEmailExists = Dao::entity('user')->doesUserEmailExists($email);
+                } catch (MissingEntityException $e) {
+                    $userEmailExists = false;
+                }
                 
-                // if exists a record then account can not be created
-                // $aUser = $db->getRow($sql);
+                if ($userNameExists || $userSlugExists) {
+                    $aErrors['name'][] = 'Podana nazwa użytkownika jest zajęta.';
+                }
 
-                $user = Dao::entity('user')->doesUserExists($name, $slug, $email);
-
-                // var_dump($aUser);
-                // MessageList::raiseError(sha1(addslashes(strtolower($name)).addslashes($pass)));
+                if ($userEmailExists) {
+                    $aErrors['email'][] = 'Podany adres email jest zajęty.';
+                }
 
                 // here we should send a verification email
-                if ($user === false) {
-                    // MessageList::raiseError('can create account...');
-
+                if (count($aErrors) == 0) {
                     $userEntity = Dao::entity('user');
 
                     $userEntity->setField('name', $name);
@@ -80,21 +93,20 @@ class UserController extends FrontController {
                     $userEntity->setField('hash', sha1(addslashes(strtolower($name)).addslashes($pass)));
                     $userEntity->setField('email', $email);
                     $userEntity->setField('register_date', date('Y-m-d H:i:s'));
+                    $userEntity->setField('secret', 'secret');
 
-                    if ($oEntity->insert(true)) {
+                    // if ($userEntity->insert(true)) {
+                    if (true) {
                         MessageList::raiseInfo('Konto '.(isset($name) ? '<strong>'.$name.'</strong>' : '').' zostało utworzone.');
+
+                        $this->actionForward('index', 'home', true);
                     } else {
                         MessageList::raiseError('Utworzenie konta zakończone niepowodzeniem.');
                     }
-                } else {
-                    MessageList::raiseError('Istnieje konto dla tego użytkownika.');
                 }
-            } else {
-                // $
-                // MessageList::raiseError('Wystąpiły następujące błędy: ' . implode(', ', $aErrors) . '.');
             }
-        } else {
-            // MessageList::raiseError('Błędy... Coś kombinujesz...');
         }
+
+        $this->_renderer->assign('errors', $aErrors);
     }
 }

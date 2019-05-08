@@ -4,7 +4,8 @@ namespace Renaissance\Controller;
 
 use Aya\Core\Dao;
 use Aya\Core\Logger;
-use Aya\Helper\ValueMapper;z
+use Aya\Helper\ValueMapper;
+use Renaissance\Helper\CupManager;
 
 class FormController extends FrontController {
 
@@ -164,8 +165,6 @@ class FormController extends FrontController {
 
                 $player1 = $aPost['match']['player1'];
                 $player2 = $aPost['match']['player2'];
-                
-                require_once APP_DIR.'/helpers/CupManager.php';
                 
                 $cupManager = new CupManager();
                 
