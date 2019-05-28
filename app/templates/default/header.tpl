@@ -133,8 +133,9 @@
                                         <i class="ch-icon ch-icon-chevron-down"></i>
                                     </div>
                                     <ul class="ch-menu-subsections">
+                                        <li><a href="{$base}/mistrzostwa/hero-cup-2019" class="">Hero Cup 2019</a></li>
                                         <li><a href="{$base}/mistrzostwa/heroine-cup-2018" class="">Heroine Cup 2018</a></li>
-                                        <li><a href="{$base}/mistrzostwa/hero-cup-2017" class="">Hero Cup 2017</a></li>
+                                        {*<li><a href="{$base}/mistrzostwa/hero-cup-2017" class="">Hero Cup 2017</a></li>*}
                                     </ul>
                                 </li>
                             {*{{#sectionsMenu}}

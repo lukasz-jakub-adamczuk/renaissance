@@ -1,0 +1,9 @@
+.messages {
+    @include inner-box();
+}
+.messages > span {
+    padding: .5em;
+}
+.info {
+    padding: .5em;
+}

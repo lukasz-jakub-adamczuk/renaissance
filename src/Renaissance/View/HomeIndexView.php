@@ -11,8 +11,8 @@ class HomeIndexView extends View {
 
     public function fill() {
         $streamFile = CACHE_DIR . '/stream';
-        // if (CACHE_OUTPUT && file_exists($streamFile)) {
-        if (file_exists($streamFile)) {
+        if (CACHE_OUTPUT && file_exists($streamFile)) {
+        // if (file_exists($streamFile)) {
             $entries = unserialize(file_get_contents($streamFile));
         } else {
             $newsStreamFile = CACHE_DIR . '/stream-news';
@@ -40,6 +40,7 @@ class HomeIndexView extends View {
             
                 file_put_contents($newsStreamFile, serialize($entries['news']));
             }
+            print_r($entries['news']);
 
             // articles
             if (file_exists($articleStreamFile)) {
@@ -83,6 +84,7 @@ class HomeIndexView extends View {
 
             file_put_contents($streamFile, serialize($entries));            
         }
+        echo 'test';
 
         $this->_renderer->assign('activities', $entries);
 

@@ -1,5 +1,11 @@
 
-/* notifications */
+/* messages */
+.messages {
+  @include inner-box();
+}
+.messages > span {
+  padding: .5em;
+}
 .notice {
   position: relative;
   margin-bottom: 1em;

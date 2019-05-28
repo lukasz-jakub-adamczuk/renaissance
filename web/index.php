@@ -1,5 +1,8 @@
 <?php
 
+// opcache_reset();
+// ini_set('opcache.enable', 0);
+
 use Aya\Core\Logger;
 use Aya\Core\Router;
 use Aya\Helper\Time;
@@ -14,6 +17,8 @@ Time::start();
 
 error_reporting(E_ALL);
 
+// ini_set('opcache.enable', '0');
+
 Logger::addLogSpace('404', LOG_DIR.'/404/'.date('Y-m-d').'.log');
 Logger::addLogSpace('visits', LOG_DIR.'/visits/'.date('Y-m-d').'.log');
 Logger::addLogSpace('issues', LOG_DIR.'/issues/'.date('Y-m-d').'.log');
@@ -27,7 +32,7 @@ ob_start();
 $controller = Router::init();
 
 // try {
-    
+
 // } catch (MissingControllerException $e) {
 //     $controller->setTemplateName('404');
 //     Logger::logStandardRequest('404');
