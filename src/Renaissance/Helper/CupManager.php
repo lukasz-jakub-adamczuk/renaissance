@@ -40,21 +40,12 @@ class CupManager {
         $this->cupCachePath = CACHE_DIR . '/cup/' . $this->tournamentSlug;
 
         // directories
-        $sStatsFile = $this->cupCachePath . '/stats';
-        if (!file_exists($sStatsFile)) {
-            mkdir($sStatsFile, 0777, true);
-        }
-        $battlesFile = $this->cupCachePath . '/battles';
-        if (!file_exists($battlesFile)) {
-            mkdir($battlesFile, 0777, true);
-        }
-        $sWinnersFile = $this->cupCachePath . '/winners';
-        if (!file_exists($sWinnersFile)) {
-            mkdir($sWinnersFile, 0777, true);
-        }
-        $sPlayersFile = $this->cupCachePath . '/players';
-        if (!file_exists($sPlayersFile)) {
-            mkdir($sPlayersFile, 0777, true);
+        $dirs = ['stats', 'battles', 'winners', 'players'];
+        foreach ($dirs as $d) {
+            $path = $this->cupCachePath . '/' . $d;
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
         }
 
         $this->clearAllBattlesCache();
@@ -152,26 +143,25 @@ class CupManager {
     }
 
     public function manageCupPhase() {
-        if ($this->isCupPhaseMatch()) {
+        if ($this->isBeforeCupPhaseMatchesAlso()) {
             $winnersFile = $this->cupCachePath . '/winners/' . $this->lastBattleDate;
 
-            $winners = [];
             if (!file_exists($winnersFile)) {
                 $collection = Dao::collection('cup-player');
                 $players = $collection->getPlayersFromLatestCup();
-                
-                $groups = [];
-
                 // print_r($players);
-
+                
                 // grouping players
+                $groups = [];
                 foreach ($players as $pk => $player) {
                     if ($player['battles'] == 3) {
                         $groups[$player['group']][] = $player;
                     }
                 }
+                // print_r($groups);
 
                 // only 1st and 2nd player are winners
+                $winners = [];
                 foreach ($groups as $group) {
                     if (count($group) == 4) {
                         foreach ($group as $pk => $player) {
@@ -181,7 +171,6 @@ class CupManager {
                         }
                     }
                 }
-                // print_r($groups);
                 
                 $collection = Dao::collection('cup-battle');
 
@@ -200,12 +189,10 @@ class CupManager {
                         }
                     }
                 }
-
                 // print_r($winners);
 
                 // defaults for cup phase battles
                 $defaultBattles = $this->getCupPhaseDefaults();
-
                 // print_r($defaultBattles);
                 
                 // check all cup phase winners and set if needed
@@ -332,7 +319,7 @@ class CupManager {
     }
 
     // used for fixing calculations
-    /*public function calculateGroupPhaseMatchesStats() {
+    public function calculateGroupPhaseMatchesStats() {
         // $this->clearingAllPlayersStats();
 
         $allBattles = $this->getAllBattles();
@@ -366,7 +353,7 @@ class CupManager {
                 }
             }
         }
-    }*/
+    }
 
     public function clearingAllPlayersStats() {
         $players = Dao::collection('cup-player')->getPlayersFromLatestCup();
@@ -467,6 +454,11 @@ class CupManager {
     private function isGroupPhaseMatch() {
         return (isset($this->allBattlesKeysFlipped[$this->currentBattleDate])
                 && $this->allBattlesKeysFlipped[$this->currentBattleDate] < 48);
+    }
+
+    private function isBeforeCupPhaseMatchesAlso() {
+        return (isset($this->allBattlesKeysFlipped[$this->currentBattleDate])
+                && $this->allBattlesKeysFlipped[$this->currentBattleDate] < 32);
     }
 
     private function isCupPhaseMatch() {
